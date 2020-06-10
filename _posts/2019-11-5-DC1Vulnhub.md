@@ -1,7 +1,8 @@
 ---
 title:     "Vulnhub - DC 1"
 tags: [drupal,easy]
-categories: Vulnhub
+categories:
+	- Vulnhub
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/1.1.png)

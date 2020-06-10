@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Curling"
 tags: [linux,easy,joomla]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-curling/1.png)
@@ -14,7 +15,7 @@ Like always begin with our Nmap Scan.
 
 ## Nmap Scan Results:
 
-```
+```bash
 PORT   STATE SERVICE
 22/tcp open  ssh
 80/tcp open  http
@@ -46,7 +47,7 @@ So start our Gobuster
 
 ## Gobuster Results:
 
-```
+```bash
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
@@ -99,6 +100,8 @@ So we can try login in the webpage using ``Floris:Curling2018!`` in ``/administr
 We logged in succesfully!
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-curling/8.png)
 
+## Getting Shell
+
 Now its time to get reverse shell
 Found Templates which means we can edit that to get reverse shell
 
@@ -114,8 +117,10 @@ While checking the home directories found ``password_backup``
 I cant see ``user.txt`` but I can see whats inside ``password_backup``
 It is hex so we can reverse them
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-curling/11.png)
-
 I Copied that to my machine 
+
+## Getting User Floris
+
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-curling/12.png)<br/>
 First I did ``xxd -r`` which reverse the hex dump.
 I checked what file it is , it is a ``bzip2`` so I renamed it ,to extract.

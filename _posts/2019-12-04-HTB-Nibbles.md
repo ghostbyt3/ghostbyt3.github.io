@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Nibbles"
 tags: [linux,easy,sudo]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/1.png)
@@ -12,9 +13,9 @@ Link : <https://www.hackthebox.eu/home/machines/profile/121>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
-```
+```bash
 PORT   STATE SERVICE
 22/tcp open  ssh
 80/tcp open  http
@@ -46,8 +47,8 @@ But the source code gives us some new directory<br/>
 
 We run Gobuster on this directory
 
-## Gobuster Results:
-```
+## Gobuster Results
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -88,6 +89,8 @@ So I just tried some random passwords and I tried ``nibbles`` (Box name) and log
 Since we know the version of it, Lets search them in searchsploit<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/7.png)
 
+## Getting Shell
+
 Lets fire up the metasploit 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/8.png)
 
@@ -95,11 +98,11 @@ It worked!!
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/9.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Lets start with ``sudo -l``
 
-```
+```bash
 
 $ sudo -l
 sudo: unable to resolve host Nibbles: Connection timed out

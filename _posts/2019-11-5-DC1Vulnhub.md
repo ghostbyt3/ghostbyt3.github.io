@@ -1,11 +1,13 @@
 ---
 title:     "Vulnhub - DC 1"
 tags: [drupal,easy]
+categories: Vulnhub
 ---
 
+![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/1.1.png)
 Today, We are going to pwn DC 1 by DCAU7 from Vulnhub
 
-## Description:
+## Description
 
 > DC-1 is a purposely built vulnerable lab for the purpose of gaining experience in the world of penetration testing.
 It was designed to be a challenge for beginners, but just how easy it  is will depend on your skills and knowledge, and your ability to learn.
@@ -20,7 +22,7 @@ Download Link : <https://www.vulnhub.com/entry/dc-1,292/>
 
 Lets Begin with our Initial Scan
 
-## Nmap Scan Results:
+## Nmap Scan Results
 ```
 PORT      STATE SERVICE
 22/tcp    open  ssh
@@ -68,7 +70,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 Since there is a HTTP port open , Lets start our Gobuster
 
-## Gobuster Results:
+## Gobuster Results
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/1.png)
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/2.png)
@@ -83,7 +85,7 @@ It is drupal site so we can use [droopescan](https://github.com/droope/droopesca
 
 It show us some possible versions, Lets search for any exploits available for them
 
-## Method 1 (Metasploit):
+## Method 1 (Metasploit)
 
 While searching in metasploit , there are more than 5 exploits so i started testing them one by one!
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/5.png)
@@ -95,7 +97,7 @@ And finally this one works
 
 We got a shell
 
-## Method 2 :
+## Method 2 
 
 Searchsploit give us some exploits too
 We know the version will be between 7.2x - 7.2x
@@ -155,6 +157,7 @@ Got ``` Flag 4``` From /home
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/dc1/17.png)
 
+## Privilege Escalation
 
 Now we need to Privilege Escalation, I uploaded my Linux Enumeration Script
 And found an SUID binary

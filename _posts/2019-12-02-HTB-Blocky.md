@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Blocky"
 tags: [linux,easy,sudo]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blocky/1.png)
@@ -12,8 +13,8 @@ Link : <https://www.hackthebox.eu/home/machines/profile/48>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
-```
+## Nmap Scan Results
+```bash
 PORT      STATE  SERVICE
 21/tcp    open   ftp
 22/tcp    open   ssh
@@ -47,8 +48,8 @@ While checking the webpage I cant find anything useful<br/>
 
 So start our Gobuster and see what are the directories available.
 
-## Gobuster Scan Results:
-```
+## Gobuster Scan Results
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -98,13 +99,15 @@ Found some ``mysql`` creds we know there is ``/phpmyadmin`` from Gobuster result
  
 ``root:8YsqfCTnvxAUeduzjNSXe22``
 
+## Getting Shell
+
 I logged in and Can't find anything useful!<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blocky/8.png)
 
 So later I tried login with ``ssh`` using the creds we found, with ``notch`` user.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blocky/9.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 I tried ``sudo -l`` Looks like we can run any command with ``sudo`` without password xD
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blocky/10.png)

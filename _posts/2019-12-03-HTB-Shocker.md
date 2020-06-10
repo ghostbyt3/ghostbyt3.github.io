@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Shocker"
 tags: [linux,easy,sudo,shellshock]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-shocker/1.png)
@@ -12,8 +13,8 @@ Link : <https://www.hackthebox.eu/home/machines/profile/108>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
-```
+## Nmap Scan Results
+```bash
 PORT     STATE SERVICE
 80/tcp   open  http
 2222/tcp open  EtherNetIP-1
@@ -38,9 +39,9 @@ Check whats in the webpage<br/>
 
 Like always lets try bruteforcing the webpage to find any interesting page.
 
-## Gobuster Results:
+## Gobuster Results
 
-```
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -66,6 +67,8 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ```
 > /cgi-bin  is a folder used to house scripts that will interact with a Web browser to provide functionality for a Web page or website. 
 
+## Checking ShellShock Exploit 
+
 May be if we found any scripts available on ``/cgi-bin/`` we can do ``shellshock`` exploit as the name of the box ``Shocker`` gives us a clue.
 
 Lets bruteforce `` /cgi-bin/ `` , I gave extensions as ``sh,py,pl`` to check for any scripts.
@@ -75,6 +78,8 @@ My guess is correct there is an ``user.sh`` script available
 
 For more info
 > https://null-byte.wonderhowto.com/how-to/exploit-shellshock-web-server-using-metasploit-0186084/
+
+## Getting Shell
 
 There is a module for shellshock exploit, Lets fire up the metasploit
 
@@ -89,7 +94,7 @@ It is Vulnerable so run this and we can get an shell.
 
 We have an user called ``shelly``
 
-## Privilege Escaltion:
+## Privilege Escaltion
 
 I uploaded my Linux Enumeration Script and found that ``perl`` can run as root without password.
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-shocker/6.png)

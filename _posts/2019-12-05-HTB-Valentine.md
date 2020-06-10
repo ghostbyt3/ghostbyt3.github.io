@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Valentine"
 tags: [linux,easy,heartbleed,kernel_exploit]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-valentine/1.png)
@@ -12,9 +13,9 @@ Link : <https://www.hackthebox.eu/home/machines/profile/127>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
-```
+```bash
 PORT    STATE SERVICE
 22/tcp  open  ssh
 80/tcp  open  http
@@ -48,9 +49,9 @@ Start from Webpage like always
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-valentine/2.png)<br/>
 This image looks like heartbleed it may be ``heartbleed vulnerability``
 
-## Gobuster Results:
+## Gobuster Results
 
-```
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -107,6 +108,8 @@ And the script found some base64 lets try decode them for that I used ``/decode.
 
 It may be password for something 
 
+## Getting User Shell
+
 While checking other directories found ``hype_key`` from ``/dev``<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-valentine/9.png)
 
@@ -133,7 +136,7 @@ It's asking for passphrase may be the one we got from heartbleed exploit
 
 We are successfully logged in as ``hype``
 
-## Privilege Escalation:
+## Privilege Escalation
 
 While checking the kernel it looks old one <br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-valentine/12.png)

@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Bashed"
 tags: [linux,easy,sudo,cron]
+categories: HackTheBox
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/1.png)
@@ -12,8 +13,8 @@ Link : <https://www.hackthebox.eu/home/machines/profile/118>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
-```
+## Nmap Scan Results
+```bash
 PORT   STATE SERVICE
 80/tcp open  http
 
@@ -30,8 +31,8 @@ Network Distance: 2 hops
 Only HTTP port is open so we can bruteforce the directories and find any way to the shell.
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/2.png)
 
-Gobuster Results:
-```
+## Gobuster Results
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -67,6 +68,8 @@ While checking the ``/dev`` there is an ``phpbash.php``<br/>
 
 Found 2 users ``arrexel and scriptmanager`` and got user flag too.
 
+## Getting Shell
+
 Now its time to get reverse shell to expore more
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/4.png)
@@ -78,7 +81,7 @@ Reverse Shell Cheatsheet
 Copy and paste the command on the ``phpbash.php`` and listening on my machine <br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/5.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Like always I started with ``sudo -l``<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/6.png)
@@ -96,7 +99,7 @@ May be cronjob running on background so I started ``pspy``
 
 My guess is correct! 
 
-```
+```bash
 2019/12/04 07:46:01 CMD: UID=0    PID=2297   | python test.py
 
 2019/12/04 07:46:01 CMD: UID=0    PID=2296   | /bin/sh -c cd /scripts; for f in *.py; do python "$f"; done

@@ -271,10 +271,11 @@ $sidebar-nav-color                    : rgb(255, 255, 255);
 $sidebar-nav-hover-color              : rgb(25, 115, 175);
 $sidebar-highlight                    : $blue-bright;
 
-$site-author-image-padding            : 10px;
-$site-author-image-width              : 200px;
+$site-author-image-padding            : 2px;
+$site-author-image-width              : 220px;
 $site-author-image-height             : auto;
-
+$site-author-image-border-width       : 0px;
+$site-author-image-border-color       : $black-dim;
 
 $site-author-name-margin              : 5px 0 0;
 $site-author-name-color               : $whitesmoke;

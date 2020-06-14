@@ -1,5 +1,5 @@
 ---
-title:    “Hack The Box - Monteverde”
+title:     "Hack The Box - Monteverde"
 layout: post
 tags: [windows,medium,azure,ldap,rpc,smb_login]
 categories : HackTheBox

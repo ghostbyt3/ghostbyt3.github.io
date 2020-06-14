@@ -1,7 +1,7 @@
 ---
-title: “Hack The Box - Monteverde”
+title:    “Hack The Box - Monteverde”
 layout: post
-tags: [windows,medium,azure]
+tags: [windows,medium,azure,ldap,rpc,smb_login]
 categories : HackTheBox
 ---
 
@@ -355,7 +355,8 @@ So I googled about this and found this article
 
 **Azure is a public cloud computing platform. It helps in synchronization of hashes and It encrypt the hashes with a dll called `mcrypt.dll`**
 
-I did some few changes in the script. I added the IP address of the machine as Server here. Inorder to connect the database.
+
+I did some few changes in the script. I added the IP address of the machine as Server here. Inorder to connect the database. So this script uses the same mcrypt.dll to decrypt the hash using the internal commands and gives the password in plain text.
 
 ```powershell
 Write-Host "AD Connect Sync Credential Extract POC (@_xpn_)`n"

@@ -2,6 +2,8 @@
 title:     "Hack The Box - Resolute"
 tags: [windows,medium,dll_injection,crackmapexec]
 layout: post
+categories : HackTheBox
+---
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled.png)

@@ -183,7 +183,7 @@ sAMAccountName: smorgan
 
 So We got same usernames from RPC and LDAP.
 
-We can also use `[GetADUsers.py](http://getadusers.py)` to get the list of users.
+We can also use `GetADUsers.py` to get the list of users.
 
 ```bash
 root@w0lf:~/CTF/HTB/Boxes/Monteverde# GetADUsers.py -all MEGABANK.LOCAL/ -dc-ip '10.10.10.172'

@@ -2,6 +2,7 @@
 title:     "Hack The Box - OpenAdmin"
 tags: [linux,easy,sudo,port_forward]
 layout: post
+categories : HackTheBox
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/1.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/1.png)
@@ -12,7 +13,7 @@ Link: [https://www.hackthebox.eu/home/machines/profile/222](https://www.hacktheb
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```bash
 PORT   STATE SERVICE
@@ -33,7 +34,7 @@ No exact OS matches for host (test conditions non-ideal).
 Network Distance: 2 hops
 ```
 
-## HTTP:
+## HTTP Enumeration
 
 While checking the webpage, its a default apache page.
 
@@ -41,7 +42,7 @@ While checking the webpage, its a default apache page.
 
 So I started my Gobuster to get any interesting directories.
 
-## Gobuster Result:
+### Gobuster Result
 
 ```bash
 root@kali:~# gobuster dir -u 10.10.10.171 -w /usr/share/wordlists/dirb/common.txt 
@@ -98,7 +99,7 @@ So I uploaded [p0wny](https://github.com/flozz/p0wny-shell) to the box by starti
 
 And I accessed that from the webpage.
 
-## Getting reverse shell from Webshell:
+## Getting reverse shell from Webshell
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/8.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/8.png)
 
@@ -110,7 +111,7 @@ While checking the directories found `/local/config/database_settings.inc.php`
 
 Since its Mysql Credentials, I Tried login with `mysql` but failed, Later I found the password works for `jimmy` via `ssh`
 
-## User Jimmy:
+## User Jimmy
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/10.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/10.png)
 
@@ -163,11 +164,11 @@ Found the `passphrase` it is `bloodninjas`
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/19.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/19.png)
 
-## User Joanna:
+## User Joanna
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/20.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-openadmin/20.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Like always I started with `sudo -l`
 

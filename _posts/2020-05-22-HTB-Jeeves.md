@@ -2,6 +2,7 @@
 title:     "Hack The Box - Jeeves"
 tags: [windows,medium,impersonation,jenkins]
 layout: post
+categories : HackTheBox
 ---
 ![847015181d928418070d5ab1f53bbb65.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jeeves/8a5ae12d9275474e95a482457c5379e0.png)
 
@@ -12,7 +13,7 @@ Link: <https://www.hackthebox.eu/home/machines/profile/114>
 
 Let's Begin with our Initial Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 ```
 PORT      STATE SERVICE      VERSION
 80/tcp    open  http         Microsoft IIS httpd 10.0
@@ -50,7 +51,7 @@ Host script results:
 |_  start_date: 2020-05-22T18:05:23
 ```
 
-## HTTP:
+## HTTP Enumeration
 
 There is nothing special in the webpage.
 ![834a02849181a8bbc8901cf0fd9566cb.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jeeves/55428914b11c42c4a57528766378ad97.png)
@@ -58,7 +59,7 @@ There is nothing special in the webpage.
 But If we search something it displays a image is SQL error.
 ![6304228038c6587de74b58ce941919c6.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jeeves/6b40b73b1c8b46c18e65c41f0932deed.png)
 
-## Port 50000:
+## Port 50000
 
 Its running as Jetty 9.4.z-SNAPSHOT
 ![05d878819302dcd5daa2cd3b4d91eb77.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jeeves/788fef45e4424ece85108e827394339b.png)
@@ -88,7 +89,7 @@ Task Completed
 It leads to Jenkins Dashboard.
 > Jenkins is a free and open source automation server. It helps automate the parts of software development related to building, testing, and deploying, facilitating continuous integration and continuous delivery.
 
-## Getting Shell:
+## Getting Shell
 
 Select `Create New Jobs` from the dashboard.
 ![0d405945767dd2c6982012e51cf35e0b.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jeeves/ffe10e094abf412a96569ecea74f86aa.png)
@@ -134,7 +135,7 @@ Our Task will be executed and I got the shell.
 
 
 
-## Privilege Escalation:
+## Privilege Escalation
 
 `whoami /all` will reveal the complete information about the user.
 

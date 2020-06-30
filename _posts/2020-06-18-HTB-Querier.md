@@ -72,7 +72,7 @@ Host script results:
 
 ## SMB Enumeration
 
-Started with SMB and there is a `Report` share available for us. I logged in with any password and downloaded the file to my machine.
+Started with SMB and there is a `Report` share available for us. I logged in without any password and downloaded the file to my machine.
 
 ```bash
 root@kali:~/CTF/HTB/Boxes/Querier# smbclient -L 10.10.10.125

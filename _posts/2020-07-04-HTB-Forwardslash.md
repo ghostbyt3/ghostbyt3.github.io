@@ -5,7 +5,7 @@ layout: post
 categories: HackTheBox
 ---
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled.png)
 Getting Initial shell is finding a LFI in the subdomain and get the FTP password from that to get first user and second user is by tricking a binary and root is by mounting an image with the help of Luks
 
 
@@ -47,7 +47,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Once I enter the IP address, it redirects me to `forwardslash.htb` so I added it in `/etc/hosts` and I get this page.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%201.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%201.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%201.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%201.png)
 
 Nothing here.
 
@@ -77,17 +77,17 @@ ID           Response   Lines    Word     Chars       Payload
 
 `backup.forwardslash.htb`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%202.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%202.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%202.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%202.png)
 
 I tried some default credentials, none worked.
 
 So I created an new account 
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%203.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%203.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%203.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%203.png)
 
 I logged in with the credentials
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%204.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%204.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%204.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%204.png)
 
 I ran Gobuster here.
 
@@ -118,43 +118,43 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 `/dev/`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%205.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%205.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%205.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%205.png)
 
 We dont have permission. Let's continue enumerate.
 
 There is a message and it was written by `chiv` maybe an user.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%206.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%206.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%206.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%206.png)
 
 ## Exploiting LFI
 
 Which checking the ProfilePicture thing. Its disabled but we can see an username here `pain`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%207.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%207.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%207.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%207.png)
 
 So I Inspect Element and here we can see the disabled option.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/gg.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/gg.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/gg.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/gg.png)
 
 I changed that to enable and now I can control over the URL and Submit button.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%208.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%208.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%208.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%208.png)
 
 I captured the request in burp and send that to repeater and I tested is there any LFi and see it works, I got `/etc/passwd`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%209.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%209.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%209.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%209.png)
 
 I tried to get the index.php as base64 encoded using PHP filters.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2010.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2010.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2010.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2010.png)
 
 Nothing useful here.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2011.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2011.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2011.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2011.png)
 
 But we know there is a dir called `/dev/index.php`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2012.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2012.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2012.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2012.png)
 
 Decoded the base64
 
@@ -256,7 +256,7 @@ We know SSH port is open, let's try login with it.
 
 I logged in with `chiv : N0bodyL1kesBack/`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2013.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2013.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2013.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2013.png)
 
 But No User Flag.
 
@@ -264,7 +264,7 @@ But No User Flag.
 
 Upload Linux Enumeration script and found a binary called `backup`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2014.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2014.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2014.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2014.png)
 
 The executable looking for something and doesn't exist so it exit.
 
@@ -283,7 +283,7 @@ ERROR: 29797290cbcf0652080a25751835db02 Does Not Exist or Is Not Accessible By M
 
 I also find a `config.php.bak` file in `/var/backups` and its owned by user `pain`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2015.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2015.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2015.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2015.png)
 
 I did `ltrace` to find what's going on and It looks like getting the time (hour, minutes, seconds) of the box and `md5` that and looking if the file presents and opens that, Maybe we can use the `config.php.bak` since this binary is also owne by `pain` user.
 
@@ -378,7 +378,7 @@ if($link === false){
 
 By using the password we got, I logged in as `pain` with `db1f73a72678e857d91e71d2963a1afa9efbabb32164cc1d94dbc704`
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2016.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2016.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2016.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2016.png)
 
 ## Privilege Escalation
 
@@ -412,7 +412,7 @@ Only `Root` and `backupoperator` have permission.
 
 I also checked the home directory and found this, it seems some kind of crypto challenge.
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2017.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2017.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2017.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2017.png)
 
 I wrote a trash script and it doesn't work well, My script is to bruteforce keys and see if we have common words in the `ciphertext` and I got this as output.
 
@@ -470,4 +470,4 @@ ZoYDzlPAlwJmoPQXauRl1CgjlyHrVUTfS0AkQH2ZbqvK5/Metq8o
 -----END RSA PRIVATE KEY-----
 ```
 
-![ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2018.png](ForwardSlash%20907491f778744b62bf38af3a0d5bde2c/Untitled%2018.png)
+![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2018.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled%2018.png)

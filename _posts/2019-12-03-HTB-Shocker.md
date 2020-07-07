@@ -2,7 +2,7 @@
 title:     "Hack The Box - Shocker"
 tags: [linux,easy,sudo,shellshock]
 layout: post
-categories: HackTheBox, OSCP-Like
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-shocker/1.png)

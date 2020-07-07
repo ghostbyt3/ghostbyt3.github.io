@@ -6,6 +6,7 @@ categories: HackTheBox
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-forwardslash/Untitled.png)
+
 Getting Initial shell is finding a LFI in the subdomain and get the FTP password from that to get first user and second user is by tricking a binary and root is by mounting an image with the help of Luks
 
 
@@ -375,6 +376,7 @@ if($link === false){
 }
 ?>
 ```
+
 
 By using the password we got, I logged in as `pain` with `db1f73a72678e857d91e71d2963a1afa9efbabb32164cc1d94dbc704`
 

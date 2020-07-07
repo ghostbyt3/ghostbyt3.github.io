@@ -2,8 +2,7 @@
 title:     "Hack The Box - Brainfuck"
 tags: [linux,insane,smtp,pop3,lxd,wpscan]
 layout: post
-categories: HackTheBox, OSCP-Like
-
+categories: HackTheBox OSCP-Like
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled.png)
@@ -50,7 +49,7 @@ Service Info: Host:  brainfuck; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ## HTTPS Enumeration
 
-Added the Domains which I got from nmap scan in `/etc/passwd` and started with `brainfuck.htb` and there is no Port 80 (HTTP) but HTTPS is there.
+Added the Domains which I got from nmap scan in `/etc/host` and started with `brainfuck.htb` and there is no Port 80 (HTTP) but HTTPS is there.
 
 So its an wordpress site.
 
@@ -129,7 +128,7 @@ I tried same with user `admin` now I got something different.
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%205.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%205.png)
 
 I went into the settings and found the `SMTP` plugin while checking that, I got the password of the same user `orestis` we got from the certificate.
-
+Eventhough the password is masked by inspecting the element of that I can see the password.
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%206.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%206.png)
 
 ## SMTP Enumeration
@@ -251,7 +250,7 @@ I tried with the Quote which the user always use.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%2012.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-brainfuck/Untitled%2012.png)
 
-And I got some sort of key which is `fuckmybrain` which is repeated always.
+And I got some sort of key `fuckmybrain` which is repeated always.
 
 ## Getting User Shell
 

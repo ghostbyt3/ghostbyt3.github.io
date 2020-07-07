@@ -1,7 +1,8 @@
 ---
 title:     "Hack The Box - Nibbles"
 tags: [linux,easy,sudo]
-categories: HackTheBox
+layout: post
+categories: HackTheBox OSCP_Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/1.png)
@@ -97,6 +98,27 @@ Lets fire up the metasploit
 It worked!!
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/9.png)
+
+## Getting Shell without Metasploit
+
+> https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html
+
+According to the blog, First we need to visit this and upload the reverse shell.
+```
+/nibbleblog/admin.php?controller=plugins&action=install&plugin=my_image
+```
+
+![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/100.png)
+
+Here I uploaded the reverse shell as `rev.php`
+![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/101.png)
+
+Once uploaded we need to visit, here I can see an reverse file uploaded as `image.php`
+```
+/nibbleblog/content/private/plugins/my_image/
+```
+![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/103.png)
+
 
 ## Privilege Escalation
 

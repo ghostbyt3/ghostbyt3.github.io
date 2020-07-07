@@ -2,7 +2,7 @@
 title:     "Hack The Box - Nibbles"
 tags: [linux,easy,sudo]
 layout: post
-categories: HackTheBox OSCP_Like
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/1.png)
@@ -102,6 +102,9 @@ It worked!!
 ## Getting Shell without Metasploit
 
 > https://curesec.com/blog/article/blog/NibbleBlog-403-Code-Execution-47.html
+
+![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nibbles/105.png)
+Now we got an idea of what we need to do!
 
 According to the blog, First we need to visit this and upload the reverse shell.
 ```

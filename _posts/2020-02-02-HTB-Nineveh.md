@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Nineveh"
 tags: [linux,medium,knockd,lfi,php,cron]
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nineveh/1.png)
@@ -12,7 +13,7 @@ Link : <https://www.hackthebox.eu/home/machines/profile/54>
 
 Lets Begin with our Initial Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```
 PORT    STATE SERVICE
@@ -42,7 +43,7 @@ Network Distance: 2 hops
 Lets start our Gobuster and see whats in the webpage.
 
 
-## GoBuster Results :
+## GoBuster Results
 
 > http://nineveh.htb/
 
@@ -84,7 +85,7 @@ Before that we need to capture the login intercept in burp to see how username a
 
 Now start ``hydra``
 
-``` hydra -l admin -P /usr/share/wordlists/rockyou.txt https://nineveh.htb/ -V -f http-post-form '/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:invalid password' ```
+``` hydra -l admin -P /usr/share/wordlists/rockyou.txt 10.10.10.43 -V -f http-post-form '/db/index.php:password=^PASS^&remember=yes&login=Log+In&proc_login=true:invalid password' ```
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nineveh/6.png)
 
@@ -104,7 +105,7 @@ While checking the ``Notes`` tab it show us some message, I have no idea what it
 
 So we know there is a ``HTTPS Port (443)`` is open so lets see whats there
 
-### Dirsearch Results:
+### Dirsearch Results
 
 >https://nineveh.htb/
 
@@ -205,7 +206,7 @@ Yes I got the sequence , Now its time to open.
 Now we can use the private key to login<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-nineveh/24.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 I uploaded my Linux Enumeration Script and nothing useful , So I tried ``pspy``
 

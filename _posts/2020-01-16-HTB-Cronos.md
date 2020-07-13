@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Cronos"
 tags: [linux,medium,domain,cron,redirection]
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-cronos/1.png)
@@ -12,7 +13,7 @@ Link : <https://www.hackthebox.eu/home/machines/profile/11>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```
 PORT   STATE SERVICE
@@ -40,7 +41,7 @@ Network Distance: 2 hops
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-## HTTP:
+## HTTP Enumeration
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-cronos/2.png)
 Its an apache2 default webpage.
@@ -51,7 +52,7 @@ I edited my ``/etc/hosts`` file to add the machine’s name ``cronos.htb`` and t
 The server is running ``laravel framework`` every page leads to ``laravel`` releated things.
 So I started checking other ports.
 
-## Port 53:
+## Port 53 Enumeration
 
 Which is ``domain`` may be we can do a zone transfer for that domain. For that we can use a tool named ``dig``.
 
@@ -70,7 +71,7 @@ Its an Login page!!
 
 Lets bruteforce the directories using ``Gobuster`` to check if anything useful for us.
 
-## Gobuster Results:
+## Gobuster Results
 ```
 ===============================================================
 Gobuster v3.0.1
@@ -93,6 +94,8 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
  /session.php (Status: 302)
  /server-status (Status: 403)
 ```
+
+## Getting Initial Shell
 
 When I try to enter ``/welcome.php`` it redirects to ``/login.php`` , So we can stop the redirection and see what that page leads us.<br/>
 We can use ``intruder`` from burp to do this process.<br/>
@@ -119,7 +122,7 @@ I logged in with them to check any user credentials available and found a hash f
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-cronos/10.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 I uploaded my Enumeration Script to the box and found there is a cronjob running so I uploaded ``pspy`` to see whats actually going on.
 

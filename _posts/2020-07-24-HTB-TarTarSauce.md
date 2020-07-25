@@ -269,13 +269,13 @@ tmpfile=/var/tmp/.$(/usr/bin/head -c100 /dev/urandom |sha1sum|cut -d' ' -f1)
 check=/var/tmp/check
 ```
 
-- First it recursively deletes everything in */var/tmp/.** and */var/tmp/check*.
-- Then it gzip everything in the directory */var/www/html* and saves it in the file */var/tmp/.afgaufiuafgwfaf*
+- First it recursively deletes everything in /var/tmp/.* and /var/tmp/check.
+- Then it gzip everything in the directory */var/www/html* and saves it in the file /var/tmp/.afgaufiuafgwfaf
 - After it sleeps for 30 seconds.
-- Creates the directory */var/tmp/check.*
-- Extract the gzip *file inside the check folder.*
+- Creates the directory /var/tmp/check.
+- Extract the gzip file inside the check folder.
 - Then it do a integrity check.
-- If the files in */var/www/html* are different from the files in the backup it created */var/tmp/check/var/www/html*, then report error. Otherwise, move file */var/tmp/.efgefffsafffav* to */var/backups/onuma-wwww-dev.bak* and remove everything in the *check* directory. If the files are different it left that there and after 5mins when the application reruns remove those directory and start the process again.
+- If the files in /var/www/html are different from the files in the backup it created /var/tmp/check/var/www/html, then report error. Otherwise, move file /var/tmp/.efgefffsafffav to /var/backups/onuma-wwww-dev.bak and remove everything in the check directory. If the files are different it left that there and after 5mins when the application reruns remove those directory and start the process again.
 
 So What we need to do is, We need to change the .ffegsigiisifghis file with our payload within the 30 seconds and after 30seconds it will extract it and Integrity checks happen, so it will different and it left those file there for the next 5mins. 
 

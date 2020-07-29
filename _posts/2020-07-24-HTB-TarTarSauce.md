@@ -2,7 +2,6 @@
 title:     "Hack The Box - TarTarSauce"
 tags: [linux,medium,wordpress,plugin,custom,32bit]
 categories: HackTheBox OSCP-Like
-
 ---
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-tartarsauce/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-tartarsauce/Untitled.png)

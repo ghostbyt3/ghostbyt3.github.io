@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Networked"
 tags: [linux,easy,php,sudo]
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/1.png)
@@ -12,9 +13,9 @@ Link : <https://www.hackthebox.eu/home/machines/profile/203>
 
 Like always begin with our Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
-```
+```bash
 PORT    STATE  SERVICE
 22/tcp  open   ssh
 80/tcp  open   http
@@ -36,13 +37,15 @@ No exact OS matches for host (test conditions non-ideal).
 Network Distance: 2 hops
 ```
 
+## HTTP Enumeration
+
 Lets Begin with HTTP
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/2.png)
 
 Looks like a normal webpage , run our Gobuster to get any useful directories.
 
-```
+```bash
 ===============================================================
 Gobuster v3.0.1
 by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
@@ -78,6 +81,8 @@ It has some ``php`` file maybe webpages of the machine
 While seeing the code ``upload.php`` as some filter process. It accepts only jpg,png,gif,jpeg.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/5.png)
 
+### File Upload Vulnerability
+
 ``Upload.php``<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/6.png)
 
@@ -96,6 +101,9 @@ I uploaded my payload in ``upload.php``<br/>
 Started my listener and reloaded ``photos.php``<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/11.png)<br/>
 I got the shell!!
+
+## Getting User Shell
+
 
 While Checking Home directory there is a file called ``check_attack.php``<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-networked/12.png)
@@ -124,7 +132,7 @@ Started my listener
 
 I got the user shell!!
 
-## Privilege Escalation:
+## Privilege Escalation
 
 As always I started with ``sudo -l``
 

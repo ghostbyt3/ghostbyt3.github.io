@@ -9,7 +9,7 @@ categories: HackTheBox
 We need to find some hidden .txt files and one of them have cresentials for FTP and FTP contains webpage backups but everything is old so we need to find new password for the Adminer and its vulnerable to SQL we can get new creds and login and To privesc, I’ll abuse sudo configured to allow me to pass in a PYTHONPATH, allowing a Python library hijack.
 
 
-Link: <[https://www.hackthebox.eu/home/machines/profile/248](https://www.hackthebox.eu/home/machines/profile/248)>
+Link: [https://www.hackthebox.eu/home/machines/profile/248](https://www.hackthebox.eu/home/machines/profile/248)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -196,7 +196,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 Tried all the credentials I found so far to login, but non are valid. Since we got the version I started searching for exploits.
 
-Finally I found this <[https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool](https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool)>
+Finally I found this [https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool](https://www.foregenix.com/blog/serious-vulnerability-discovered-in-adminer-tool)
 
 ## Exploiting Adminer
 

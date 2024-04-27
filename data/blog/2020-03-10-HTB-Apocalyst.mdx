@@ -9,7 +9,7 @@ tags: ['linux','medium','wordpress']
 
 We are going to pwn Apocalyst from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/57>
+Link : [https://www.hackthebox.eu/home/machines/profile/57](https://www.hackthebox.eu/home/machines/profile/57)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -40,7 +40,7 @@ Added ``apocalyst.htb`` on ``/etc/hosts`` because its not rendering correctly wi
 Its a Wordpress site.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/2.png)
 
-So I Started ``Wpscan`` and found and an user.<br/>
+So I Started ``Wpscan`` and found and an user.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/3.png)
 
 Started my Gobuster to bruteforce the directories but everything leads to same image, So I used a tool called ``cewl`` to create a wordlist using the webpage and started my Gobuster again with new wordlist and some extra parameters.
@@ -69,7 +69,7 @@ Used [Steghide](https://github.com/StefanoDeVuono/steghide) to extract the files
 
 >steghide - a steganography program
 
-It is a wordlists. So we can brute force the user password with ``list.txt``<br/>
+It is a wordlists. So we can brute force the user password with ``list.txt``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/6.png)
 
 ``wpscan -U falaraki -P ~/CTF/HTB/Boxes/Apocalyst/list.txt --url http://apocalyst.htb/``
@@ -96,7 +96,7 @@ I look at the home directory and found ``.secret`` which looks like base64 encod
 There is an online tool called [Base64Decode](https://www.base64decode.org/) to decode and it gives us me a password.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/13.png)
 
-Logged in with ``SSH`` with `` falaraki : Y0uAINtG37TiNgTH!sUzersP4ss ``<br/>
+Logged in with ``SSH`` with `` falaraki : Y0uAINtG37TiNgTH!sUzersP4ss ``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/14.png)
 
 ## Privilege Escalation :
@@ -109,13 +109,13 @@ Uploaded my Enumeration Script and found this.
 ---
 ```
 
-Since we have write permission, I created a password using ``openssl`` to create a new user with root permission.<br/>
+Since we have write permission, I created a password using ``openssl`` to create a new user with root permission.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/15.png)
 
-Added ``wolf:46Xd.1NlqFBp.:0:0:root:/root:/bin/bash`` at the bottom.<br/>
+Added ``wolf:46Xd.1NlqFBp.:0:0:root:/root:/bin/bash`` at the bottom.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/16.png)
 
-I'm Root now <br/>
+I'm Root now [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-apocalyst/17.png)
 
 

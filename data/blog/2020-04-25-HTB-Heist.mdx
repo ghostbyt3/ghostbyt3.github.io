@@ -11,7 +11,7 @@ categories : HackTheBox
 
 We are going to pwn Heist from Hack The Box.
 
-Link: <https://www.hackthebox.eu/home/machines/profile/201>
+Link: [https://www.hackthebox.eu/home/machines/profile/201](https://www.hackthebox.eu/home/machines/profile/201)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -65,10 +65,10 @@ session setup failed: NT_STATUS_ACCESS_DENIED
 Its an login form and however there is a option to quest login.
 ![db8bd395822f2861e0b8d6da3b508f54.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/727a88ce45ed489cb1b93d300044e83b.png)
 
-After `Guest` login I received an Issues page and a person called `Hazard` reported his problem, about Cisco router and he also attached his configuration file here.<br/>
+After `Guest` login I received an Issues page and a person called `Hazard` reported his problem, about Cisco router and he also attached his configuration file here.[br/](br/)
 ![7b07ea5099d0ee998906a1c0cad2b8f3.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/7b724635b5634b6385eefbd601fde2d8.png)
 
-While checking the Attachment file, it contains some username and hashes.<br/>
+While checking the Attachment file, it contains some username and hashes.[br/](br/)
 ![e27a1ce3b5022c97ced3bd7862d2776c.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/d8df2ed7fbca4067aae3fa2d4932e8db.png)
 
 So I google about Cisco Router Password. And found this
@@ -77,11 +77,11 @@ Since we have two type 7 passwords, I Searched for online crackers and got this.
 > https://www.ifm.net.nz/cookbooks/passwordcracker.html
 
 ### Type 7
-`username rout3r password 7 0242114B0E143F015F5D1E161713`<br/>
+`username rout3r password 7 0242114B0E143F015F5D1E161713`[br/](br/)
 ![2b9f952efd4023ade8955f4e4154521f.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/7cf02f2fabcb4fb48851704a443d4452.png)
 
 
-`username admin privilege 15 password 7 02375012182C1A1D751618034F36415408`<br/>
+`username admin privilege 15 password 7 02375012182C1A1D751618034F36415408`[br/](br/)
 ![84a3a7a6b33a8bb245c7cd053eb63a53.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/10eaa883d836401cb911dcae71cc8e31.png)
 
 ### Type 5
@@ -214,15 +214,15 @@ WINRM       10.10.10.149    5985   NONE             [-] None\Jason:$uperP@ssword
 WINRM       10.10.10.149    5985   NONE             [-] None\Chase:Q4)sJu\Y8qz*A3?d "Access is denied.  (extended fault data: {'transport_message': 'Bad HTTP response returned from server. Code 500', 'http_status_code': 500, 'wsmanfault_code': '5', 'fault_code': 's:Sender', 'fault_subcode': 'w:AccessDenied'})"
 ```
 
-Logged in as Chase.<br/>
+Logged in as Chase.[br/](br/)
 ![1f827bc46da7ae8166a5eaa4d0d2e63d.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/a300ea1ca46a4511a24006ea75412340.png)
 
 ## Privilege Escalation
 
-While enumerating I found `Firefox` is installed which is odd.<br/>
+While enumerating I found `Firefox` is installed which is odd.[br/](br/)
 ![img.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/fa28e271fa824f7cbdf258c4929df8cd.png)
 
-Let's check whether its running? Yes `Firefox` is running.<br/>
+Let's check whether its running? Yes `Firefox` is running.[br/](br/)
 ![e2b5342d10bc1dbd805f4050777352c5.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/6162aa5639be416babb93c56257f8771.png)
 
 We can dump these processes using `procdump.exe`. We can download it from [here](https://docs.microsoft.com/en-us/sysinternals/downloads/procdump).
@@ -283,8 +283,8 @@ MOZ_CRASHREPORTER_RESTART_ARG_1=localhost/login.php?login_username=admin@support
 ```
 It looks like admin password so try login with them.
 
-`administrator : 4dD!5}x/re8]FBuZ`<br/>
-![cd9776083dc7761c1590362976cb6840.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/af015a897a024595810aa1d045756661.png)<br/>
+`administrator : 4dD!5}x/re8]FBuZ`[br/](br/)
+![cd9776083dc7761c1590362976cb6840.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-heist/af015a897a024595810aa1d045756661.png)[br/](br/)
 We own the Root!!
 
 

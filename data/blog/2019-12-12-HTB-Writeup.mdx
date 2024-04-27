@@ -36,7 +36,7 @@ Network Distance: 2 hops
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-Like always start from webpage.<br/>
+Like always start from webpage.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/2.png)
 
 It seems like there is ``fail2ban`` running which bans IP's If we try to bruteforce webpages.
@@ -47,7 +47,7 @@ Since we cant bruteforce lets try some common directories.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/3.png)
 
-We got a hint , there is another directory ``/writeup``<br/>
+We got a hint , there is another directory ``/writeup``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/4.png)
 
 While checking the source code found its running as ``CMS Made Simple``
@@ -59,10 +59,10 @@ There is quite a lot of vulnerabilites since we dont know its version I started 
 Copied the Script to my directory.After reading the instructions of how to use the exploit ,I started it
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/7.png)
 
-After sometime it gives us ``user and password`` lets login with them in ssh.<br/>
+After sometime it gives us ``user and password`` lets login with them in ssh.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/8.png)
 
-We Successfully Logged in<br/>
+We Successfully Logged in[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-writeup/9.png)
 
 ## Privilege Escalation:

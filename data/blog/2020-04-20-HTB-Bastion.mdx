@@ -11,7 +11,7 @@ layout: PostSimple
 
 We are going to pwn Bastion from Hack The Box.
 
-Link: <https://www.hackthebox.eu/home/machines/profile/186>
+Link: [https://www.hackthebox.eu/home/machines/profile/186](https://www.hackthebox.eu/home/machines/profile/186)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -134,7 +134,7 @@ smb: \WindowsImageBackup\L4mpje-PC\Backup 2019-02-22 124351\> ls
 ```
 There are some `vhd` files. VHD is a file format representing a virtual hard disk drive. And the files are pretty large. And the `note.txt` also told us don't transfer the backup file.
 
-**Reference:** <https://medium.com/@klockw3rk/mounting-vhd-file-on-kali-linux-through-remote-share-f2f9542c1f25>
+**Reference:** [https://medium.com/@klockw3rk/mounting-vhd-file-on-kali-linux-through-remote-share-f2f9542c1f25](https://medium.com/@klockw3rk/mounting-vhd-file-on-kali-linux-through-remote-share-f2f9542c1f25)
 
 ## Mounting the Backup Image:
 
@@ -225,7 +225,7 @@ After some enumeration I found `mRemoteNG`:
 
 > mRemoteNG saves the connections info and credentials in a file called confCons.xml.
 
-**Reference:** <http://hackersvanguard.com/mremoteng-insecure-password-storage/>
+**Reference:** [http://hackersvanguard.com/mremoteng-insecure-password-storage/](http://hackersvanguard.com/mremoteng-insecure-password-storage/)
 
 
 I downloaded it with `scp` :

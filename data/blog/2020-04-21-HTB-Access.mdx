@@ -12,7 +12,7 @@ layout: PostSimple
 
 We are going to pwn Access from Hack The Box.
 
-Link: <https://www.hackthebox.eu/home/machines/profile/156>
+Link: [https://www.hackthebox.eu/home/machines/profile/156](https://www.hackthebox.eu/home/machines/profile/156)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -59,8 +59,8 @@ Remote system type is Windows_NT.
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-08-23-18  09:16PM       <DIR>          Backups
-08-24-18  10:00PM       <DIR>          Engineer
+08-23-18  09:16PM       [DIR](DIR)          Backups
+08-24-18  10:00PM       [DIR](DIR)          Engineer
 226 Transfer complete.
 ```
 
@@ -103,14 +103,14 @@ File may not have transferred correctly.
 226 Transfer complete.
 10870 bytes received in 0.69 secs (15.4442 kB/s)
 ```
-I tried extracting the `.zip` file and it asks for password.<br/>
+I tried extracting the `.zip` file and it asks for password.[br/](br/)
 ![b82fe4512bb48c1f143388f5157a248e.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-access/e174857a05994b6a85afcea298773c09.png)
 
-Ok Let's check Access Database. We can use [MDBOpener](https://www.mdbopener.com/), which makes our work simple.<br/>
-![34ea2572675588d4da0b374d41da6893.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-access/fe970e9cebc24b25a3f9d5f7fd945697.png)<br/>
+Ok Let's check Access Database. We can use [MDBOpener](https://www.mdbopener.com/), which makes our work simple.[br/](br/)
+![34ea2572675588d4da0b374d41da6893.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-access/fe970e9cebc24b25a3f9d5f7fd945697.png)[br/](br/)
 It extracts all the tables. We can even view them, which checking those tables.
 
-Seems Interesting:<br/>
+Seems Interesting:[br/](br/)
 ![bf760233a919433cf9310831d6205021.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-access/085542bc523249599f6be80935728f5e.png)
 
 It gives me some password, maybe one of them will work to extract the `.zip` file.
@@ -192,20 +192,20 @@ C:\Users\security>dir
 
  Directory of C:\Users\security
 
-08/23/2018  11:52 PM    <DIR>          .
-08/23/2018  11:52 PM    <DIR>          ..
-08/24/2018  08:37 PM    <DIR>          .yawcam
-08/21/2018  11:35 PM    <DIR>          Contacts
-08/28/2018  07:51 AM    <DIR>          Desktop
-08/21/2018  11:35 PM    <DIR>          Documents
-08/21/2018  11:35 PM    <DIR>          Downloads
-08/21/2018  11:35 PM    <DIR>          Favorites
-08/21/2018  11:35 PM    <DIR>          Links
-08/21/2018  11:35 PM    <DIR>          Music
-08/21/2018  11:35 PM    <DIR>          Pictures
-08/21/2018  11:35 PM    <DIR>          Saved Games
-08/21/2018  11:35 PM    <DIR>          Searches
-08/24/2018  08:39 PM    <DIR>          Videos
+08/23/2018  11:52 PM    [DIR](DIR)          .
+08/23/2018  11:52 PM    [DIR](DIR)          ..
+08/24/2018  08:37 PM    [DIR](DIR)          .yawcam
+08/21/2018  11:35 PM    [DIR](DIR)          Contacts
+08/28/2018  07:51 AM    [DIR](DIR)          Desktop
+08/21/2018  11:35 PM    [DIR](DIR)          Documents
+08/21/2018  11:35 PM    [DIR](DIR)          Downloads
+08/21/2018  11:35 PM    [DIR](DIR)          Favorites
+08/21/2018  11:35 PM    [DIR](DIR)          Links
+08/21/2018  11:35 PM    [DIR](DIR)          Music
+08/21/2018  11:35 PM    [DIR](DIR)          Pictures
+08/21/2018  11:35 PM    [DIR](DIR)          Saved Games
+08/21/2018  11:35 PM    [DIR](DIR)          Searches
+08/24/2018  08:39 PM    [DIR](DIR)          Videos
                0 File(s)              0 bytes
               14 Dir(s)  16,773,005,312 bytes free
 
@@ -221,17 +221,17 @@ C:\Users\Public>dir /a
 
  Directory of C:\Users\Public
 
-07/14/2009  05:57 AM    <DIR>          .
-07/14/2009  05:57 AM    <DIR>          ..
-08/28/2018  07:51 AM    <DIR>          Desktop
+07/14/2009  05:57 AM    [DIR](DIR)          .
+07/14/2009  05:57 AM    [DIR](DIR)          ..
+08/28/2018  07:51 AM    [DIR](DIR)          Desktop
 07/14/2009  05:57 AM               174 desktop.ini
-07/14/2009  06:06 AM    <DIR>          Documents
-07/14/2009  05:57 AM    <DIR>          Downloads
-07/14/2009  03:34 AM    <DIR>          Favorites
-07/14/2009  05:57 AM    <DIR>          Libraries
-07/14/2009  05:57 AM    <DIR>          Music
-07/14/2009  05:57 AM    <DIR>          Pictures
-07/14/2009  05:57 AM    <DIR>          Videos
+07/14/2009  06:06 AM    [DIR](DIR)          Documents
+07/14/2009  05:57 AM    [DIR](DIR)          Downloads
+07/14/2009  03:34 AM    [DIR](DIR)          Favorites
+07/14/2009  05:57 AM    [DIR](DIR)          Libraries
+07/14/2009  05:57 AM    [DIR](DIR)          Music
+07/14/2009  05:57 AM    [DIR](DIR)          Pictures
+07/14/2009  05:57 AM    [DIR](DIR)          Videos
                1 File(s)            174 bytes
               10 Dir(s)  16,772,575,232 bytes free
 
@@ -289,7 +289,7 @@ I copied the example and changed it to my IP and paste it at the bottom of the f
 ### Step 3:
 
 How to use `runas`?
-***Reference:***<https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)>
+***Reference:***[https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)](https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11))
 
 I Started my Netcat listener.
 

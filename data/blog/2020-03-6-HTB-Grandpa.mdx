@@ -9,7 +9,7 @@ tags: ['windows','easy','isi']
 
 We are going to pwn Grandpa from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/13>
+Link : [https://www.hackthebox.eu/home/machines/profile/13](https://www.hackthebox.eu/home/machines/profile/13)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -51,17 +51,17 @@ Later I found this
 
 > https://www.rapid7.com/db/modules/exploit/windows/iis/iis_webdav_scstoragepathfromurl
 
-So I opened my ``metasploit`` and tried that exploit.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/4.png)<br/>
+So I opened my ``metasploit`` and tried that exploit.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/4.png)[br/](br/)
 And I checked whether its vulnerable or not and yeah its vulnerable.
 
-I got the shell<br/>
+I got the shell[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/5.png)
 
 ## Privilege Escalation:
 
-Background the Session and Lets try ``local_exploit_suggester``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/6.png)<br/>
+Background the Session and Lets try ``local_exploit_suggester``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/6.png)[br/](br/)
 Seems like lot of exploits. Before doing that we need to ``migrate`` process inorder to make it stable. So I won't face any errors while using any exploit.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/7.png)
 
@@ -71,5 +71,5 @@ Now we can try the exploits, I selected randomly, Started from lastone.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/8.png)
 
-It worked!! We got Authority\System<br/>
+It worked!! We got Authority\System[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-grandpa/9.png)

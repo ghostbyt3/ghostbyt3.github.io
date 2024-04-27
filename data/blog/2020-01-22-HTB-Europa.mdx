@@ -9,7 +9,7 @@ tags: ['linux','medium','cron']
 
 We are going to pwn Europa from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/27>
+Link : [https://www.hackthebox.eu/home/machines/profile/27](https://www.hackthebox.eu/home/machines/profile/27)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -50,7 +50,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 ## HTTP & HTTPS:
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/2.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/2.png)[br/](br/)
 Only default page of apache2 in both 80 and 443 
 
 But our nmap shows there is a domain 
@@ -58,26 +58,26 @@ But our nmap shows there is a domain
 
 So I added them in ``/etc/hosts``
 
-Its a login page.<br/>
+Its a login page.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/3.png)
 
-While checking its certificate found an ``issuer`` with id ``admin@europacorp.htb``<br/>
+While checking its certificate found an ``issuer`` with id ``admin@europacorp.htb``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/4.png)
 
 Back to the login page, I tried some normal sql injection commands
 
 > https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/5.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/5.png)[br/](br/)
 Found a redirection, If we ``Follow redirection`` we will be logged in.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/6.png)
 
-While enumerating the webpages I found something going on ``Tools``<br/>
+While enumerating the webpages I found something going on ``Tools``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/7.png)
 
-I send it to burp <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/8.png)<br/>
+I send it to burp [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/8.png)[br/](br/)
 While seeing that I came to know whatever we type in ``ipaddress=`` it changes the same in the response of ``remote-address``.
 This looks like regular expression because ``/ip_address/`` replace with whatever we give.
 
@@ -87,12 +87,12 @@ While searching for any exploit available to inject, Found this
 
 >https://bitquark.co.uk/blog/2013/07/23/the_unexpected_dangers_of_preg_replace
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/9.png)<br/>
-This explains how it works so all we need to do is to add ``/e `` <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/9.1.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/9.png)[br/](br/)
+This explains how it works so all we need to do is to add ``/e `` [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/9.1.png)[br/](br/)
 It works. So now we can try to get the reverse shell now. I tried some reverse shell commands non worked so I hosted a python server with php reverse sehll on my machine and I tried with ``curl``.
 
-Started my listerer and got the shell.<br/>
+Started my listerer and got the shell.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/10.png)
 
 ## Privilege Escalation:
@@ -102,16 +102,16 @@ So I uploaded ``pspy``
 
 >pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/11.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/11.png)[br/](br/)
 There is something runs in ``/var/www/cronjobs/``
-While checking ``clearlogs``<br/>
+While checking ``clearlogs``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/12.png)
 
-It executes a script located in ``/var/www/cmd/logcleared.sh``<br/>
-But the script is missing in the  directory but we have writable permission on it, so I created the ``logcleared.sh`` with reverse shell to give us root.<br/>
+It executes a script located in ``/var/www/cmd/logcleared.sh``[br/](br/)
+But the script is missing in the  directory but we have writable permission on it, so I created the ``logcleared.sh`` with reverse shell to give us root.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/13.png)
 
-Started the listener in my machine<br/>
+Started the listener in my machine[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-europa/14.png)
 
 I'm Root Now!! 

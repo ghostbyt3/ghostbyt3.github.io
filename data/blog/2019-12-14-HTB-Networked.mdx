@@ -10,7 +10,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Networked from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/203>
+Link : [https://www.hackthebox.eu/home/machines/profile/203](https://www.hackthebox.eu/home/machines/profile/203)
 
 
 Like always begin with our Nmap Scan.
@@ -73,41 +73,41 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-While Checking ``/backup`` found ``backup.tar``<br/>
+While Checking ``/backup`` found ``backup.tar``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/3.png)
 
-So I dowloaded it to my machine , to see whats inside.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/4.png)<br/>
+So I dowloaded it to my machine , to see whats inside.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/4.png)[br/](br/)
 It has some ``php`` file maybe webpages of the machine
 
-While seeing the code ``upload.php`` as some filter process. It accepts only jpg,png,gif,jpeg.<br/>
+While seeing the code ``upload.php`` as some filter process. It accepts only jpg,png,gif,jpeg.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/5.png)
 
 ### File Upload Vulnerability
 
-``Upload.php``<br/>
+``Upload.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/6.png)
 
-``photos.php``<br/>
+``photos.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/7.png)
 Looks like we can view uploaded files in ``photos.php``.
 
-So I created my payload <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/8.png)<br/>
-By adding ``GIF89`` on the first it makes the payload as ``.gif`` <br/>
+So I created my payload [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/8.png)[br/](br/)
+By adding ``GIF89`` on the first it makes the payload as ``.gif`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/9.png)
 
-I uploaded my payload in ``upload.php``<br/>
+I uploaded my payload in ``upload.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/10.png)
 
-Started my listener and reloaded ``photos.php``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/11.png)<br/>
+Started my listener and reloaded ``photos.php``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/11.png)[br/](br/)
 I got the shell!!
 
 ## Getting User Shell
 
 
-While Checking Home directory there is a file called ``check_attack.php``<br/>
+While Checking Home directory there is a file called ``check_attack.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/12.png)
 
 While reading it I came to know it executes ``nohup``
@@ -143,7 +143,7 @@ As always I started with ``sudo -l``
 We can run ``changename.sh`` as root without password.
 So I tested to see how it works.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/16.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-networked/16.png)[br/](br/)
 It Looks like some network-scripts 
 
 While searching I got this 

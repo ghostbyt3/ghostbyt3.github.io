@@ -10,7 +10,7 @@ categories: HackTheBox
 
 We are going to pwn Blocky from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/48>
+Link : [https://www.hackthebox.eu/home/machines/profile/48](https://www.hackthebox.eu/home/machines/profile/48)
 
 
 Like always begin with our Nmap Scan.
@@ -45,7 +45,7 @@ No exact OS matches for host (test conditions non-ideal).
 Network Distance: 2 hops
 Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 ```
-While checking the webpage I cant find anything useful<br/>
+While checking the webpage I cant find anything useful[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/2.png)
 
 So start our Gobuster and see what are the directories available.
@@ -85,14 +85,14 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 It is an Wordpress site so we can use ``wpscan`` to find any plugins or username that we make use of it.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/3.png)
 
-Found an user ``notch``<br/>
+Found an user ``notch``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/4.png)
 
 
-While looking at the directories found some plugins in ``/plugins``<br/>
+While looking at the directories found some plugins in ``/plugins``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/5.png)
 
-So I downloaded it and to see whats inside!!<br/>
+So I downloaded it and to see whats inside!![br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/6.png)
 
 Found some ``mysql`` creds we know there is ``/phpmyadmin`` from Gobuster results.
@@ -103,10 +103,10 @@ Found some ``mysql`` creds we know there is ``/phpmyadmin`` from Gobuster result
 
 ## Getting Shell
 
-I logged in and Can't find anything useful!<br/>
+I logged in and Can't find anything useful![br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/8.png)
 
-So later I tried login with ``ssh`` using the creds we found, with ``notch`` user.<br/>
+So later I tried login with ``ssh`` using the creds we found, with ``notch`` user.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-blocky/9.png)
 
 ## Privilege Escalation

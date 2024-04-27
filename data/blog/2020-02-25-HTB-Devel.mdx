@@ -9,7 +9,7 @@ tags: ['windows','easy','iis','mfsvenom']
 
 We are going to pwn Devel from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/3>
+Link : [https://www.hackthebox.eu/home/machines/profile/3](https://www.hackthebox.eu/home/machines/profile/3)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -24,7 +24,7 @@ PORT   STATE SERVICE
 PORT   STATE SERVICE VERSION
 21/tcp open  ftp     Microsoft ftpd
 | ftp-anon: Anonymous FTP login allowed (FTP code 230)
-| 03-18-17  01:06AM       <DIR>          aspnet_client
+| 03-18-17  01:06AM       [DIR](DIR)          aspnet_client
 | 03-17-17  04:37PM                  689 iisstart.htm
 |_03-17-17  04:37PM               184946 welcome.png
 | ftp-syst: 
@@ -46,7 +46,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 ## FTP:
 
-We logged in as ``anonymous`` password can be anything. No files are interested.<br/>
+We logged in as ``anonymous`` password can be anything. No files are interested.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/2.png)
 
 ## HTTP:
@@ -100,18 +100,18 @@ We need to get reverse shell, I used ``msfvenom`` to create the payload.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/7.png)
 
-Now upload it in ``ftp`` and using metasploit to get the shell.<br/>
+Now upload it in ``ftp`` and using metasploit to get the shell.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/8.png)
 
 And start the metasploit and select ``exploit/multi/handler`` which provides a listener.
-Set the payload that we used in ``msfvenom`` which is ``windows/meterpreter/reverse_tcp``.<br/>
+Set the payload that we used in ``msfvenom`` which is ``windows/meterpreter/reverse_tcp``.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/9.png)
 
 
-Now open the ``/reverse.aspx`` from the web <br/>
+Now open the ``/reverse.aspx`` from the web [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/10.png)
 
-I get the ``shell`` and checked ``systeminfo``<br/>
+I get the ``shell`` and checked ``systeminfo``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/11.png)
 
 Where ``Hotfix(s): N/A`` which means the system is not updated so far.
@@ -140,8 +140,8 @@ Active sessions
 ```
 So its session 3.
 
-Now we can run that<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/13.png)<br/>
+Now we can run that[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-devel/13.png)[br/](br/)
 There is a lot of exploits suggested so I picked up random one.
 
 > exploit/windows/local/ms10_015_kitrap0d

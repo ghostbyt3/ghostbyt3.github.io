@@ -9,7 +9,7 @@ tags: ['linux','easy','cron','rce','intruder']
 
 We are going to pwn Teacher from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/165>
+Link : [https://www.hackthebox.eu/home/machines/profile/165](https://www.hackthebox.eu/home/machines/profile/165)
 
 
 Like always begin with our Nmap Scan.
@@ -36,8 +36,8 @@ While looking at each pages I found something on ``/gallery`` source code.
 If I click the image link it shows me some error.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/4.png)
 
-So I downloaded it into my machine and I used ``strings``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/5.png)<br/>
+So I downloaded it into my machine and I used ``strings``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/5.png)[br/](br/)
 It gives me some message along with ``user:giovanni`` and ``password:Th4C00lTheacha(Missing Char)``
 
 Which means there must be a login page so I started my Gobuster
@@ -72,8 +72,8 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 2019/12/11 19:10:25 Finished
 ===============================================================
 ```
-While checking them found some new page ``/moodle``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/6.png)<br/>
+While checking them found some new page ``/moodle``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/6.png)[br/](br/)
 So I bruteforce this directory
 
 ## Gobuster Results of ``/moodle``:
@@ -136,19 +136,19 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 Its quite a lot
 
 Finally I found a login page ``/moodle/login/index.php``
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/7.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/7.png)[br/](br/)
 We already have a user and password along with a missing character
 So we need to bruteforce the character
 
 I started my burp and capture the login intercept and send that to intruder
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/8.png)
 
-I created my wordlist we need to find the last character or letter so<br/>
+I created my wordlist we need to find the last character or letter so[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/9.png)
 
 I added ``` !@#$%^&*() ``` manually and my wordlist is ready
 
-I uploaded them into the payload section<br/>
+I uploaded them into the payload section[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/10.png)
 
 Started the attack and this one length is different that other , it might be the correct passsword
@@ -165,15 +165,15 @@ Now we need to get a reverse shell and I found this
 I did the same process from the blog
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/13.png)
 
-Added the code <br/>
+Added the code [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/13.1.png)
 
 From the code I came to know we need to call ``hack`` for any command execution.
 
-Then I send that request to burp and it worked I got reverse shell.<br/>
+Then I send that request to burp and it worked I got reverse shell.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/14.png)
 
-Immediately I started searching for ``conf`` files and I got this<br/>
+Immediately I started searching for ``conf`` files and I got this[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/15.png)
 
 > mysql -u root -D moodle -p
@@ -198,13 +198,13 @@ Will show all the tables on the particular database.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/17.png)
 
-From there I chosed ``mdl_user`` and got some hashes<br/>
+From there I chosed ``mdl_user`` and got some hashes[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/18.png)
 
 I cracked ``giovanni``'s hash using [Crack Station](https://crackstation.net/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/19.png)
 
-`` giovanni:expelled ``<br/>
+`` giovanni:expelled ``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-teacher/20.png)
 
 Im giovanni now 

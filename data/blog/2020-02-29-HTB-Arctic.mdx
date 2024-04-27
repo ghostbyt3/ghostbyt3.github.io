@@ -9,7 +9,7 @@ tags: ['windows','easy','ms10-059']
 
 We are going to pwn Arctic from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/9>
+Link : [https://www.hackthebox.eu/home/machines/profile/9](https://www.hackthebox.eu/home/machines/profile/9)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -33,11 +33,11 @@ Network Distance: 2 hops
 Nmap scan doesn't show whats in port ``8500`` so I started checking that, Which reveals a directory.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/2.png)
 
-``/cfdocs/``<br/>
-Some docs files, nothing useful.<br/>
+``/cfdocs/``[br/](br/)
+Some docs files, nothing useful.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/3.png)
 
-``/CFIDE/``<br/>
+``/CFIDE/``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/4.png)
 
 Found an ``administrator`` over there and it leads to an login page. Which is ``ColdFusion8`` by Adobe.
@@ -58,7 +58,7 @@ I used [CrackStation](https://crackstation.net/) to do this.
 Logged in as admin `` happyday`` 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/10.png)
 
-Now its time to get reverse shell, Under ``Debugging & Logging`` Category I found ``Scheduled Tasks``.<br/>
+Now its time to get reverse shell, Under ``Debugging & Logging`` Category I found ``Scheduled Tasks``.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/11.png)
 
 
@@ -86,14 +86,14 @@ Now its time to upload the shell!!
 Once uploaded I visited ``http://10.10.10.11:8500/CFIDE/`` is where the ``reverse shell`` is stored.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/19.png)
 
-Started my listener and opened ``shell.jsp`` <br/>
+Started my listener and opened ``shell.jsp`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/20.png)
 
 Got User Shell and Flag!
 
 ## Privilege Escalation:
 
-Like always when I get a shell I start with ``systeminfo`` <br/>
+Like always when I get a shell I start with ``systeminfo`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-arctic/21.png)
 
 Where Hotfix(s): N/A which means the system is not updated so far.

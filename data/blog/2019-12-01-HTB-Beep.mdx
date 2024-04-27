@@ -10,7 +10,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Beep from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/5>
+Link : [https://www.hackthebox.eu/home/machines/profile/5](https://www.hackthebox.eu/home/machines/profile/5)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -88,7 +88,7 @@ OS:L=G%RID=G%RIPCK=G%RUCK=G%RUD=G)IE(R=Y%DFI=N%T=40%CD=S)
 
 ## HTTP Enumeration
 
-While checking the webpage , it is an ``Elastix Login page``<br/>
+While checking the webpage , it is an ``Elastix Login page``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-beep/2.png)
 
 So I searched in Searchsploit but there is more exploit and I cant find any version of it in the webpage 
@@ -154,19 +154,19 @@ I check the source code to see the location of the logo.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-beep/15.png)
 It is in ``/test/logo/``
 
-So listening on my machine, I got the shell<br/>
+So listening on my machine, I got the shell[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-beep/16.png)
 
 ## Privilege Escalation
 
-While checking ``sudo -l``<br/>
+While checking ``sudo -l``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-beep/17.png)
 
 User ``asterisk`` can run these without root permission so i chose ``nmap`` from this.
 
 I searched in GTFOBins
 
-><https://gtfobins.github.io/gtfobins/nmap/>
+>[https://gtfobins.github.io/gtfobins/nmap/](https://gtfobins.github.io/gtfobins/nmap/)
 
 So I tried it
 

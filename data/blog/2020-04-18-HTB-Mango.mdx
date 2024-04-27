@@ -112,12 +112,12 @@ I tried using the user `admin` first to check whether our script works. I did so
 
 So How this works? This python script will bruteforce the password for the user by one by one character. If the character is correct it will give `302 Found`.  And for all other characters, it gives back the status code `200`.  So each time `302 redirect` is seen, it will restart the loop and started brute-forcing the second character.
 
-By doing so I got the password for `admin`<br/>
+By doing so I got the password for `admin`[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-mango/Untitled%207.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-mango/Untitled%207.png)
 
 ``admin:t9KcS3>!0B#2``
 
-Let's try the same script with `mango` as a user. (Just a Guess)<br/>
+Let's try the same script with `mango` as a user. (Just a Guess)[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-mango/Untitled%208.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-mango/Untitled%208.png)
 
 And I got the password.
@@ -149,7 +149,7 @@ We can get the root flag quickly by using the `FIle Read` method.
 
 The Shell thing didn't work, But it looks like it executes `/bin/sh`, so Instead of that  tried to give SUID to bash.
 
-```echo "Java.type('java.lang.Runtime').getRuntime().exec('/bin/sh -c \$@|sh _ echo sh <$(tty) >$(tty) 2>$(tty)').waitFor()" | jjs```
+```echo "Java.type('java.lang.Runtime').getRuntime().exec('/bin/sh -c \$@|sh _ echo sh [$(tty) ]($(tty) )$(tty) 2>$(tty)').waitFor()" | jjs```
 
 ```
     $ jjs 

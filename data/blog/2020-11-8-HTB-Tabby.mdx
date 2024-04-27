@@ -103,7 +103,7 @@ Module options (exploit/multi/http/tomcat_mgr_deploy):
    HttpUsername  tomcat               no        The username to authenticate as
    PATH          /host-manager  yes       The URI path of the manager app (/deploy and /undeploy will be used)
    Proxies                            no        A proxy chain of format type:host:port[,type:host:port][...]
-   RHOSTS        10.10.10.194         yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'
+   RHOSTS        10.10.10.194         yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:[path](path)'
    RPORT         8080                 yes       The target port (TCP)
    SSL           false                no        Negotiate SSL/TLS for outgoing connections
    VHOST                              no        HTTP server virtual host
@@ -197,7 +197,7 @@ Module options (exploit/multi/http/tomcat_mgr_deploy):
    HttpUsername  tomcat              no        The username to authenticate as
    PATH          /manager/text       yes       The URI path of the manager app (/deploy and /undeploy will be used)
    Proxies                           no        A proxy chain of format type:host:port[,type:host:port][...]
-   RHOSTS        10.10.10.194        yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:<path>'
+   RHOSTS        10.10.10.194        yes       The target host(s), range CIDR identifier, or hosts file with syntax 'file:[path](path)'
    RPORT         8080                yes       The target port (TCP)
    SSL           false               no        Negotiate SSL/TLS for outgoing connections
    VHOST                             no        HTTP server virtual host

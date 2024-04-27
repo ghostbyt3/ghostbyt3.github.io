@@ -11,7 +11,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Nibbles from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/121>
+Link : [https://www.hackthebox.eu/home/machines/profile/121](https://www.hackthebox.eu/home/machines/profile/121)
 
 
 Like always begin with our Nmap Scan.
@@ -45,7 +45,7 @@ It Looks simple
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/2.png)
 
-But the source code gives us some new directory<br/>
+But the source code gives us some new directory[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/3.png)
 
 We run Gobuster on this directory
@@ -83,13 +83,13 @@ While checking other pages from gobuster result ``/README`` shows the version of
 
 > Nibbleblog is an open source blog system which has been widely used. 
 
-There is login page too ``/admin.php``<br/>
+There is login page too ``/admin.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/5.png)
 
 So I just tried some random passwords and I tried ``nibbles`` (Box name) and logged with ``admin:nibbles``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/6.png)
 
-Since we know the version of it, Lets search them in searchsploit<br/>
+Since we know the version of it, Lets search them in searchsploit[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/7.png)
 
 ## Getting Shell
@@ -149,7 +149,7 @@ And We have the write permission on that file So I created a reverse shell paylo
 ``echo`` that to the ``monitor.sh`` and run that with ``sudo``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/11.png)
 
-Listening on my machine<br/>
+Listening on my machine[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-nibbles/12.png)
 
 I'm Root !!!

@@ -10,7 +10,7 @@ categories: HackTheBox
 
 We are going to pwn Valentine from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/127>
+Link : [https://www.hackthebox.eu/home/machines/profile/127](https://www.hackthebox.eu/home/machines/profile/127)
 
 
 Like always begin with our Nmap Scan.
@@ -48,7 +48,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Start from Webpage like always
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/2.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/2.png)[br/](br/)
 This image looks like heartbleed it may be ``heartbleed vulnerability``
 
 ## Gobuster Results
@@ -92,15 +92,15 @@ Yes it is confirmed, so I searched for exploits
 This one might work
 >https://www.exploit-db.com/exploits/32745
 
-when the script runs and it grabs some memory for us<br/>
+when the script runs and it grabs some memory for us[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/5.png)
 
 While its running on background I looked for directories 
 There is ``/decode.php``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/5.1.png)
 
-And ``/encode.php``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/5.2.png)<br/>
+And ``/encode.php``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/5.2.png)[br/](br/)
 I tried some commands to get anything useful but none worked!
 
 And the script found some base64 lets try decode them for that I used ``/decode.php`` 
@@ -112,7 +112,7 @@ It may be password for something
 
 ## Getting User Shell
 
-While checking other directories found ``hype_key`` from ``/dev``<br/>
+While checking other directories found ``hype_key`` from ``/dev``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/9.png)
 
 It is in hex , so we can decode them and see what we got
@@ -133,14 +133,14 @@ We can try login with them with ``hype`` since we got it as ``hype_key``
 
 It's asking for passphrase may be the one we got from heartbleed exploit
 
-``hype:heartbleedbelievethehype``<br/>
+``hype:heartbleedbelievethehype``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/11.png)
 
 We are successfully logged in as ``hype``
 
 ## Privilege Escalation
 
-While checking the kernel it looks old one <br/>
+While checking the kernel it looks old one [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/12.png)
 
 Yes it is we can use ``Dirty Cow`` for Priv Escalation
@@ -149,10 +149,10 @@ Yes it is we can use ``Dirty Cow`` for Priv Escalation
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/14.png)
 
-I uploaded the Script into the machine and from the given instruction I run that<br/>
+I uploaded the Script into the machine and from the given instruction I run that[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/15.png)
 
-Yes it worked it created new user as ``root``<br/>
+Yes it worked it created new user as ``root``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-valentine/16.png)
 
 

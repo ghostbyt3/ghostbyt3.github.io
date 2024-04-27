@@ -9,7 +9,7 @@ tags: ['linux','easy','node','kernel_exploit']
 
 We are going to pwn Help from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/170>
+Link : [https://www.hackthebox.eu/home/machines/profile/170](https://www.hackthebox.eu/home/machines/profile/170)
 
 
 Like always begin with our Nmap Scan.
@@ -87,7 +87,7 @@ From the exploit I came to know we need to submit a ticket
 I gave some random and uploaded my reverse shell as ``root.php``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/5.png)
 
-When I click uploaded it says<br/>
+When I click uploaded it says[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/6.png)
 
 Then I checked the source code of the ``HelpDeskz`` on github
@@ -148,19 +148,19 @@ Got an exploit for that version
 
 Uploaded the script to the machine 
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/9.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/9.png)[br/](br/)
 Got Root
 
 ## Enumerating ``Node.js``:
 
-It looks like ``node.js`` running on port ``3000``<br/>
+It looks like ``node.js`` running on port ``3000``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/10.png)
 
 It give us some message that we need to find the credentials with given query.
 
 Mostly ``node.js`` run as ``express graphql``
 
-I test it with adding ``graphql?`` <br/>
+I test it with adding ``graphql?`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/11.png)
 
 It shows some message so I tested with changing it to ``test`` and it gives me some error so I confirmed there is ``graphql``
@@ -169,8 +169,8 @@ It shows some message so I tested with changing it to ``test`` and it gives me s
 We know the message told us to find in given ``query`` and I googled about it and found this 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/13.png)
 
-So I added username and password <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/14.png)<br/>
+So I added username and password [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-help/14.png)[br/](br/)
 Got some credentials
 
 It looks like md5sum so I cracked with online crackstation

@@ -9,7 +9,7 @@ tags: ['linux','easy','cron','php']
 
 We are going to pwn LaCasaDePapel from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/181>
+Link : [https://www.hackthebox.eu/home/machines/profile/181](https://www.hackthebox.eu/home/machines/profile/181)
 
 
 Like always begin with our Nmap Scan.
@@ -113,21 +113,21 @@ Service Info: OS: Unix
 
 ## HTTP:
 
-The Webpage contains login form asking for an OTP token<br/>
+The Webpage contains login form asking for an OTP token[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/2.png)
 
 ## HTTPS:
 
-It shows some certification error<br/>
+It shows some certification error[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/22.png)
 
 ## FTP:
 
-I checked the version ``vsftpd 2.3.4``, I found some exploit<br/>
+I checked the version ``vsftpd 2.3.4``, I found some exploit[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/3.png)
 
 Its not working , may be they patched it
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/4.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/4.png)[br/](br/)
 But it looks like something running on port ``6200`` that stops us getting shell.
 
 So I checked whats there using ``nc``
@@ -137,7 +137,7 @@ Then I googled about it and found this
 >https://psysh.org/
 
 we can use it to execute php commands 
-So I tried with ```scandir(".")```<br/>
+So I tried with ```scandir(".")```[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/5.png)
 
 ```
@@ -158,7 +158,7 @@ show $tokyo
 ```
 Its look like creating some certificate.
 
-I used same `` file_get_contents`` to view the file<br/>
+I used same `` file_get_contents`` to view the file[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/6.png)
 
 Got ``ca.key`` in ``nairobi`` directory.
@@ -166,7 +166,7 @@ We know ``HTTPS`` have some certification error. So we can use that.
 
 ## Cerificate Generation:
 
-First we need to Generate a CSR for an Existing Private Key<br/>
+First we need to Generate a CSR for an Existing Private Key[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/7.png)
 > openssl req -new -key ca.key -out server.csr
 
@@ -180,14 +180,14 @@ Firefox wont import this file so we need to convert to pkcs12
 
 > ###Reference : https://phoenixnap.com/kb/openssl-tutorial-ssl-certificates-private-keys-csrs
 
-I added the certificate to my browser<br/>
+I added the certificate to my browser[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/10.png)
 
-Once added Just refresh the webpage<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/11.png)<br/>
+Once added Just refresh the webpage[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/11.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/12.png)
 
-On url it represents some path so I changed that <br/>
+On url it represents some path so I changed that [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/13.png)
 
 I opened ``.ssh`` dir but can't see get the private flags
@@ -197,11 +197,11 @@ I opened ``.ssh`` dir but can't see get the private flags
 I opened ``SEASON1`` and clicked ``01.avi``
 
 It give new url ``https://lacasadepapel.htb/file/U0VBU09OLTEvMDEuYXZp``
-I copied that and decoded to base64.<br/>
+I copied that and decoded to base64.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/15.png)
 
-Its directly downloading the file, so we encode the ``id_rsa`` and pass that to url we can download that!<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/16.png)<br/>
+Its directly downloading the file, so we encode the ``id_rsa`` and pass that to url we can download that![br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/16.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/17.png)
 
 Got the private key lets try login in ``ssh``
@@ -209,14 +209,14 @@ Got the private key lets try login in ``ssh``
 
 ## Privilege Escalation:
 
-There is a file ``memcached.ini``<br/>
+There is a file ``memcached.ini``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/19.png)
 
 It executes the ``memcached.js`` in the directory.
-So I edited that to get shell (we have writable permission)<br/>
+So I edited that to get shell (we have writable permission)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/20.png)
 
-I started listening on my machine<br/>
+I started listening on my machine[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-lacasadepapel/21.png)
 
 

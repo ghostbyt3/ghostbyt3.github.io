@@ -170,26 +170,26 @@ session_start();
 
 if((!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || $_SESSION['username'] !== "admin") && $_SERVER['REMOTE_ADDR'] !== "127.0.0.1"){
     header('HTTP/1.0 403 Forbidden');
-    echo "<h1>403 Access Denied</h1>";
-    echo "<h3>Access Denied From ", $_SERVER['REMOTE_ADDR'], "</h3>";
-    //echo "<h2>Redirecting to login in 3 seconds</h2>"
-    //echo '<meta http-equiv="refresh" content="3;url=../login.php" />';
+    echo "[h1](h1)403 Access Denied[/h1](/h1)";
+    echo "[h3](h3)Access Denied From ", $_SERVER['REMOTE_ADDR'], "[/h3](/h3)";
+    //echo "[h2](h2)Redirecting to login in 3 seconds[/h2](/h2)"
+    //echo '[meta http-equiv="refresh" content="3;url=../login.php" /](meta http-equiv="refresh" content="3;url=../login.php" /)';
     //header("location: ../login.php");
     exit;
 }
 ?>
-<html>
-	<h1>XML Api Test</h1>
-	<h3>This is our api test for when our new website gets refurbished</h3>
-	<form action="/dev/index.php" method="get" id="xmltest">
-		<textarea name="xml" form="xmltest" rows="20" cols="50"><api>
-    <request>test</request>
-</api>
-</textarea>
-		<input type="submit">
-	</form>
+[html](html)
+	[h1](h1)XML Api Test[/h1](/h1)
+	[h3](h3)This is our api test for when our new website gets refurbished[/h3](/h3)
+	[form action="/dev/index.php" method="get" id="xmltest"](form action="/dev/index.php" method="get" id="xmltest")
+		[textarea name="xml" form="xmltest" rows="20" cols="50"](textarea name="xml" form="xmltest" rows="20" cols="50")[api](api)
+    [request](request)test[/request](/request)
+[/api](/api)
+[/textarea](/textarea)
+		[input type="submit"](input type="submit")
+	[/form](/form)
 
-</html>
+[/html](/html)
 
 <!-- TODO:
 Fix FTP Login
@@ -225,7 +225,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET" && isset($_GET['xml'])) {
 	$dom->loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD);
 	$api = simplexml_import_dom($dom);
 	$req = $api->request;
-	echo "-----output-----<br>\r\n";
+	echo "-----output-----[br](br)\r\n";
 	echo "$req";
 }
 

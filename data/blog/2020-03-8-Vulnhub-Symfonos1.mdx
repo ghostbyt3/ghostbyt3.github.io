@@ -20,7 +20,7 @@ Beginner real life based machine designed to teach a interesting way of obtainin
 Note: You may need to update your host file for symfonos.local
 
 ```
-Download Link : <https://www.vulnhub.com/entry/symfonos-1,322/>
+Download Link : [https://www.vulnhub.com/entry/symfonos-1,322/](https://www.vulnhub.com/entry/symfonos-1,322/)
 
 
 Lets Begin with our Initial Scan
@@ -55,7 +55,7 @@ Service Info: Hosts:  symfonos.localdomain, SYMFONOS; OS: Linux; CPE: cpe:/o:lin
 
 Host script results:
 |_clock-skew: mean: 2h00m23s, deviation: 3h27m50s, median: 23s
-|_nbstat: NetBIOS name: SYMFONOS, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+|_nbstat: NetBIOS name: SYMFONOS, NetBIOS user: [unknown](unknown), NetBIOS MAC: [unknown](unknown) (unknown)
 | smb-os-discovery: 
 |   OS: Windows 6.1 (Samba 4.5.16-Debian)
 |   Computer name: symfonos
@@ -95,10 +95,10 @@ There is a tool called ``smbclient`` which helps to access to the server.
 >smbclient - ftp-like client to access SMB/CIFS resources on servers
 
 First I tried with ``helios`` I can't login without password, So next is ``anonymous`` which I get logged in without password.
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/2.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/2.png)[br/](br/)
 Downloaded the ``attention.txt`` to my machine.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/3.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/3.png)[br/](br/)
 This file contains a warning to the users to not use these password.
 
 I tired again ``smbclient`` with ``helios`` with these 3 passwords.
@@ -130,7 +130,7 @@ So Its a ``Wordpress`` site. We can use ``wpscan`` to enumerate users and plugin
 Found 2 plugins, I searched for any exploits available for them.
 >wpscan --url http://symfonos.local/h3l105/ --enumerate p
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/6.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/6.png)[br/](br/)
 Found this LFI 
 > https://www.exploit-db.com/exploits/40290
 
@@ -148,7 +148,7 @@ So the user might have a mail and I found [SMTP Log poisoning](https://liberty-s
 Found users mail log ``/var/mail/helios``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/8.png)
 
-By following the article, Payload is injected <br/>
+By following the article, Payload is injected [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/9.png)
 
 Now we can get reverse shell
@@ -165,7 +165,7 @@ When I run the file it prints the header of the webpage, and I did ``strings`` f
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/12.png)
 
-So I checked where is ``curl`` and its is in ``/usr/bin/curl``.<br/>
+So I checked where is ``curl`` and its is in ``/usr/bin/curl``.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos1/15.png)
 
 So we can create a file to give us shell and placed it in ``/tmp`` and name it as ``curl`` and change the PATH to ``/tmp``.

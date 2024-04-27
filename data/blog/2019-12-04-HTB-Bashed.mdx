@@ -11,7 +11,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Bashed from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/118>
+Link : [https://www.hackthebox.eu/home/machines/profile/118](https://www.hackthebox.eu/home/machines/profile/118)
 
 
 Like always begin with our Nmap Scan.
@@ -66,7 +66,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ===============================================================
 ```
 
-While checking the ``/dev`` there is an ``phpbash.php``<br/>
+While checking the ``/dev`` there is an ``phpbash.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bashed/3.png)
 
 Found 2 users ``arrexel and scriptmanager`` and got user flag too.
@@ -81,12 +81,12 @@ Netcat didnt worked so i tried some others and perl works
 Reverse Shell Cheatsheet
 >http://pentestmonkey.net/cheat-sheet/shells/reverse-shell-cheat-sheet
 
-Copy and paste the command on the ``phpbash.php`` and listening on my machine <br/>
+Copy and paste the command on the ``phpbash.php`` and listening on my machine [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bashed/5.png)
 
 ## Privilege Escalation
 
-Like always I started with ``sudo -l``<br/>
+Like always I started with ``sudo -l``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bashed/6.png)
 
 Looks like ``www-data`` can run any commands on the machine with the permission of ``scriptmanager`` without the password.

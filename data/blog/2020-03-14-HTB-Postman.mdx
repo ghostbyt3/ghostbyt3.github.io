@@ -9,7 +9,7 @@ tags: ['linux','easy','redis','john']
 
 We are going to pwn Postman by TheCyberGeek from Hack The Box. I enjoyed the way to get user shell.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/215>
+Link : [https://www.hackthebox.eu/home/machines/profile/215](https://www.hackthebox.eu/home/machines/profile/215)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -89,12 +89,12 @@ Found this!
 
 So from the above statement we need to check whether redis has no password authentication. We can do that with ``telnet``
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/3.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/3.png)[br/](br/)
 Yeah! It works it doesn't ask for any authentication. Now I can continue with the article.
 
 So First we need to create a ``ssh`` keys so I can enter the machine.
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/4.png)<br/>
-And I generated a pair of keys.<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/4.png)[br/](br/)
+And I generated a pair of keys.[br/](br/)
 We know that ``.pub`` must be inside the box so only we can connect it with our private key. And I changed that ``keys.pub`` to ``foo.txt`` with two blank lines before and after the public key.
 
 We can use ``redis-cli`` to get command line interface. We can install it with ``apt install redis-tools``.
@@ -137,7 +137,7 @@ I copied the result and saved it as ``pass`` .Now we can use this to crack with 
 
 We got the password ``computer2008`` I saw the user from home dir. I tried SSH login with the password but I can't. Using ``su`` from the redis shell I can log in as ``Matt``.
 
-``matt : computer2008``<br/>
+``matt : computer2008``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/11.png)
 
 ## Privilege Escalation:
@@ -152,7 +152,7 @@ I fired up my metasploit and searched for the exploit and
 Its asking for the ``USER`` and ``PASSWORD`` so I used the Matt user.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/13.png)
 
-It worked <br/>
+It worked [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-postman/14.png)
 
 I got Root!!

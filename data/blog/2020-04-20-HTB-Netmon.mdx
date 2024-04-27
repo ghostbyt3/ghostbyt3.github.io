@@ -10,7 +10,7 @@ layout: PostSimple
 
 We are going to pwn Netmon from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/177>
+Link : [https://www.hackthebox.eu/home/machines/profile/177](https://www.hackthebox.eu/home/machines/profile/177)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -54,12 +54,12 @@ ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
 02-03-19  12:18AM                 1024 .rnd
-02-25-19  10:15PM       <DIR>          inetpub
-07-16-16  09:18AM       <DIR>          PerfLogs
-02-25-19  10:56PM       <DIR>          Program Files
-02-03-19  12:28AM       <DIR>          Program Files (x86)
-02-03-19  08:08AM       <DIR>          Users
-02-25-19  11:49PM       <DIR>          Windows
+02-25-19  10:15PM       [DIR](DIR)          inetpub
+07-16-16  09:18AM       [DIR](DIR)          PerfLogs
+02-25-19  10:56PM       [DIR](DIR)          Program Files
+02-03-19  12:28AM       [DIR](DIR)          Program Files (x86)
+02-03-19  08:08AM       [DIR](DIR)          Users
+02-25-19  11:49PM       [DIR](DIR)          Windows
 226 Transfer complete.
 ```
 
@@ -69,8 +69,8 @@ ftp> cd Users
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-02-25-19  11:44PM       <DIR>          Administrator
-02-03-19  12:35AM       <DIR>          Public
+02-25-19  11:44PM       [DIR](DIR)          Administrator
+02-03-19  12:35AM       [DIR](DIR)          Public
 226 Transfer complete.
 ftp> cd Administrator
 550 Access is denied. 
@@ -83,12 +83,12 @@ ftp> cd Public
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-02-03-19  08:05AM       <DIR>          Documents
-07-16-16  09:18AM       <DIR>          Downloads
-07-16-16  09:18AM       <DIR>          Music
-07-16-16  09:18AM       <DIR>          Pictures
+02-03-19  08:05AM       [DIR](DIR)          Documents
+07-16-16  09:18AM       [DIR](DIR)          Downloads
+07-16-16  09:18AM       [DIR](DIR)          Music
+07-16-16  09:18AM       [DIR](DIR)          Pictures
 02-03-19  12:35AM                   33 user.txt
-07-16-16  09:18AM       <DIR>          Videos
+07-16-16  09:18AM       [DIR](DIR)          Videos
 226 Transfer complete.
 ftp> get user.txt
 local: user.txt remote: user.txt
@@ -107,7 +107,7 @@ Its a PRTG Network Monitor and its version is displayed at the bottom.
 
 ![8d0d5fe5abb3894b5c231c8f0bd2d96f.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-netmon/ab9bd3d9534c4d098a5b43b8a1a3d520.png)
 
-><https://www.exploit-db.com/exploits/46527>
+>[https://www.exploit-db.com/exploits/46527](https://www.exploit-db.com/exploits/46527)
 
 Found an exploit for that version but it seems like we need to login first.
 So I tried with default credentials. `prtgadmin / prtgadmin`
@@ -118,7 +118,7 @@ So I tried with default credentials. `prtgadmin / prtgadmin`
 But I get `Your login has failed. Please try again!`
 
 Since we have ftp connection to the entire box, let's search for the configuration file for `PRTG Network Monitor`, I googled about the location of the configuration file in the machine and found this.
-><https://www.reddit.com/r/sysadmin/comments/835dai/prtg_exposes_domain_accounts_and_passwords_in/>
+>[https://www.reddit.com/r/sysadmin/comments/835dai/prtg_exposes_domain_accounts_and_passwords_in/](https://www.reddit.com/r/sysadmin/comments/835dai/prtg_exposes_domain_accounts_and_passwords_in/)
 
 It reveals the accounts and password in `C:\ProgramData\Paessler\PRTG Network Monitor\` 
 
@@ -128,15 +128,15 @@ ftp> cd Programdata
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-02-03-19  12:15AM       <DIR>          Licenses
-11-20-16  10:36PM       <DIR>          Microsoft
-02-03-19  12:18AM       <DIR>          Paessler
-02-03-19  08:05AM       <DIR>          regid.1991-06.com.microsoft
-07-16-16  09:18AM       <DIR>          SoftwareDistribution
-02-03-19  12:15AM       <DIR>          TEMP
-11-20-16  10:19PM       <DIR>          USOPrivate
-11-20-16  10:19PM       <DIR>          USOShared
-02-25-19  10:56PM       <DIR>          VMware
+02-03-19  12:15AM       [DIR](DIR)          Licenses
+11-20-16  10:36PM       [DIR](DIR)          Microsoft
+02-03-19  12:18AM       [DIR](DIR)          Paessler
+02-03-19  08:05AM       [DIR](DIR)          regid.1991-06.com.microsoft
+07-16-16  09:18AM       [DIR](DIR)          SoftwareDistribution
+02-03-19  12:15AM       [DIR](DIR)          TEMP
+11-20-16  10:19PM       [DIR](DIR)          USOPrivate
+11-20-16  10:19PM       [DIR](DIR)          USOShared
+02-25-19  10:56PM       [DIR](DIR)          VMware
 226 Transfer complete.
 ```
 There it is `Paessler`
@@ -146,7 +146,7 @@ ftp> cd Paessler
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-04-20-20  02:46AM       <DIR>          PRTG Network Monitor
+04-20-20  02:46AM       [DIR](DIR)          PRTG Network Monitor
 226 Transfer complete.
 ftp> cd "PRTG Network Monitor"
 250 CWD command successful.
@@ -156,21 +156,21 @@ We found the backup files of `PRTG`
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-04-20-20  02:45AM       <DIR>          Configuration Auto-Backups
-04-20-20  02:45AM       <DIR>          Log Database
-02-03-19  12:18AM       <DIR>          Logs (Debug)
-02-03-19  12:18AM       <DIR>          Logs (Sensors)
-02-03-19  12:18AM       <DIR>          Logs (System)
-04-20-20  02:45AM       <DIR>          Logs (Web Server)
-04-20-20  02:45AM       <DIR>          Monitoring Database
+04-20-20  02:45AM       [DIR](DIR)          Configuration Auto-Backups
+04-20-20  02:45AM       [DIR](DIR)          Log Database
+02-03-19  12:18AM       [DIR](DIR)          Logs (Debug)
+02-03-19  12:18AM       [DIR](DIR)          Logs (Sensors)
+02-03-19  12:18AM       [DIR](DIR)          Logs (System)
+04-20-20  02:45AM       [DIR](DIR)          Logs (Web Server)
+04-20-20  02:45AM       [DIR](DIR)          Monitoring Database
 02-25-19  10:54PM              1189697 PRTG Configuration.dat
 02-25-19  10:54PM              1189697 PRTG Configuration.old
 07-14-18  03:13AM              1153755 PRTG Configuration.old.bak
 04-20-20  02:46AM              1637516 PRTG Graph Data Cache.dat
-02-25-19  11:00PM       <DIR>          Report PDFs
-02-03-19  12:18AM       <DIR>          System Information Database
-02-03-19  12:40AM       <DIR>          Ticket Database
-02-03-19  12:18AM       <DIR>          ToDo Database
+02-25-19  11:00PM       [DIR](DIR)          Report PDFs
+02-03-19  12:18AM       [DIR](DIR)          System Information Database
+02-03-19  12:40AM       [DIR](DIR)          Ticket Database
+02-03-19  12:18AM       [DIR](DIR)          ToDo Database
 226 Transfer complete.
 ftp> get "PRTG Configuration.old.bak"
 local: PRTG Configuration.old.bak remote: PRTG Configuration.old.bak
@@ -183,11 +183,11 @@ Downloaded that to my machine.
 
 `PRTG Configuration.old.bak` Found the password.
 ```
- </dbcredentials>
-            <dbpassword>
-              <!-- User: prtgadmin -->
+ [/dbcredentials](/dbcredentials)
+            [dbpassword](dbpassword)
+              [!-- User: prtgadmin --](!-- User: prtgadmin --)
               PrTg@dmin2018
-            </dbpassword>
+            [/dbpassword](/dbpassword)
 ```
 I tried login again with these creds but still I get `Your login has failed. Please try again!`
 
@@ -199,7 +199,7 @@ After some enumeration I changed it to `PrTg@dmin2019` because the `.bak` file i
 ## Getting shell:
 
 We can now use the exploit we found already.
-><https://www.exploit-db.com/exploits/46527>
+>[https://www.exploit-db.com/exploits/46527](https://www.exploit-db.com/exploits/46527)
 
 So according to the exploit, once we authenticated, we need to get those cookies and give it to the script and it will create a new user for us as `pentest`.
 ```

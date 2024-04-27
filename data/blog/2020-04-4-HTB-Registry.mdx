@@ -10,7 +10,7 @@ layout: PostSimple
 
 We are going to pwn Registry by thek from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/213>
+Link : [https://www.hackthebox.eu/home/machines/profile/213](https://www.hackthebox.eu/home/machines/profile/213)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -47,7 +47,7 @@ The Web server is running as nginx. Nothing special.
 
 ## HTTPS:
 
-Nmap Reveals the commonName for the ``HTTPS`` is ``docker.registry.htb``, So I added them in ``/etc/hosts``<br/>
+Nmap Reveals the commonName for the ``HTTPS`` is ``docker.registry.htb``, So I added them in ``/etc/hosts``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/2.png)
 Its blank. There must be something running on the background.
 
@@ -73,23 +73,23 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 2020/03/15 12:35:03 Finished
 ===============================================================
 ```
-``/v2``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/3.png)<br/>
+``/v2``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/3.png)[br/](br/)
 It asks for login authentication, I tried some default credentials and got logged in with ``admin:admin``
 
-I looked at the ``headers`` tab and found ``Docker-Distribution-Api-Version	: registry/2.0``<br/>
+I looked at the ``headers`` tab and found ``Docker-Distribution-Api-Version	: registry/2.0``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/5.png)
 
 I started searching for any exploits available for ``docker registry`` and found this.
 
 #### Reference:
-><https://www.notsosecure.com/anatomy-of-a-hack-docker-registry/>
+>[https://www.notsosecure.com/anatomy-of-a-hack-docker-registry/](https://www.notsosecure.com/anatomy-of-a-hack-docker-registry/)
 
-><https://blog.dixitaditya.com/exploiting-docker-registry/>
+>[https://blog.dixitaditya.com/exploiting-docker-registry/](https://blog.dixitaditya.com/exploiting-docker-registry/)
 
-We already know the version of API ``/v2``, we can find list of repos in the registry using ``/_catalog``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/4.png)<br/>
-Here only one repo which is ``bolt-image``<br/>
+We already know the version of API ``/v2``, we can find list of repos in the registry using ``/_catalog``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/4.png)[br/](br/)
+Here only one repo which is ``bolt-image``[br/](br/)
 
 Let's explore the ``bolt-image`` and find out the tags listed for this repo using the ``/bolt-image/tags/list``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/6.png)
@@ -97,41 +97,41 @@ Let's explore the ``bolt-image`` and find out the tags listed for this repo usin
 Since we identified there is only one tag ``latest`` , let’s download the manifest file for the ``latest`` tag using the ``/manifests/latest``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/7.png)
 
-``latest``<br/>
+``latest``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/8.png)
 
 #### What is blob?
 >A Binary Large OBject is a collection of binary data stored as a single entity in a database management system. Blobs are typically images, audio or other multimedia objects, though sometimes binary executable code is stored as a blob.
 
 These are the blobs, we can download each blob using ``/blobs/sha256:/********`` 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/9.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/9.png)[br/](br/)
 Like this I downloaded all.
 
-The file is an ``gzip compressed data`` so I rename to ``.gz`` and I decompress it with ``gzip -d ``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/10.png)<br/>
-This file shows the content of how the ssh keys created in the box. When it asks for ``passphrase``, the entered passphrase is displayed as ``send``.<br/>
+The file is an ``gzip compressed data`` so I rename to ``.gz`` and I decompress it with ``gzip -d ``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/10.png)[br/](br/)
+This file shows the content of how the ssh keys created in the box. When it asks for ``passphrase``, the entered passphrase is displayed as ``send``.[br/](br/)
 ```
 expect "Enter passphrase for /root/.ssh/id_rsa:"
 send "GkOcz221Ftb3ugog\n";
 ```
 This will be ssh passphrase ``GkOcz221Ftb3ugog``, So we might get ssh private key If we keep on dig them all.
 
-Other files doesn't give anything useful unless this one, The total size is 90mb so this might contain some useful things.<br/>
+Other files doesn't give anything useful unless this one, The total size is 90mb so this might contain some useful things.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/11.png)
 
-Its an ``.gz`` file renamed and extracted now it is an ``tar`` file ``tar -xf`` to decompress the file.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/12.png)<br/>
-We got bunch of directories, we already got ssh passphrase so I started looking for ssh private keys.<br/>
+Its an ``.gz`` file renamed and extracted now it is an ``tar`` file ``tar -xf`` to decompress the file.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/12.png)[br/](br/)
+We got bunch of directories, we already got ssh passphrase so I started looking for ssh private keys.[br/](br/)
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/13.png)<br/>
-I got the private keys in ``/root/.ssh/id_rsa``. <br/>
-<br/>
-While checking the blob files, I found that user ``bolt`` private keys are stored in ``/root/.ssh/``<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/13.png)[br/](br/)
+I got the private keys in ``/root/.ssh/id_rsa``. [br/](br/)
+[br/](br/)
+While checking the blob files, I found that user ``bolt`` private keys are stored in ``/root/.ssh/``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/14.png)
 
 ## SSH Login:
 
-Using ``GkOcz221Ftb3ugog`` I logged in ``ssh -i id_rsa bolt@registry.htb``<br/>
+Using ``GkOcz221Ftb3ugog`` I logged in ``ssh -i id_rsa bolt@registry.htb``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/15.png)
 
 
@@ -142,9 +142,9 @@ bolt@bolt:/var/www/html$ cat backup.php
 ```
 It executes a backup application with ``sudo``, so we need user ``www-data`` to run a restic command as root. Added ``backup.registry.htb`` in my hosts file.
 
-``backup.registry.htb/bolt``<br/>
+``backup.registry.htb/bolt``[br/](br/)
 
-It's a Bolt CMS<br/>
+It's a Bolt CMS[br/](br/)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/16.png)
 
@@ -161,8 +161,8 @@ Downloaded that to my machine to check whats inside.
 There is lot of tables but ``bolt_users`` seems interesting. So I dump them all. Found ``admin`` hash.
 >https://www.sitepoint.com/getting-started-sqlite3-basic-commands/
 
-I cracked them using John.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/19.png)<br/>
+I cracked them using John.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-registry/19.png)[br/](br/)
 So the password is ``strawberry``.
 
 Logged in with ``admin : stawberry``
@@ -265,7 +265,7 @@ root@w0lf:/tmp/restic/snapshots# restic -r /tmp/restic/ restore b9d28d7c --targe
 enter password for repository: 
 repository 41f82a77 opened successfully, password is correct
 created new cache in /root/.cache/restic
-restoring <Snapshot b9d28d7c of [/root/root.txt] at 2020-04-04 19:37:22.586614963 +0000 UTC by root@bolt> to /tmp/restic/
+restoring [Snapshot b9d28d7c of [/root/root.txt] at 2020-04-04 19:37:22.586614963 +0000 UTC by root@bolt](Snapshot b9d28d7c of [/root/root.txt] at 2020-04-04 19:37:22.586614963 +0000 UTC by root@bolt) to /tmp/restic/
 
 
 

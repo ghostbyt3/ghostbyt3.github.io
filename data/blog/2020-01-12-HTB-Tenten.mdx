@@ -9,7 +9,7 @@ tags: ['linux','medium','sudo','wordpress','plugin']
 
 We are going to pwn Tenten from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/8>
+Link : [https://www.hackthebox.eu/home/machines/profile/8](https://www.hackthebox.eu/home/machines/profile/8)
 
 
 Like always begin with our Nmap Scan.
@@ -41,26 +41,26 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ## HTTP
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/2.png)<br/>
-Since its a wordpress site we can enumerate using ``wpscan`` to get see if there is any users and plugins available<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/2.png)[br/](br/)
+Since its a wordpress site we can enumerate using ``wpscan`` to get see if there is any users and plugins available[br/](br/)
 Found a Plugin called ``job-manager``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/3.png)
 
-Found an User  ``takis``<br/>
+Found an User  ``takis``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/4.png)
 
 I started searching for any exploits available for that plugin and found
 
 >https://vagmour.eu/cve-2015-6668-cv-filename-disclosure-on-job-manager-wordpress-plugin/
 
-From the blog I found there is a directory ``/index.php/jobs/apply/@@/``<br/>
+From the blog I found there is a directory ``/index.php/jobs/apply/@@/``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/5.png)
 
-As we can see there is an ID and when I changed to some random numbers and job title has been changed.<br/>
+As we can see there is an ID and when I changed to some random numbers and job title has been changed.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/6.png)
 
-So I started trying some random number to check if there is anything useful for us.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/7.png)<br/>
+So I started trying some random number to check if there is anything useful for us.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/7.png)[br/](br/)
 Found this ``HackerAccessGranted`` from the ID 13 , Which looks suspecious.
 
 In WordPress there is directory structure for the uploaded files is recognized by ``/wp-content/uploads/%year%/%month%/%filename%``
@@ -97,13 +97,13 @@ for year in range(2017,2018):
                 print "[+] URL of CV found! " + URL
 ```
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/8.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/8.png)[br/](br/)
 It found the exact location of the file ``HackerAccessGranted``
 
-Opened the link and its an image.<br/>
+Opened the link and its an image.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/9.png)
 
-This is the image we found!!<br/>
+This is the image we found!![br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/10.1.jpg)
 
 Downloaded it to my machine to check with ``steghide`` to see if there is anything hidden.
@@ -112,29 +112,29 @@ Downloaded it to my machine to check with ``steghide`` to see if there is anythi
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/10.png)
 
-Got SSH Private key so lets use ssh2john before cracking it with john<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/11.png)<br/>
-I saved the output as ``ssh2john`` and I gave it to ``john`` to crack the password.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/12.png)<br/>
+Got SSH Private key so lets use ssh2john before cracking it with john[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/11.png)[br/](br/)
+I saved the output as ``ssh2john`` and I gave it to ``john`` to crack the password.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/12.png)[br/](br/)
 
-So the password is ``superpassword``. We already know there is an user named ``takis``<br/>
+So the password is ``superpassword``. We already know there is an user named ``takis``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/13.png)
 
 ## Privilege Escalation:
 
-Like always I started with ``sudo -l``<br/>
+Like always I started with ``sudo -l``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/14.png)
 
-Looks like we can run ``fuckin`` as root without password.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/15.png)<br/>
+Looks like we can run ``fuckin`` as root without password.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/15.png)[br/](br/)
 ``fuckin`` seems to be a script that contains arguments and that we need to pass on.
 
 Lets try with ``whoami``
 
-Now its time to get reverse shell as root using the ``fuckin``<br/>
+Now its time to get reverse shell as root using the ``fuckin``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/16.png)
 
-Started my listener<br/>
+Started my listener[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-tenten/17.png)
 
 I got Root!

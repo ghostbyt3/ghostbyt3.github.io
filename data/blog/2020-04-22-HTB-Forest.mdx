@@ -9,7 +9,7 @@ layout: PostSimple
 
 We are going to pwn Forest by egre55 & mrb3n from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/212>
+Link : [https://www.hackthebox.eu/home/machines/profile/212](https://www.hackthebox.eu/home/machines/profile/212)
 
 
 Let's Begin with our Initial Nmap Scan.
@@ -153,7 +153,7 @@ rpcclient $>
 
 Since the port 88 is open, we can move on to the kerberosting technique. But to do Kerberosting technique we need credentials on the domain to authenticate. But we have a chance if `Do not require Kerberos preauthentication` is True. There is a tool called `GetNPUsers.py` from [Impackets](https://github.com/SecureAuthCorp/impacket).
 
-This is the tool we looking for, let's give a try.<br/>
+This is the tool we looking for, let's give a try.[br/](br/)
 ![test.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/296181db8d754f9989a8d896078908ba.png)
 
 I created a list of users that we got from `RPC` enumeration.
@@ -170,14 +170,14 @@ Administrator
 From nmap scan it reveals a domain name `htb.local` so I added it to my `/etc/hosts`.
 > GetNPUsers.py -usersfile userlist.txt -dc-ip 10.10.10.161 -request htb.local/
 
-![8f2960edac58a5a72cba229387db1fac.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/dae2eef5e8234dad9037373f1f9ae925.png)<br/>
+![8f2960edac58a5a72cba229387db1fac.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/dae2eef5e8234dad9037373f1f9ae925.png)[br/](br/)
 We got user `svc-alfresco` hash. Lets crack it using john.
 
 
-![56.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/a765520fc3d84d2da91f6aa80f6a7e14.png)<br/>
+![56.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/a765520fc3d84d2da91f6aa80f6a7e14.png)[br/](br/)
 We got the password for the user `svc-alfresco : s3rvice`
 
-I used [Evilwinrm](https://github.com/Hackplayers/evil-winrm) to login.<br/>
+I used [Evilwinrm](https://github.com/Hackplayers/evil-winrm) to login.[br/](br/)
 ![18a17924bb20c5155208dec2ffd834ec.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/d6e2502a51894b91969d9e867a99e915.png)
 
 
@@ -198,16 +198,16 @@ Once uploaded I executed it.
 > -c CollectionMethods
 
 
-![a259b8a5b3b4856ba7e08fa17bc32734.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/b4d15bbc27f941f9860bb09453d722f9.png)<br/>
+![a259b8a5b3b4856ba7e08fa17bc32734.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/b4d15bbc27f941f9860bb09453d722f9.png)[br/](br/)
 Now the output is stored in zip file.
 
-Like `upload` command we can also Download the file. It will be stored in `Evil-WinRM` directory.<br/>
+Like `upload` command we can also Download the file. It will be stored in `Evil-WinRM` directory.[br/](br/)
 ![a671d0d5923bec456b3678f7cebefe0e.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/5382336d46674484afb7fb18b7bda439.png)
 
-Drag the `.zip` file to the BloodHound. Once its extracted successfully you get a message.<br/>
+Drag the `.zip` file to the BloodHound. Once its extracted successfully you get a message.[br/](br/)
 ![a2ceeb4ce7ab515be893584bc03817e6.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/71729cc6357048e0a491494fb6f2c973.png)
 
-Now **Queries -> Find Shortest Paths to Domain Admins** <br/>
+Now **Queries -> Find Shortest Paths to Domain Admins** [br/](br/)
 ![sam.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/c6e175959c52475cb80b04abc989b5a0.png)
 
 ![7545a4210731a80d0c010339eed01cd9.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/0f9c7ab40ad14bb4990bc1a7e10b69e5.png)
@@ -228,28 +228,28 @@ It seems like no one. So We add `svc-alfresco` to this group.
 Added Successfully. And `Exchange Windows Permission group` has WriteDcal access to Domain object in Active Directory, which enables any member of this group to modify the domain privileges, among which is the privilege to perform DCSync operation.
 ![8d583931bebed439d5490d15ab7d6a9b.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/a36cdf421436415eab9f3f82850d710d.png)
 
-**Reference :** <https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/> 
-Next, Run `ntlmrelayx`<br/>
+**Reference :** [https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/](https://dirkjanm.io/abusing-exchange-one-api-call-away-from-domain-admin/) 
+Next, Run `ntlmrelayx`[br/](br/)
 >python3 ntlmrelayx.py -t ldap://10.10.10.161 --escalate-user svc-alfresco
 
 ![21be6b7645412b3892083b3f7cc9aad0.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/e7a6b2e511f04f62937a21a4cdd1891d.png)
 
-Now we’ve to browse to our localhost and need to give `svc-alfresco` password and we see the connection coming in at ntlmrelayx, which gives our user DCSync privileges.<br/>
+Now we’ve to browse to our localhost and need to give `svc-alfresco` password and we see the connection coming in at ntlmrelayx, which gives our user DCSync privileges.[br/](br/)
 ![Screenshot_2020-04-22_16-42-21.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/e631086164be43809baf891dcebcc3b6.png)
 
 
 We got connection back and if u see closely it asks us to run `secretsdump.py`
 ![4bac1d7a1967d5380db1812ce82035a7.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/67fba1e0ebd540099d5ddb710f7cfa65.png)
 
-Here we got `Administrator` Hash.<br/>
+Here we got `Administrator` Hash.[br/](br/)
 >secretsdump.py htb.local/svc-alfresco:s3rvice@10.10.10.161
 
 ![dee4de2c21a7f042bd942e5295beccfb.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/e46fb2f3db5e495c99d5b9a4605a0f62.png)
 
-Now I can use this hash to login as administrator using `EvilWin-RM`<br/>
+Now I can use this hash to login as administrator using `EvilWin-RM`[br/](br/)
 >ruby evil-winrm.rb -i 10.10.10.161 -u administrator -H "32693b11e6aa90eb43d32c72a07ceea6"
 
-![24f7f08467eff462e3d41ba38c43c859.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/7c60dc8405e24204ab4a56828f6a38d1.png)<br/>
+![24f7f08467eff462e3d41ba38c43c859.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-forest/7c60dc8405e24204ab4a56828f6a38d1.png)[br/](br/)
 We own the Root
 
 

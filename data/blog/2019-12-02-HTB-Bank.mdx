@@ -10,7 +10,7 @@ categories: HackTheBox
 
 We are going to pwn Bank from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/26>
+Link : [https://www.hackthebox.eu/home/machines/profile/26](https://www.hackthebox.eu/home/machines/profile/26)
 
 
 Like always begin with our Nmap Scan.
@@ -86,32 +86,32 @@ For that open `` Proxy -> Options -> Match and Replace ``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/4.png)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/5.png)
 
-Add Now Redirection is stopped , Let see whats in the webpage<br/>
+Add Now Redirection is stopped , Let see whats in the webpage[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/6.png)
 It looks like some users bank account details
 
 ## Finding Upload Vulnerability
 
-There is another webpage ``support.php`` Lets see whats inside.<br/>
+There is another webpage ``support.php`` Lets see whats inside.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/7.png)
 
-It looks like some kind of upload thing. While Checking the source code found this<br/>
+It looks like some kind of upload thing. While Checking the source code found this[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/8.png)
 
 ## Getting Shell
 
-So I uploaded my payload ``.php`` as ``.htb`` <br/>
+So I uploaded my payload ``.php`` as ``.htb`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/13.png)
 
 While Listening on my machine and Pressing the Click Here opened the shell for me!
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/9.png)
 
-While enumerating I found some credentials which is located in ``/www/bank``<br/>
+While enumerating I found some credentials which is located in ``/www/bank``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/10.png)
 
 ## Privilege Escalation
 
-Found an SUID called ``emergency`` in ``/var/htb/bin``<br/>
+Found an SUID called ``emergency`` in ``/var/htb/bin``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-bank/11.png)
 
 While I tried to execute it give me ``root`` 

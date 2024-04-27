@@ -9,7 +9,7 @@ tags: ['linux','medium','file-upload-vuln','kernel_exploit']
 
 We are going to pwn Popcorn from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/4>
+Link : [https://www.hackthebox.eu/home/machines/profile/4](https://www.hackthebox.eu/home/machines/profile/4)
 
 
 Like always begin with our Nmap Scan.
@@ -72,55 +72,55 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 ``/torrent`` Looks Interesting
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/3.png)
 
-I searched for any exploits available and got this one<br/>
+I searched for any exploits available and got this one[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/4.png)
 
 > https://www.exploit-db.com/exploits/11746
 
 So it is an file upload vulnerability
 
-So First we need to create an account <br/>
+So First we need to create an account [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/5.png)
 
-Account Successfully created and I started searching for any uploads available.<br/>
+Account Successfully created and I started searching for any uploads available.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/6.png)
 
-And found this , So I uploaded random ``.torrent`` file to see what we can do with it.<br/>
+And found this , So I uploaded random ``.torrent`` file to see what we can do with it.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/7.png)
 
-Once uploaded it shows me this page with an option for ``Edit this Torrent`` which is interesting.<br/>
+Once uploaded it shows me this page with an option for ``Edit this Torrent`` which is interesting.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/8.png)
 
-There is an option to upload a picture as Screenshot. So we can try creating a image with reverse shell inside it.<br/>
+There is an option to upload a picture as Screenshot. So we can try creating a image with reverse shell inside it.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/9.png)
 
-I created a Payload with ``GIF89`` which makes the file to look like gif image and saved it as ``shell.php.gif``<br/>
+I created a Payload with ``GIF89`` which makes the file to look like gif image and saved it as ``shell.php.gif``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/10.png)
 
-While uploading I captured the intercept via burp and removed that ``.gif`` and Forwarded.<br/>
+While uploading I captured the intercept via burp and removed that ``.gif`` and Forwarded.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/11.png)
 
-File Uploaded<br/>
+File Uploaded[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/12.png)
 
-Once uploaded I tried to view the image inorder to start our payload, by clicking on the image it opened. <br/>
+Once uploaded I tried to view the image inorder to start our payload, by clicking on the image it opened. [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/13.png)
 
-Started my nc listener<br/>
+Started my nc listener[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/14.png)
 
 ## Privilege Escalation
 
-Its is an old kernel version.<br/>
+Its is an old kernel version.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/15.png)
 
-Searched for the exploit available for this version and got ``Dirty Cow`` exploit.<br/>
+Searched for the exploit available for this version and got ``Dirty Cow`` exploit.[br/](br/)
 > https://www.exploit-db.com/exploits/40839
 
-Uploaded it to the box and Followed the instruction.<br/>
+Uploaded it to the box and Followed the instruction.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/16.png)
 
-New Account created as ``root``<br/>
+New Account created as ``root``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-popcorn/17.png)
 
 Got Root Flag.

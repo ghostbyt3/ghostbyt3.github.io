@@ -10,7 +10,7 @@ categories: HackTheBox
 
 We are going to pwn Curling from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/160>
+Link : [https://www.hackthebox.eu/home/machines/profile/160](https://www.hackthebox.eu/home/machines/profile/160)
 
 
 Like always begin with our Nmap Scan.
@@ -42,7 +42,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Lets start with HTTP 
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/2.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/2.png)[br/](br/)
 It looks like ``JoomlaCMS`` from the icon!
 
 So start our Gobuster 
@@ -91,7 +91,7 @@ And like always check the source code
 
 Found ``/secret.txt`` may contain anything useful
 
-Looks like base64. Lets try decode it <br/>
+Looks like base64. Lets try decode it [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/5.png)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/6.png)
@@ -111,8 +111,8 @@ Found Templates which means we can edit that to get reverse shell
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/9.png)
 Upload it and click template preview
 
-Started my nc listener<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/10.png)<br/>
+Started my nc listener[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/10.png)[br/](br/)
 I got the shell
 
 While checking the home directories found ``password_backup``
@@ -123,17 +123,17 @@ I Copied that to my machine
 
 ## Getting User Floris
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/12.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/12.png)[br/](br/)
 First I did ``xxd -r`` which reverse the hex dump.
 I checked what file it is , it is a ``bzip2`` so I renamed it ,to extract.
 And the output is ``gzip`` file,
-After some extraction I got ``password.txt``<br/>
+After some extraction I got ``password.txt``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/13.png)
 
 May be ``floris`` ssh password
 
 Lets try login in ``ssh``
-``floris:5d<wdCbdZu)|hChXll ``<br/>
+``floris:5d<wdCbdZu)|hChXll ``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/14.png)
 
 ## Privilege Escalation:
@@ -144,12 +144,12 @@ I found it is an ``Ubuntu`` box so I checked ``snap`` version.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/15.png)
 
-I found some exploits from searchsploit<br/>
+I found some exploits from searchsploit[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/16.png)
 
-><https://www.exploit-db.com/exploits/46362>
+>[https://www.exploit-db.com/exploits/46362](https://www.exploit-db.com/exploits/46362)
 
-Uploaded on the machine and it worked<br/>
+Uploaded on the machine and it worked[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-curling/17.png)
 
 I got root!

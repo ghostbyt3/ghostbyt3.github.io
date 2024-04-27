@@ -20,7 +20,7 @@ Linux skills and familiarity with the Linux command line are a must, as is some 
 For beginners, Google can be of great assistance, but you can always  tweet me at @DCAU7 for assistance to get you going again. But take note:  I won't give you the answer, instead, I'll give you an idea about how  to move forward.
 But if you're really, really stuck, you can watch this video which shows the first step.
 
-Download link: <https://www.vulnhub.com/entry/dc-5,314/>
+Download link: [https://www.vulnhub.com/entry/dc-5,314/](https://www.vulnhub.com/entry/dc-5,314/)
 
 Lets Begin with our Initial Scan
 
@@ -107,7 +107,7 @@ Now all we need to do is get a reverse shell.
 We know its running in nginx from nmap scans so we can do log poisoning.
 For that we need to send a request
 
-`` <?php system($_GET['cmd']); >>``
+`` [?php system($_GET['cmd']); ](?php system($_GET['cmd']); )>``
 
 Now its injected , we know log files of nginx located in ``/var/log/nginx/error.log``
 
@@ -131,7 +131,7 @@ Searchsploit shows me an exploit available
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc5/8.png)
 
-> <https://www.exploit-db.com/exploits/41154>
+> [https://www.exploit-db.com/exploits/41154](https://www.exploit-db.com/exploits/41154)
 
 I uploaded the script to the machine and tried running but i faced some error , so i split them into 3 parts
 
@@ -153,6 +153,6 @@ Run 411.sh
 
 We got Root 
 
-``Flag`` <br/>
+``Flag`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc5/13.png)
 

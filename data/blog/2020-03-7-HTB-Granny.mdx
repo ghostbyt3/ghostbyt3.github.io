@@ -9,7 +9,7 @@ tags: ['windows','easy','isi','put']
 
 We are going to pwn Granny from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/14>
+Link : [https://www.hackthebox.eu/home/machines/profile/14](https://www.hackthebox.eu/home/machines/profile/14)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -47,7 +47,7 @@ Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
 
 ## HTTP:
 
-The webpage is running as ``ISI 6.0`` from Nmap results. Like [Grandpa](https://0xw0lf.github.io//posts/HTB-Grandpa).<br/>
+The webpage is running as ``ISI 6.0`` from Nmap results. Like [Grandpa](https://0xw0lf.github.io//posts/HTB-Grandpa).[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-granny/2.png)
 
 The Nmap ``webdav-scan`` revealed that we have ``PUT`` options. I tried ``davtest``.
@@ -78,7 +78,7 @@ I used ``.html`` to upload the same payload, now we can use ``Move`` to change i
 ``201 Created`` It worked, Extension changed.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-granny/9.png)
 
-Started my Listener in ``Msfconsole`` <br/>
+Started my Listener in ``Msfconsole`` [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-granny/10.png)
 
 ## Privilege Escalation:

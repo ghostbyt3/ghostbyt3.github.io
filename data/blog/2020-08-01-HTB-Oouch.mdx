@@ -48,32 +48,32 @@ PORT     STATE SERVICE VERSION
 |     HTTP/1.0 400 Bad Request
 |     Content-Type: text/html
 |     Vary: Authorization
-|     <h1>Bad Request (400)</h1>
+|     [h1](h1)Bad Request (400)[/h1](/h1)
 |   RTSPRequest: 
 |     RTSP/1.0 400 Bad Request
 |     Content-Type: text/html
 |     Vary: Authorization
-|     <h1>Bad Request (400)</h1>
+|     [h1](h1)Bad Request (400)[/h1](/h1)
 |   SIPOptions: 
 |     SIP/2.0 400 Bad Request
 |     Content-Type: text/html
 |     Vary: Authorization
-|_    <h1>Bad Request (400)</h1>
+|_    [h1](h1)Bad Request (400)[/h1](/h1)
 |_http-title: Site doesn't have a title (text/html).
 |_rtsp-methods: ERROR: Script execution failed (use -d to debug)
 1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
 SF-Port8000-TCP:V=7.80%I=7%D=6/7%Time=5EDCB6BB%P=x86_64-pc-linux-gnu%r(Get
 SF:Request,64,"HTTP/1\.0\x20400\x20Bad\x20Request\r\nContent-Type:\x20text
-SF:/html\r\nVary:\x20Authorization\r\n\r\n<h1>Bad\x20Request\x20\(400\)</h
+SF:/html\r\nVary:\x20Authorization\r\n\r\n[h1](h1)Bad\x20Request\x20\(400\)</h
 SF:1>")%r(FourOhFourRequest,64,"HTTP/1\.0\x20400\x20Bad\x20Request\r\nCont
-SF:ent-Type:\x20text/html\r\nVary:\x20Authorization\r\n\r\n<h1>Bad\x20Requ
-SF:est\x20\(400\)</h1>")%r(HTTPOptions,64,"HTTP/1\.0\x20400\x20Bad\x20Requ
-SF:est\r\nContent-Type:\x20text/html\r\nVary:\x20Authorization\r\n\r\n<h1>
-SF:Bad\x20Request\x20\(400\)</h1>")%r(RTSPRequest,64,"RTSP/1\.0\x20400\x20
+SF:ent-Type:\x20text/html\r\nVary:\x20Authorization\r\n\r\n[h1](h1)Bad\x20Requ
+SF:est\x20\(400\)[/h1](/h1)")%r(HTTPOptions,64,"HTTP/1\.0\x20400\x20Bad\x20Requ
+SF:est\r\nContent-Type:\x20text/html\r\nVary:\x20Authorization\r\n\r\n[h1](h1)
+SF:Bad\x20Request\x20\(400\)[/h1](/h1)")%r(RTSPRequest,64,"RTSP/1\.0\x20400\x20
 SF:Bad\x20Request\r\nContent-Type:\x20text/html\r\nVary:\x20Authorization\
-SF:r\n\r\n<h1>Bad\x20Request\x20\(400\)</h1>")%r(SIPOptions,63,"SIP/2\.0\x
+SF:r\n\r\n[h1](h1)Bad\x20Request\x20\(400\)[/h1](/h1)")%r(SIPOptions,63,"SIP/2\.0\x
 SF:20400\x20Bad\x20Request\r\nContent-Type:\x20text/html\r\nVary:\x20Autho
-SF:rization\r\n\r\n<h1>Bad\x20Request\x20\(400\)</h1>");
+SF:rization\r\n\r\n[h1](h1)Bad\x20Request\x20\(400\)[/h1](/h1)");
 Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
 Aggressive OS guesses: Linux 2.6.32 (95%), Linux 3.1 (95%), Linux 3.2 (95%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (94%), ASUS RT-N56U WAP (Linux 3.4) (93%), Linux 3.16 (93%), Linux 2.6.39 - 3.2 (92%), Linux 3.1 - 3.2 (92%), Linux 3.2 - 4.9 (92%), Linux 3.5 (92%)
 No exact OS matches for host (test conditions non-ideal).
@@ -494,7 +494,7 @@ qtc@oouch:~$ cat user.txt
 I checked the IP address first and these look suspicious.
 
 ```bash
-2: ens34: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
+2: ens34: [BROADCAST,MULTICAST,UP,LOWER_UP](BROADCAST,MULTICAST,UP,LOWER_UP) mtu 1500 qdisc pfifo_fast state UP group default qlen 1000
     link/ether 00:50:56:b9:a0:8f brd ff:ff:ff:ff:ff:ff
     inet 10.10.10.177/24 brd 10.10.10.255 scope global ens34
        valid_lft forever preferred_lft forever
@@ -502,11 +502,11 @@ I checked the IP address first and these look suspicious.
        valid_lft 86278sec preferred_lft 14278sec
     inet6 fe80::250:56ff:feb9:a08f/64 scope link 
        valid_lft forever preferred_lft forever
-3: docker0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN group default 
+3: docker0: [NO-CARRIER,BROADCAST,MULTICAST,UP](NO-CARRIER,BROADCAST,MULTICAST,UP) mtu 1500 qdisc noqueue state DOWN group default 
     link/ether 02:42:34:15:e2:61 brd ff:ff:ff:ff:ff:ff
     inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
        valid_lft forever preferred_lft forever
-4: br-cc6c78e0c7d0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP group default 
+4: br-cc6c78e0c7d0: [BROADCAST,MULTICAST,UP,LOWER_UP](BROADCAST,MULTICAST,UP,LOWER_UP) mtu 1500 qdisc noqueue state UP group default 
     link/ether 02:42:fe:21:5c:13 brd ff:ff:ff:ff:ff:ff
     inet 172.18.0.1/16 brd 172.18.255.255 scope global br-cc6c78e0c7d0
        valid_lft forever preferred_lft forever
@@ -715,7 +715,7 @@ I tried running the script and I get an error.
 qtc@aeb4525789d8:/tmp$ python3 exploit.py -m unix -u /tmp/uwsgi.socket -c 'whoami'
 [*]Sending payload.
 Traceback (most recent call last):
-  File "exploit.py", line 146, in <module>
+  File "exploit.py", line 146, in [module](module)
     main()
   File "exploit.py", line 143, in main
     print(curl(args.mode.lower(), args.uwsgi_addr, payload, '/testapp'))
@@ -895,23 +895,23 @@ dbus-send --system --type=method_call --print-reply --dest=htb.oouch.Block /htb/
 method return time=1591687819.038208 sender=:1.3 -> destination=:1.3209 serial=10 reply_serial=2
    string "<!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
 "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node>
- <interface name="org.freedesktop.DBus.Peer">
-  <method name="Ping"/>
-  <method name="GetMachineId">
-   <arg type="s" name="machine_uuid" direction="out"/>
-  </method>
- </interface>
+[node](node)
+ [interface name="org.freedesktop.DBus.Peer"](interface name="org.freedesktop.DBus.Peer")
+  [method name="Ping"/](method name="Ping"/)
+  [method name="GetMachineId"](method name="GetMachineId")
+   [arg type="s" name="machine_uuid" direction="out"/](arg type="s" name="machine_uuid" direction="out"/)
+  [/method](/method)
+ [/interface](/interface)
 .
 .
 .
- <interface name="htb.oouch.Block">
-  <method name="Block">
-   <arg type="s" direction="in"/>
-   <arg type="s" direction="out"/>
-  </method>
- </interface>
-</node>
+ [interface name="htb.oouch.Block"](interface name="htb.oouch.Block")
+  [method name="Block"](method name="Block")
+   [arg type="s" direction="in"/](arg type="s" direction="in"/)
+   [arg type="s" direction="out"/](arg type="s" direction="out"/)
+  [/method](/method)
+ [/interface](/interface)
+[/node](/node)
 ```
 
 First We need to get the Interface name and method name. And we got them both.

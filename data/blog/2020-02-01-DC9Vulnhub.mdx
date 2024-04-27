@@ -14,7 +14,7 @@ Linux skills and familiarity with the Linux command line are a must, as is some 
 For beginners, Google can be of great assistance, but you can always tweet me at @DCAU7 for assistance to get you going again. But take note: I won't give you the answer, instead, I'll give you an idea about how to move forward.
 
 
-Download Link : <https://www.vulnhub.com/entry/dc-9,412/>
+Download Link : [https://www.vulnhub.com/entry/dc-9,412/](https://www.vulnhub.com/entry/dc-9,412/)
 
 Lets Begin with our nmap scan as always
 
@@ -41,18 +41,18 @@ Network Distance: 1 hop
 
 `` Note : SSH is Filtered ``
 
-Let's Begin with Webpage<br/>
+Let's Begin with Webpage[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/1.png)
 
 Gobuster Scan doesn't give anything useful.
 
 While checking the webpages found 2 interesting pages.
 
-``/search.php``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/2.png)<br/>
+``/search.php``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/2.png)[br/](br/)
 In ``search.php`` we can search the staff name and It will display their details. ``display.php`` contains all staff details.
 
-``/manage.php``<br/>
+``/manage.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/3.png)
 
 I tried normal sql injection commands on ``/manage.php`` nothing worked.
@@ -61,7 +61,7 @@ So I capture ``/search.php`` request and try that with ``sqlmap``
 
 > sqlmap - automatic SQL injection tool
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/4.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/4.png)[br/](br/)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/5.png)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/6.png)
@@ -85,14 +85,14 @@ So I tried to see whats in ``users``
 ```
 Now I got the table.
 
-Lets dig inside it!<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/9.png)<br/>
+Lets dig inside it![br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/9.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/10.png)
 
 `` -T TBL              DBMS database table(s) to enumerate ``
 
-Lets dump them<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/11.png)<br/>
+Lets dump them[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/11.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/12.png)
 
 We got the users and their passwords!
@@ -125,7 +125,7 @@ Table: UserDetails
 ```
 I tried login with them in ``/manage.php`` but didn't worked so I moved to another Database.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/13.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/13.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/14.png)
 
 ```
@@ -145,8 +145,8 @@ Now I tried with these creds `` admin:transorbital1 ``
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/16.png)
 
-Successfully Logged in<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/17.png)<br/>
+Successfully Logged in[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/17.png)[br/](br/)
 While looking at the webpage there is a message `` File does not exist `` on the footer.
 
 So I tried normal LFI
@@ -171,10 +171,10 @@ So we need the sequence to open the port.
 
 From the blog I came to know we can see the sequence in ``/etc/knockd.conf``
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/19.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/19.png)[br/](br/)
 We got the sequence!!!
 
-According to rapid7 we can use ``telnet`` for port knocking.<br/>
+According to rapid7 we can use ``telnet`` for port knocking.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/20.png)
 
 We opened the ``ssh`` port!
@@ -186,10 +186,10 @@ So I started brute forcing using ``hydra``.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/21.png)
 
-Got 3 user name and password. I logged in with `` janitor : Ilovepeepee ``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/22.png)<br/>
-While checking the home directory found a hidden folder<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/23.png)<br/>
+Got 3 user name and password. I logged in with `` janitor : Ilovepeepee ``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/22.png)[br/](br/)
+While checking the home directory found a hidden folder[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/23.png)[br/](br/)
 It gives us some new password so I added them into our old list and start bruteforcing again.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc9/24.png)

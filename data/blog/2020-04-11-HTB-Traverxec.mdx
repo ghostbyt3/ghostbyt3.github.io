@@ -11,7 +11,7 @@ layout: PostSimple
 We are going to pwn Traverxec by jkr from Hack The Box. Getting User shell is fun and by using GTFOBins correctly we can get Root easily.
 
 
-Link : <https://www.hackthebox.eu/home/machines/profile/217>
+Link : [https://www.hackthebox.eu/home/machines/profile/217](https://www.hackthebox.eu/home/machines/profile/217)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -59,7 +59,7 @@ I got ``www--data``
 
 > https://www.exploit-db.com/exploits/47837
 
-```Usage: cve2019-16278.py <Target_IP> <Target_Port> <Command>```
+```Usage: cve2019-16278.py [Target_IP](Target_IP) [Target_Port](Target_Port) [Command](Command)```
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/19.png)
 
@@ -71,21 +71,21 @@ cd /var
 www-data@traverxec:/var$ 
 ```
 
-While checking ``nostromo`` conf files found that ``.htpasswd`` are located in same dir.<br/>
+While checking ``nostromo`` conf files found that ``.htpasswd`` are located in same dir.[br/](br/)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/5.png)
 
-It gives me user ``david`` hash.<br/>
+It gives me user ``david`` hash.[br/](br/)
 ```
 www-data@traverxec:/var/nostromo/conf$ cat /var/nostromo/conf/.htpasswd
 cat /var/nostromo/conf/.htpasswd
 david:$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ/
 ```
 
-And I cracked it with john <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/6.1.png) ``Nowonly4me``<br/>
+And I cracked it with john [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/6.1.png) ``Nowonly4me``[br/](br/)
 
-But I cant ``su david`` with that password. I can't access ``david`` home dir too.<br/>
+But I cant ``su david`` with that password. I can't access ``david`` home dir too.[br/](br/)
 ```
 www-data@traverxec:/home$ cd david
 cd david
@@ -111,8 +111,8 @@ So I googled about ``nhttpd.conf``
 
 >http://10.10.10.165/~david/
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/8.png)<br/>
-And that Document tell us that we can view them in the home directory as well as via HTTP.<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/8.png)[br/](br/)
+And that Document tell us that we can view them in the home directory as well as via HTTP.[br/](br/)
 We know that ``homedirs_public`` is ``public_www`` So I tried to view them in shell.
 
 ```
@@ -132,44 +132,44 @@ www-data@traverxec:/usr/bin$ ls ~david/public_www/protected-file-area
 ls ~david/public_www/protected-file-area
 backup-ssh-identity-files.tgz
 ```
-There is Backup-SSH file, Lets download it to our machine using netcat.<br/>
+There is Backup-SSH file, Lets download it to our machine using netcat.[br/](br/)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/20.png)
 
 ## Another Method to download the SSH backup file:
 
-We know there is ``protected-file-area`` I tried to view them on my webpage.<br/>
+We know there is ``protected-file-area`` I tried to view them on my webpage.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/9.png)
 `` david : Nowonly4me `` 
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/10.png)
 
-Downloaded that file and extracted on my machine.<br/>
+Downloaded that file and extracted on my machine.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/11.png)
-We got ssh private key.<br/>
+We got ssh private key.[br/](br/)
 
 It ask for passphase so I tried to crack with ``john`` again. For that we need use ``ssh2john`` first.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/12.png)
 
-Now we can use this with ``john``<br/>
+Now we can use this with ``john``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/13.png) `` : hunter``
 
-Got User Flag<br/>
+Got User Flag[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/14.png)
 
 ## Privilege Escalation:
 
-There is a script located in the home directory.<br/>
+There is a script located in the home directory.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/15.png)
 
-While checking it , I found that its running ``journalctl`` as sudo.<br/>
+While checking it , I found that its running ``journalctl`` as sudo.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/16.1.png)
 
 >https://gtfobins.github.io/gtfobins/journalctl/
 
 According to this ``journalctl`` we need to shrunk the terminal to two lines and then escaped via less.
 
-So I copied the sudo line <br/>
+So I copied the sudo line [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/16.png)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-traverxec/17.png)
 

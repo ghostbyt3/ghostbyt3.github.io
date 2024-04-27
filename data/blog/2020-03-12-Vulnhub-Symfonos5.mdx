@@ -12,7 +12,7 @@ Today, We are going to pwn Symfonos 5 by Zayotic from Vulnhub
 ```
 Beginner real life based machine designed to teach people the importance of understanding from the interior.
 ```
-Download Link : <https://www.vulnhub.com/entry/symfonos-52,415/>
+Download Link : [https://www.vulnhub.com/entry/symfonos-52,415/](https://www.vulnhub.com/entry/symfonos-52,415/)
 
 Lets Begin with our Initial Scan
 
@@ -107,20 +107,20 @@ Reference :
 
 We got User ``zeus`` Password which is base64 encoded.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/9.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/9.png)[br/](br/)
 ``zeus  :  cetkKf4wCuHC9FET ``
 
-I tried login with this in SSH<br/>
+I tried login with this in SSH[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/10.png)
 
 ## Privilege Escalation:
 
-Like always I started with ``sudo -l``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/11.png)<br/>
+Like always I started with ``sudo -l``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/11.png)[br/](br/)
 We can run ``dpkg`` as root without password.
 
-Searched that in [GTFOBins](https://gtfobins.github.io/gtfobins/dpkg/)<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/12.png)<br/>
+Searched that in [GTFOBins](https://gtfobins.github.io/gtfobins/dpkg/)[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/12.png)[br/](br/)
 The machine doesn't have fpm so I created that payload in my machine and uploaded here.
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/symfonos5/13.png)

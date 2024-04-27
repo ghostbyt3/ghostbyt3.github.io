@@ -19,7 +19,7 @@ You probably wouldn't even know that two-factor authentication was  installed an
 Linux skills and familiarity with the Linux command line are a must, as is some experience with basic penetration testing tools.
 For beginners, Google can be of great assistance, but you can always  tweet me at @DCAU7 for assistance to get you going again. But take note:  I won't give you the answer, instead, I'll give you an idea about how  to move forward.
 
-Download Link : <https://www.vulnhub.com/entry/dc-8,367/>
+Download Link : [https://www.vulnhub.com/entry/dc-8,367/](https://www.vulnhub.com/entry/dc-8,367/)
 
 Lets Begin our Nmap Scan
 
@@ -66,7 +66,7 @@ So I tried passing some other id's and it shows some SQL error
 
 Lets run our SQLmap
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/4.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/4.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/5.png)
 
 It showed us that there are 2 available databases in the target machine which are:
@@ -78,7 +78,7 @@ It showed us that there are 2 available databases in the target machine which ar
 
 Lets see whats in the database of ``d7db``
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/6.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/6.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/7.png)
 
 ```
@@ -87,14 +87,14 @@ Lets see whats in the database of ``d7db``
 ```
 We found a table named ‘users’.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/8.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/8.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/9.png)
 
 `` -T TBL              DBMS database table(s) to enumerate ``
 
 It looks like there are some name and pass so lets dump them!.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/10.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/10.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/11.png)
 
 We found users and hashes 
@@ -106,7 +106,7 @@ Lets try crack them using ``john``
 
 We found a password ``turtle``
 
-I logged in with ``john:turtle``<br/>
+I logged in with ``john:turtle``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/13.png)
 
 ## Getting Shell
@@ -114,26 +114,26 @@ I logged in with ``john:turtle``<br/>
 Now its time to get Reverse shell. I figure out that we need to edit the ``form-setting`` and change the ``text format`` to ``php code``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/14.png)
 
-Once I submit<br/>
+Once I submit[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/15.png)
 
-Listening on my machine , I got the shell<br/>
+Listening on my machine , I got the shell[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/16.png)
 
 ## Privilege Escalation
 
 I uploaded my Linux Enumeration Script 
 Found some SETUID Bit
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/17.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/17.png)[br/](br/)
 Where ``exim4`` is unusual
  
-Searchsploit shows lot of exploits <br/>
+Searchsploit shows lot of exploits [br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/18.png)
 
-so lets check its version<br/>
+so lets check its version[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/dc8/19.png)
 
-And Found an exploit for that version!<br/>
+And Found an exploit for that version![br/](br/)
 >https://www.exploit-db.com/exploits/46996
 
 I uploaded it in the victim machine and tried running it but it shows some ``bad interpreter`` so i googled about it

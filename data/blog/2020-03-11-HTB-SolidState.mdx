@@ -9,7 +9,7 @@ tags: ['linux','medium','mail','pop3','rbash']
 
 We are going to pwn SolidState from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/85>
+Link : [https://www.hackthebox.eu/home/machines/profile/85](https://www.hackthebox.eu/home/machines/profile/85)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -39,7 +39,7 @@ Service Info: Host: solidstate; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 ## HTTP:
 
-The Webpage looks useless, Nothing Special.<br/>
+The Webpage looks useless, Nothing Special.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-solidstate/2.png)
 
 ## MAIL:
@@ -48,7 +48,7 @@ Nmap Scan reveales James which is an mail server.
 
 >Apache James, a.k.a. Java Apache Mail Enterprise Server or some variation thereof, is an open source SMTP and POP3 mail transfer agent and NNTP news server written entirely in Java. 
 
-I searched for any exploits available in Searchsploit.<br/>
+I searched for any exploits available in Searchsploit.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-solidstate/3.png)
 
 >https://www.exploit-db.com/exploits/35513
@@ -61,7 +61,7 @@ user = 'root'
 pwd = 'root'
 ```
 
-So I logged in with these credentials<br/>
+So I logged in with these credentials[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-solidstate/4.png)
 
 HELP command reveals we can see the list of users and we can even change the mail password. I changed ``mindy`` mail password.
@@ -82,7 +82,7 @@ First Message doesn't have anything useful but Second messange give me SSH passw
 
 ## SSH:
 
-``mindy : P@55W0rd1!2@``<br/>
+``mindy : P@55W0rd1!2@``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-solidstate/8.png)
 
 Got User Flag!!.
@@ -101,7 +101,7 @@ We can see that we have rbash which is Restricted Bash so we are restricted to u
 
 We already found an [exploit](https://www.exploit-db.com/exploits/35513) which runs the payload if someone logs in.
 
-I changed the payload to give us reverse shell.<br/>
+I changed the payload to give us reverse shell.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-solidstate/10.png)
 
 Run the exploit and started my nc listener on another terminal and Logged in SSH.

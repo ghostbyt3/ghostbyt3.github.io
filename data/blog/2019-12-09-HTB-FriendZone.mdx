@@ -9,7 +9,7 @@ tags: ['linux','easy','cron','domain','lfi','smb']
 
 We are going to pwn FriendZone from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/173>
+Link : [https://www.hackthebox.eu/home/machines/profile/173](https://www.hackthebox.eu/home/machines/profile/173)
 
 
 Like always begin with our Nmap Scan.
@@ -59,7 +59,7 @@ Service Info: Hosts: FRIENDZONE, 127.0.0.1; OSs: Unix, Linux; CPE: cpe:/o:linux:
 
 Host script results:
 |_clock-skew: mean: -39m33s, deviation: 1h09m15s, median: 25s
-|_nbstat: NetBIOS name: FRIENDZONE, NetBIOS user: <unknown>, NetBIOS MAC: <unknown> (unknown)
+|_nbstat: NetBIOS name: FRIENDZONE, NetBIOS user: [unknown](unknown), NetBIOS MAC: [unknown](unknown) (unknown)
 | smb-os-discovery: 
 |   OS: Windows 6.1 (Samba 4.7.6-Ubuntu)
 |   Computer name: friendzone
@@ -108,40 +108,40 @@ We can use ``smbclient`` to login, we know the location of the file.
 
 >smbclient - ftp-like client to access SMB/CIFS resources on servers
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/4.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/4.png)[br/](br/)
 I logged in ``without password`` and downloaded the file.
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/5.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/5.png)[br/](br/)
 We got some creds `` admin : WORKWORKHhallelujah@# ``
 
 I tried login with them in ``ftp`` and ``ssh`` but failed!
 
 We know there is Port 53 open which is ``domain`` may be we can do a zone transfer for that domain.
-I added ``friedzone.red`` and ``friendzoneportal.red`` in ``/etc/hosts``<br/>
+I added ``friedzone.red`` and ``friendzoneportal.red`` in ``/etc/hosts``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/6.png)
 
 > dig - DNS lookup utility
 
 By using this we can find other domains available for the webpage.
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/7.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/7.png)[br/](br/)
 Found some new domains , I added those new entries to ``/etc/hosts``
 
-I started with ``https://administrator1.friendzone.red``<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/8.png)<br/>
+I started with ``https://administrator1.friendzone.red``[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/8.png)[br/](br/)
 and Logged with the creds we found from smb `` admin : WORKWORKHhallelujah@# ``
 
-Once Logged in, It told me to visit ``/dashboard.php``<br/>
+Once Logged in, It told me to visit ``/dashboard.php``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/9.png)
 
 The dashboard seems to be deal with images with some paramaters.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/10.png)
 
 So I started testing one from the displayed one.
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/11.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/11.png)[br/](br/)
 Look at the parameters, may be we can do ``LFI``.
 I tested with ``php wrapper``
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/12.png)<br/>
-Its working and ``Timestamp`` is the page and ``.php`` suffix is added automatically.<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/12.png)[br/](br/)
+Its working and ``Timestamp`` is the page and ``.php`` suffix is added automatically.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/13.png)
 
 >https://highon.coffee/blog/lfi-cheat-sheet/
@@ -151,10 +151,10 @@ Its working and ``Timestamp`` is the page and ``.php`` suffix is added automatic
 The ``development`` share, we saw from ``smbmap`` has writable permission by the guest so why dont we upload a reverse shell there and try to access from this page.
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/14.png)
 
-We know the location of it from ``smbmap``<br/>
+We know the location of it from ``smbmap``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/15.png)
 
-Listening on my machine<br/>
+Listening on my machine[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/16.png)
 
 ## Privilege Escalation:
@@ -165,17 +165,17 @@ Got an user and password ``  friend : Agpyu12!0.213$ ``
 Now I logged in as ``friend``
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/18.png)
 
-Found some writable files from my Enumeration script<br/>
+Found some writable files from my Enumeration script[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/17.png)
 
 Later I uploaded ``pspy``
 
 >pspy is a command line tool designed to snoop on processes without need for root permissions. It allows you to see commands run by other users, cron jobs, etc. as they execute. Great for enumeration of Linux systems in CTFs. Also great to demonstrate your colleagues why passing secrets as arguments on the command line is a bad idea.
 
-My guess is correct<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/19.png)<br/>
-So I started checking ``reporter.py`` <br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/20.png)<br/>
+My guess is correct[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/19.png)[br/](br/)
+So I started checking ``reporter.py`` [br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/20.png)[br/](br/)
 Can't find anything but ``import os`` which is also a writeable file so we edit it.
 Since it is python I added python script to get shell
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-friendzone/21.png)

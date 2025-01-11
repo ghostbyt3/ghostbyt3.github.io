@@ -2,8 +2,8 @@
 const siteMetadata = {
   title: 'Nikhil\'s Cybersec Blog',
   author: 'Nikhil',
-  headerTitle: 'Zer0Bytes',
-  description: 'Walkthroughs for HTB retired machines, Vulnhub and other CTF Challenges.',
+  headerTitle: 'Gh0stByt3',
+  description: '',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://ghostbyt3.github.io/',

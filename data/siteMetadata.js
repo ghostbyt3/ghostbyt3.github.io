@@ -11,12 +11,12 @@ const siteMetadata = {
   siteLogo: '/static/images/logo.png',
   socialBanner: '/static/images/twitter-card.png',
   //mastodon: 'https://mastodon.social/@mastodonuser',
-  email: 'address@yoursite.com',
+  email: 'nikhiljohn2104@gmail.com',
   github: 'https://github.com/ghostbyt3/',
-  twitter: 'https://twitter.com/Twitter',
+  twitter: 'https://x.com/gh0stbyt3',
   //facebook: 'https://facebook.com',
   //youtube: 'https://youtube.com',
-  linkedin: 'https://www.linkedin.com',
+  linkedin: 'https://www.linkedin.com/in/nikhil21john/',
   locale: 'en-US',
   analytics: {
     // If you want to use an analytics provider you have to add it to the

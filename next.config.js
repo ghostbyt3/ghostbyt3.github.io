@@ -16,16 +16,6 @@ const ContentSecurityPolicy = `
   frame-src giscus.app
 `
 
-async redirects() {
-  return [
-    {
-      source: '/:path/index.xml',
-      destination: '/:path/feed.xml',
-      permanent: true,
-    }
-  ]
-}
-
 const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP
   {

@@ -1,0 +1,42 @@
+---
+title: "1-Day Vulnerability Breakdowns"
+layout: PostSimple
+date: 2025-06-21
+tags: ['kernel','windows','drivers','research']
+categories: KernelExploitation
+---
+
+Welcome to the **1-Day Breakdown** series — a curated collection of publicly disclosed CVEs, distilled into short and digestible posts that take less than **5–10 minutes** to read.
+
+Each post offers:
+- A clear breakdown of the vulnerability
+- Key technical insights
+- Proof-of-Concept (PoC) code (where available)
+- Focus on ease of understanding for researchers, pentesters, and reverse engineers.
+
+📍 **Full list available at** 👉 [labs.pwnfuzz.com/1day-breakdowns](https://labs.pwnfuzz.com/1day-breakdowns/)
+
+---
+
+## 🔍 CVE Breakdown Table
+
+| CVE ID        | Component        | Vuln Type         | Summary                           | Link                                                        |
+|---------------|------------------|-------------------|-----------------------------------|-------------------------------------------------------------|
+| [CVE-2024-21338](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338) | `appid.sys`    | Untrusted Pointer Dereference  | Windows Kernel Elevation of Privilege Vulnerability       | [View](https://labs.pwnfuzz.com/1day-breakdowns/cve-2024-21338/) |
+| [CVE-2024-38041](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38041) | `appid.sys`        | Exposure of Sensitive Information to an Unauthorized Actor     | Windows Kernel Information Disclosure Vulnerability | [View](https://labs.pwnfuzz.com/1day-breakdowns/cve-2024-38041/) |
+| [CVE-2025-21333](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21333) | `vkrnlintvsp.sys`| Heap-based Buffer Overflow    | Windows Hyper-V NT Kernel Integration VSP Elevation of Privilege Vulnerability  | [View](https://labs.pwnfuzz.com/1day-breakdowns/cve-2025-21333/) |
+
+> ℹ️ More CVEs and PoCs are added frequently. Follow [@pwnfuzz](https://www.linkedin.com/company/pwnfuzz/) or visit the [labs homepage](https://labs.pwnfuzz.com/) to stay updated.
+
+---
+
+## 💡 About This Series
+
+The **1-Day Breakdown** series is designed for:
+- Security researchers looking to quickly understand public vulnerabilities
+- Reverse engineers learning from real-world kernel bugs
+- Red teamers or exploit devs studying PoCs
+
+Each post is written to be practical, concise, and technically sound — with no filler.
+
+---

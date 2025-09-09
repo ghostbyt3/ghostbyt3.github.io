@@ -1,14 +1,15 @@
 ---
-title: "1-Day Vulnerability Breakdowns"
+title: '1-Day Vulnerability Breakdowns'
 layout: PostSimple
 date: 2025-07-14
-tags: ['kernel','windows','drivers','research']
+tags: ['kernel', 'windows', 'drivers', 'research']
 categories: KernelExploitation
 ---
 
 Welcome to the **1-Day Breakdown** series — a curated collection of publicly disclosed CVEs, distilled into short and digestible posts that take less than **5–10 minutes** to read.
 
 Each post offers:
+
 - A clear breakdown of the vulnerability
 - Key technical insights
 - Proof-of-Concept (PoC) code (where available)
@@ -22,13 +23,13 @@ Each post offers:
 
 > Last Updated: 27-07-2025
 
-| CVE ID        | Component        | Vuln Type         | Summary                           | Link                                                        |
-|---------------|------------------|-------------------|-----------------------------------|-------------------------------------------------------------|
-| [CVE-2024-21338](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338) | `appid.sys`    | Untrusted Pointer Dereference  | Windows Kernel Elevation of Privilege Vulnerability       | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-21338/) |
-| [CVE-2024-30084](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30084) | `ks.sys`        | Time-of-check Time-of-use (TOCTOU) Race Condition     | Windows Kernel Streaming Driver Elevation of Privilege Vulnerability | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-30084/) |
-| [CVE-2024-35250](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35250) | `ks.sys`        | Untrusted Pointer Dereference     | Windows Kernel Streaming Driver Elevation of Privilege Vulnerability | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-35250/) |
-| [CVE-2024-38041](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38041) | `appid.sys`        | Exposure of Sensitive Information to an Unauthorized Actor     | Windows Kernel Information Disclosure Vulnerability | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-38041/) |
-| [CVE-2025-21333](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21333) | `vkrnlintvsp.sys`| Heap-based Buffer Overflow    | Windows Hyper-V NT Kernel Integration VSP Elevation of Privilege Vulnerability  | [View](https://labs.pwnfuzz.com/breakdowns/cve-2025-21333/) |
+| CVE ID                                                                                 | Component         | Vuln Type                                                  | Summary                                                                        | Link                                                        |
+| -------------------------------------------------------------------------------------- | ----------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| [CVE-2024-21338](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-21338) | `appid.sys`       | Untrusted Pointer Dereference                              | Windows Kernel Elevation of Privilege Vulnerability                            | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-21338/) |
+| [CVE-2024-30084](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-30084) | `ks.sys`          | Time-of-check Time-of-use (TOCTOU) Race Condition          | Windows Kernel Streaming Driver Elevation of Privilege Vulnerability           | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-30084/) |
+| [CVE-2024-35250](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-35250) | `ks.sys`          | Untrusted Pointer Dereference                              | Windows Kernel Streaming Driver Elevation of Privilege Vulnerability           | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-35250/) |
+| [CVE-2024-38041](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2024-38041) | `appid.sys`       | Exposure of Sensitive Information to an Unauthorized Actor | Windows Kernel Information Disclosure Vulnerability                            | [View](https://labs.pwnfuzz.com/breakdowns/cve-2024-38041/) |
+| [CVE-2025-21333](https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21333) | `vkrnlintvsp.sys` | Heap-based Buffer Overflow                                 | Windows Hyper-V NT Kernel Integration VSP Elevation of Privilege Vulnerability | [View](https://labs.pwnfuzz.com/breakdowns/cve-2025-21333/) |
 
 > ℹ️ More CVEs and PoCs are added frequently. Follow [@pwnfuzz](https://www.linkedin.com/company/pwnfuzz/) or visit the [labs homepage](https://labs.pwnfuzz.com/) to stay updated.
 
@@ -37,6 +38,7 @@ Each post offers:
 ## 💡 About This Series
 
 The **1-Day Breakdown** series is designed for:
+
 - Security researchers looking to quickly understand public vulnerabilities
 - Reverse engineers learning from real-world kernel bugs
 - Red teamers or exploit devs studying PoCs
@@ -50,4 +52,3 @@ Each post is written to be practical, concise, and technically sound — with no
 The goal of **1-Day Breakdowns** is to make vulnerability research more approachable — especially for those who want to understand the essence of a bug quickly without digging through dense advisories or patch diffs.
 
 Whether you're into exploitation, reverse engineering, or just staying sharp on real-world vulnerabilities, this series is for you.
-
